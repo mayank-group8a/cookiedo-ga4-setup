@@ -1,0 +1,20 @@
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+
+{% comment %}
+  The contents of the collection.liquid template can be found in /sections/collection-template.liquid
+{% endcomment %}
+
+{% assign  disable_old = true %}
+{% if disable_old == true %}
+{% section "collection-template-2020" %}
+{% else %}
+{% section 'collection-template' %}
+{% endif %}
+
+<!--{ section 'gift-card' }-->

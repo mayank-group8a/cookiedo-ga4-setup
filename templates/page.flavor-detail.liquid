@@ -1,0 +1,85 @@
+{% section 'banner-flavor-detail' %}
+<style>
+  @media screen and (min-width:992px){
+    .flavor-content img{float:right; margin-left:50px; }
+  }
+  .content-section{
+  	padding-top:0px;
+  }
+  .banner{
+  	margin-top: 70px;
+  }
+  div.column-center.w-col.w-col-4 a {
+    color: #ff007b;
+    font-family: 'Poppins';
+    font-size:15px;
+  }
+</style>
+
+<div class="flavor-detail-content-block">
+{% assign page_title = page.title %}
+{% case page_title %}
+  {% when 'signature chocolate chip' %}
+     {% section 'flavor-detail' %}
+  {% when 'CommanDŌ' %}
+     {% section 'flavor-detail-commando' %}
+  {% when 'Chocolate Dream' %}
+     {% section 'flavor-detail-chocolate-dream' %}
+  {% when 'Fluffernutter' %}
+ 	 {% section 'flavor-detail-fluffernutter' %}
+  {% when 'Salty & Sweet' %}
+       {% section 'flavor-detail-salty-sweet' %}
+  {% when 'Heavenly' %}
+       {% section 'flavor-detail-heavenly' %}
+  {% when 'Oatmeal M&M' %}
+       {% section 'flavor-detail-oatmeal-m-m' %}
+  {% when 'Brookie Dough' %}
+       {% section 'flavor-detail-brookie-dough' %}
+  {% when 'Sugar Cookie' %}
+       {% section 'flavor-detail-sugar-cookie' %}
+  {% when 'Nuts For Nuts' %}
+       {% section 'flavor-detail-nuts' %}
+  {% when 'dunkaDŌo' %}
+       {% section 'flavor-detail-dunkadoo' %}
+  {% when "peanut butter snickerdoodle" %}
+       {% section 'flavor-detail-peanut-butter' %}
+  {% when "Gimme S'more" %}
+       {% section 'flavor-detail-smores' %}
+  {% when "Cake Batter" %}
+ 	 {% section 'flavor-detail-cake-batter' %}
+  {% when "pumpkin pie" %}
+  	{% section 'flavor-detail-pumpkin-pie' %}
+  {% when "apple pie" %}
+  	{% section 'flavor-detail-apple-pie' %}
+  {% when "chocolate pb pie" %}
+  	{% section 'flavor-detail-pecan-pie' %}
+  {% when "cookies & cream" %}
+  	{% section 'flavor-detail-chocolate-pb-pie' %}
+  {% when "honey cornbread" %}
+  	{% section 'flavor-detail-toasty-cinnamon' %}
+  {% when "pecan pie" %}
+  	{% section 'flavor-detail-iced-gingerbread' %}
+  {% when "maple snickerdoodle" %}
+  	{% section 'flavor-detail-reindeer-food' %}
+   {% when "oatmeal cranberry chip" %}
+  	{% section 'flavor-detail-hot-cocoa' %}
+  {% when "oh my, apple pie" %}
+ 	{% section 'flavor-detail-tag-along-with-me' %}
+  {% when "candy cane oreo" %}
+ 	{% section 'flavor-detail-thick-mint' %}
+  {% when "m&m cookie" %}
+ 	{% section 'flavor-detail-scouts-shortbread' %}
+  {% when "snowflake cake batter" %}
+ 	{% section 'flavor-detail-chocolate-caramel-coconut' %}  
+  
+  
+  {% else %}
+<p style="padding:30px;">Please create <strong>{{page.title}}</strong> page content section...!</p>
+{% endcase %}
+
+</div>
+<div class="content-wrapper w-container">
+ 
+</div>
+
+

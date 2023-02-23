@@ -1,0 +1,186 @@
+{%- assign social_icons = false -%}
+
+{% if
+  settings.social_twitter_link != blank
+  or settings.social_facebook_link != blank
+  or settings.social_pinterest_link != blank
+  or settings.social_instagram_link != blank
+  or settings.social_tumblr_link != blank
+  or settings.social_snapchat_link != blank
+  or settings.social_youtube_link != blank
+  or settings.social_vimeo_link != blank
+  or template.name == 'article'
+  or template.name == 'blog'
+%}
+  {%- assign social_icons = true -%}
+{% endif %}
+
+	<div class="div-block-21">
+  		{% for block in section.blocks %}
+        	<div class="column-center w-col w-col-4">
+              {% if block.settings.url_box != blank %}
+              	<a href="{{ block.settings.url_box }}" class="link-block-stripe w-inline-block">
+              {% else %}
+              	<a href="javascript:void('0')" class="link-block-stripe w-inline-block">
+              {% endif %}
+              {% if block.settings.title_heading != blank %}
+                <div class="link-box">
+                  {{ block.settings.title_heading }}
+                </div>
+              {% endif %}
+              </a>
+        	</div>
+  		{% endfor %}
+              
+      </div>
+   </div>
+  </div>
+</div>
+<div class="contact-row"></div>
+<!--
+  <div class="map" id="address" data-latitude="{{ section.settings.latitude }}" data-longitude="{{ section.settings.longitude }}">
+ 	<div class="contact-div">
+      <div class="div-50 colored-box">
+        <div class="colored-box-1">
+          <div class="colored-box-2">
+            {% if section.settings.location != blank %}
+            <h3 class="h3-white">{{ section.settings.location }}</h3>
+            {% endif %}
+            
+            <h3 class="h3-white">
+              {% if section.settings.email != blank %}
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+              {% endif %}
+              {% if section.settings.phone != blank %}
+              <br><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
+              {% endif %}
+            
+            </h3>
+            {% if social_icons %}
+            <div class="social-icons-box stay-connected left">
+              {% if settings.social_facebook_link != blank %}
+              <a aria-label="Facebook" href="{{ settings.social_facebook_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">{% include 'icon-facebook' %}</a>
+              {% endif %}
+
+              {% if settings.social_twitter_link != blank %}
+                <a aria-label="Twitter" href="{{ settings.social_twitter_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                  {% include 'icon-twitter' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_instagram_link != blank %}
+              <a aria-label="Instagram" href="{{ settings.social_instagram_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                {% include 'icon-instagram' %}
+              </a>
+              {% endif %}
+
+              {% if settings.social_pinterest_link != blank %}
+                <a aria-label="Pinterest" href="{{ settings.social_pinterest_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                  {% include 'icon-pinterest' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_tumblr_link != blank %}
+                <a aria-label="Tumblr" class="social-icon w-inline-block" href="{{ settings.social_tumblr_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Tumblr' }}">
+                  {% include 'icon-tumblr' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_snapchat_link != blank %}
+                <a class="ssocial-icon w-inline-block" href="{{ settings.social_snapchat_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Snapchat' }}">
+                  {% include 'icon-snapchat' %}
+                </a>
+              {% endif %}
+              {% if settings.social_youtube_link != blank %}
+                  <a aria-label="YouTube" class="social-icon w-inline-block" href="{{ settings.social_youtube_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'YouTube' }}">
+                    {% include 'icon-youtube' %}
+                  </a>
+              {% endif %}
+              {% if settings.social_vimeo_link != blank %}
+                  <a class="social-icon w-inline-block" href="{{ settings.social_vimeo_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Vimeo' }}">
+                    {% include 'icon-vimeo' %}
+                  </a>
+              {% endif %}
+              {% if template.name == 'blog' or template.name == 'article' %}
+                  <a class="social-icon w-inline-block" href="{{ shop.url }}{{ blog.url }}.atom" data-ix="show-social-icon-on-hover" >
+                    {% include 'icon-rss' %}
+                  </a>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+-->
+   
+      
+      <!-- ================= gallery ================ -->
+<div class="clearfix" style="padding-top:0px; "></div>
+
+      
+       <style>
+        #Footer .w-container{
+        	max-width: 1093px;
+        }
+      </style>
+
+{% schema %}
+  {
+    "name": "Location Hourrs",
+	"class": "location",
+    "settings": [
+		{
+			"type"  : "text",
+			"id"    : "email",
+			"label" : "Email"
+		},
+		{
+			"type"  : "text",
+			"id"    : "phone",
+			"label" : "Phone"
+		},
+		{
+			"type"  : "text",
+			"id"    : "location",
+			"label" : "Address"
+		},
+		{
+			"type"  : "text",
+			"id"    : "latitude",
+			"label" : "Map Latitude",
+			"default" : "40.729124"
+		},
+		{
+			"type"  : "text",
+			"id"    : "longitude",
+			"label" : "Map Longitude",
+			"default": "-73.998349"
+		},
+		{
+			"type"  : "richtext",
+			"id"    : "longitudess",
+			"label" : "Map Longitude"
+		}
+	],
+	"blocks":[
+		{
+		"type":"location-hours",
+		"name":"Additional content",
+		"settings":[
+					{
+                        "type"  : "html",
+                        "id"    : "title_heading",
+                        "label" : "Title"
+                    },
+                    {
+                        "type"  : "text",
+                        "id"    : "url_box",
+                        "label" : "URL"
+                    }
+				]
+		}
+	]
+  }
+{% endschema %}

@@ -1,0 +1,5 @@
+{% if product.metafields.hard_redirect['hard_redirect'] != blank %}
+  <script>
+    window.location.href="{{product.metafields.hard_redirect['hard_redirect']}}";
+  </script>
+  {% endif %}

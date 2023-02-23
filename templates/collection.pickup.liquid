@@ -1,0 +1,325 @@
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+
+{% section "pickup-offer" %}
+
+{% section "merch-offer" %}
+{% assign  disable_old = true %}
+{% if disable_old == true %}
+{% section "collection-template-2020" %}
+{% else %}
+
+{% comment %}
+  The contents of the collection.liquid template can be found in /sections/collection-template.liquid
+{% endcomment %}
+
+<!-- {% section 'collection-templates' %} -->
+
+<style>
+  .cta-image{
+  	background-size: cover;
+  }
+  .center-div.move{
+  	min-height:80px;
+    bottom: -64px;
+    left: 8px;
+right: 8px;
+  }
+  .team-member-text._10{padding-top:20px;}
+   .title.tiny{
+  word-spacing: -1.4px;
+  }
+  .whole-wrapper{ float:left; margin:0px; padding:0px; position:relative; padding-top:25px; margin-bottom: 25px; }
+  .whole-wrapper .w-col{width:286px; }
+  .highlight-top{
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    top: 0px;
+    right:10px;
+    left: 10px;
+}
+  .highlight-top:after{
+  	content:"";
+    height:2px;
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    left:0;
+    width:100%;
+    z-index:1;
+  }
+  .highlight-top h3{
+
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: #fff;
+    padding: 0px 10px;
+    position: relative;
+    z-index: 9;
+    display: inline-block;
+    margin: 0px;
+
+}
+  
+  .offPrice{
+    display:inline-block; 
+    position:relative;
+  }
+  
+  .offPrice:after{
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: #ff007b;
+    width: 100%;
+    left: 0;
+    bottom: 40%;
+    transform: rotate(-10deg);
+}
+  .title.tiny.white-bg{
+  	top:2px;
+    padding-top:0px;
+  }
+  
+ .discount_badge{ 
+
+    position: absolute;
+    right: 5%;
+    top: 0;
+    width: 75px;
+   background: url({{ 'bageBg.png' | asset_img_url: }}) no-repeat center bottom;
+   background-size:cover;
+    height: 120px;
+    z-index: 9;
+    font-size: 23px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+
+}
+  .bage_box{
+  	    line-height: 30px;
+    padding-top: 16px;
+    display:block;
+    height:100%;
+    position:relative;
+  }
+  .bage_box:after{
+  	content:"";
+  }
+  .divider{
+
+    background: #13a1cb;
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+  
+  ._2-buttons{
+  	padding-top:25px;
+  }
+ 
+  .cta-image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .out-div{
+  	margin: 6px;
+    height: 235px;
+  }
+  
+  .title.tiny.white-bg br{
+  	display:none;
+  }
+  
+  .title.tiny.white-bg span{
+  	display:block;
+    font-weight:300;
+  }
+  
+  .discount-price .title.tiny.white-bg br{display: inherit;}
+  
+  .discount-price .title.tiny.white-bg span{
+  	display:inline-block;
+  }
+  .title.tiny.white-bg{
+  	top: 10px;
+    z-index:1;
+  }
+ 
+  
+   @media screen and (min-width: 1024px){
+    .div-container{
+      max-width:1200px;
+    }
+  }
+  
+   @media screen and (max-width: 768px){
+    .whole-wrapper .grid__item,
+    .whole-wrapper{width:100% !important;}
+    
+    .center-div.move{bottom: -32px;}
+  }
+  
+  
+  @media screen and (max-width: 480px){
+  	.center-div.move {
+        bottom: -44px;
+    }
+  }
+  
+</style>
+<div id="wrapper-container" class="content-section">
+<div class="div-container">
+{% assign tagCount = 0 %}
+ {% assign product_tags = "Pick your own flavors, The best sellers, Celebration packs, Gluten free, Seasonal, Just a taste, Cookie Cakes, FOR ALL THE COOKIE MONSTERS!" | split: ", " %}
+
+{% for tag in product_tags %}
+  {% capture current_tag %}/{{ tag }}/{% endcapture %}
+  
+  {% if tag == "Don't forget all this sweet stuff!" %}
+  	{% assign color_code = '#13a1cb' %}
+  {% elsif tag == 'Seasonal' %}
+  	{% assign color_code = '#d7e259' %}
+  
+  {% elsif tag == 'FOR ALL THE COOKIE MONSTERS!' %}
+  	{% assign color_code = '#9cdcf9' %}
+  
+  {% elsif tag == "valentine's day treats" %}
+  	{% assign color_code = '#efdc03' %}
+  {% elsif tag == "valentine's tasters" %}
+  	{% assign color_code = '#e52477' %}
+
+  {% elsif tag == 'Just a taste' %}
+  	{% assign color_code = '#efdc03' %}
+  {% elsif tag == 'The best sellers' %}
+  	{% assign color_code = '#6cbae9' %}
+  {% elsif tag == 'Celebration packs' %}
+  	{% assign color_code = '#6cbae9' %}
+  {% elsif tag == 'Gluten free' %}
+  	{% assign color_code = '#d7e259' %}
+    
+  {% elsif tag == 'Other DŌlicious treats' %}
+  	{% assign color_code = '#ed3381' %}
+  {% elsif tag == 'Take a bite' %}
+  	{% assign color_code = '#b6def8' %}
+  {% else %}
+  	{% assign color_code = '#ed3381' %}
+  {% endif %}
+  
+  <div class="whole-wrapper">
+  <div class="highlight-top">
+    
+  <h3 style="color:{{color_code}}">{{ tag }}</h3>
+    <span class="divider" style="background:{{color_code}}"></span>
+  </div>
+    
+  {% for product in collection.products %}
+    
+    
+    
+    {% for product_tag in product.tags %}
+    
+    
+      {% capture current_tag2 %}/{{ product_tag }}/{% endcapture %}
+    
+      {% if current_tag contains current_tag2 %}
+		{% assign tagCount = tagCount | plus: 1 %}
+    
+  		<div class="column-no-padding w-col  w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third" style="min-height:320px;">
+
+          {% include 'cookiedoSpecial' with collection.handle %}
+          
+  		</div>
+    
+    	 {% if tagCount == 4 %}
+            </div>
+            </div>
+            <div class="div-container">
+            <div class="whole-wrapper">
+               {% assign tagCount = tagCount | minus: 4 %}
+          {% endif %}
+    	
+      {% endif %}
+    
+    {% endfor %}
+    
+  {% endfor %}
+    
+  </div>
+{% endfor %}
+              
+              {% if collection.products.size == 0 %} 
+
+<div class="grid__item small--text-center">
+        <p class="text-center">Sorry, there are no products in this collection</p>
+      </div>
+{% endif %}
+ </div>
+ </div>
+
+
+<script>
+  jQuery(document).ready(function(){
+    jQuery("#wrapper-container .div-container").each(function(){
+      
+      jQuery(this).find('.whole-wrapper').each(function(){
+        var grid_counts = jQuery(this).find('.grid__item').length;
+      	if(grid_counts == 0){
+        	jQuery(this).remove();
+        }else if(grid_counts == 1){
+        	jQuery(this).css({'width':'25%'});	
+        }else if(grid_counts == 2){
+        	jQuery(this).css({'width':'50%'});	
+        }else if(grid_counts == 3){
+        	jQuery(this).css({'width':'75%'});	
+        }else if(grid_counts == 4){
+        	jQuery(this).css({'width':'100%'});	
+        }
+      });
+      
+      //var sec_count = jQuery(this).find('.whole-wrapper').length;
+     
+      
+      jQuery(this).find('.whole-wrapper').each(function(){
+      	var grid_count = jQuery(this).find('.grid__item').length;
+        if(grid_count == 0){
+        	jQuery(this).hide();
+        }else{
+          if(grid_count == 1){
+            jQuery(this).find('.grid__item').css({'width':'100%'});
+          }else if(grid_count == 2){
+            jQuery(this).find('.grid__item').css({'width':'50%'});
+          }else if(grid_count == 3){
+            jQuery(this).find('.grid__item').css({'width':'33.33%'});
+          }else if(grid_count == 4){
+            jQuery(this).find('.grid__item').css({'width':'25%'});
+          }
+        	console.log(grid_count);
+        }
+        
+        
+      });
+      
+      
+    });
+  });
+</script>
+<!--{ section 'gift-card' }-->
+{% endif %}

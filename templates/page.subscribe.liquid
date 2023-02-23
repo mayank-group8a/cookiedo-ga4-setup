@@ -1,0 +1,653 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<style>
+  .subscription-hero-section{
+  position:relative;
+    background: #f4f4f4;
+    padding:0px 0px;
+    width:100%;
+    display:block;
+    margin:0px auto;
+
+}
+  
+  .hero-text{
+    float:left;
+    width:50%;
+    padding:50px 25px;
+  }
+  .subscription-hero-section .hero-img{
+  float:right;
+    width:45%;
+   /* position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 50%;
+    height: auto;
+    text-align: right;
+    */
+
+} 
+.subscription-hero-section .hero-img img{
+    mix-blend-mode: darken;
+    height:100%;
+    width:auto;
+      object-fit: cover;
+  }
+  .fancy-hero{
+    text-align:left;
+    margin-bottom: 40px;
+    margin-top: 0px;
+  }
+  .fancy-hero span{
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #1f1f1f;
+    margin-bottom: 15px;
+}
+  .hero-text p{line-height:20px;}
+  .hero-bottom-bar{
+    background:#2ea5ce;
+    color:#fff;
+    padding: 15px 25px;
+    width:100%;
+    display:block;
+    margin:0px auto;
+  }
+  
+  .fal:before{
+    font-family: "Font Awesome 5 Free";
+  }
+ 
+  .hero-bottom-bar ul{
+    padding:0px;
+    margin-bottom: 0px;
+    display: flex;
+  flex-wrap: wrap;
+  }
+   .hero-bottom-bar ul li{
+      color: #fff;
+      font-size: 18px;
+      font-family: 'Poppins', sans-serif;
+      list-style:none;
+      box-sizing:border-box;
+      margin-bottom: 0px;
+      padding-right: 4.3%;
+  }
+  .hero-bottom-bar ul li:last-child{
+    padding-right: 0%;
+  }
+  .hero-bottom-bar ul li span{
+    font-weight: 400;
+    padding-left:5px;
+  }
+  
+  .inner-row{
+    margin-left:-10px;
+    margin-right:-10px;
+    /* display: inline-flex;
+align-items: end;
+flex-wrap: wrap;*/
+  }
+  .featured-box{
+    display:block;
+    text-align:center;
+    padding: 15px;
+  }
+    .featured-box p{
+    font-weight: 300;
+    text-align: center;
+}
+  .featured-box .col-num{
+      display: block;
+      width: 45px;
+      height: 45px;
+      background: #e73280;
+      color: #fff;
+      text-align: center;
+      line-height: 45px;
+      font-weight: 700;
+      font-size: 25px;
+      border-radius: 50%;
+      margin: 0px auto;
+  }
+  
+  .featured-option h2{
+    font-weight:600;
+    width:100%;
+  }
+  .subscribe_btn{
+    display: inline-block;
+    background: #e73280;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 15px 20px;
+    border:1px solid #e73280;
+    transition: all 0.5s;
+}
+.subscribe_btn:hover{
+    color: #e73280;
+    background: #fff;
+}
+  .product-box{
+    background:#fff;
+    position: relative;
+  }
+  .product-box:after{
+    display:table;
+    content:"";
+    clear:both;
+    background:url({{ 'black-lines-border.png' | asset_img_url: '300x' }}) repeat-x;
+    width:100%;
+    height:18px;
+    
+  }
+  .product-info{
+    display: block;
+    margin-bottom: 10px;
+    padding:15px;
+    padding-top:0px;
+}
+  .prodcut-img{
+    display:block;
+    margin:0px auto;
+    padding:15px;
+  }
+  
+  .product-row{
+    background:url({{ 'bg-overlay.png' | asset_img_url: '1000x' }}) no-repeat left center #fcfcfc;
+    padding-top: 50px;
+padding-bottom: 50px;
+    margin-top: 70px;
+    margin-bottom:35px;
+  }
+  .text-left{
+    text-align:left;
+  }
+  .faq-header{
+
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    padding: 17px 0px;
+    border-bottom: 2px solid #f6f6f6;
+
+}
+  .faq-body{
+
+    display: none;
+    padding: 25px 0px;
+
+}
+.faq-body a{
+    color: #ff007b;
+    font-family: poppins;
+}
+  .faq-wrapper{
+    border-top: 2px solid #f6f6f6;
+    margin-bottom:50px;
+  }
+  body div:after{
+    content:"";
+    display:table;
+    clear:both;
+  }
+    .faq-header h5{
+
+    float: left;
+    width: calc(100% - 50px);
+    margin: 0px;
+   font-family: 'Poppins', sans-serif;
+      font-weight:500;
+
+}
+  .faq-body p{
+  font-family: 'Poppins', sans-serif;
+  }
+.faq-header .faq-icon{
+
+    float: right;
+    font-size: 20px;
+    color: #ff007b;
+
+}
+.discount_badge {
+    position: absolute;
+    right: 5%;
+    top: 0;
+    background: url(//cdn.shopify.com/s/files/1/2509/8354/t/29/assets/bageBg_small.png?13454) no-repeat center bottom;
+    background-size: cover;
+    z-index: 9;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+    width: auto;
+    padding-right: 7px;
+    padding-left: 7px;
+    padding-bottom: 35px;
+    height: auto;
+    font-size: 12px;
+}   
+.bage_box {
+    padding-top: 10px;
+    line-height: 18px;
+    display: block;
+    height: 100%;
+    position: relative;
+}
+.bage_box span {
+    display: block;
+}
+  
+  @media screen and (min-width: 1220px){
+    .div-container{
+      width:100%;
+        max-width:1200px;
+    }
+    .large-resolation{
+        width: auto !important;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .medium-resolation{
+      visibility: hidden;
+      opacity:0;
+    }
+  }
+  
+  @media screen and (max-width: 1220px){
+    .large-resolation{
+       display:none !important;
+    }
+    
+  }
+  
+   @media screen and (max-width: 992px){
+     .subscription-text,
+    .calendar-wrapper,
+     .hero-text,
+    .faq-wrapper{
+      padding-left:10px;
+        padding-right:10px;
+    }
+     .hero-bottom-bar ul{
+      padding-left:10px;
+     }
+  }
+  @media screen and (max-width: 767px){
+    .subscription-hero-section .hero-img{
+      max-width: 100%;
+      width: 100%;
+      position: relative;
+    }
+    .hero-text{
+      width:auto;
+    }
+    .subscription-hero-section{
+      padding-bottom:0px;
+      background-color: white;
+    }
+    .calendar-wrapper > div{
+      margin-bottom: 25px;
+    }
+    .faq-wrapper {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+  }
+</style>
+
+{% include 'hypervisual' %}
+<div class="subscription-hero-section">
+  <div class="hero-inner-section">
+    <div class="div-container">
+      <div class="hero-text">
+        <h1 class="fancy-hero"><span>INTRODUCING</span> subscriptions</h1>
+        <p>Join The Cookie Dough Club™ and get new flavors and packs shipped for free every month! This can't get any sweeter!</p>
+      </div>
+       <div class="hero-img medium-resolation">
+    <img src="{{ 'hero3.jpg' | asset_img_url: '700x' }}" alt="" />
+      </div>
+    </div>
+   <div class="hero-img large-resolation">
+    <img src="{{ 'hero3.jpg' | asset_img_url: '700x' }}" alt="" />
+      </div>
+  </div>
+</div>
+<div class="hero-bottom-bar">
+  <div class="div-container">
+    <ul>
+      <li><i class="fal fa-check-circle"></i> <span>Innovative Flavors</span></li>
+      <li><i class="fal fa-check-circle"></i> <span>Freshly Made</span></li>
+      <li><i class="fal fa-check-circle"></i> <span>Shipped with Love for Free!</span></li>
+      <li><i class="fal fa-check-circle"></i> <span>Delivered to Your Doorstep</span></li>
+    </ul>
+  </div>
+</div>
+
+  <div class="content-section">
+    <div class="div-container">
+        
+      
+      <div class="featured-option">
+         <div class="inner-row">
+            <div class="w-col  w-col-4 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6" >
+                <img src="{{ 'subscription-img.png' | asset_img_url: '700x' }}" alt="" />
+            </div>
+            <div class="w-col  w-col-8 w-col-tiny-tiny-stack w-col-medium-9" >
+             <div class="inner-row">
+                <h2 class="text-center" style="font-family: 'Poppins', sans-serif;">how does it work?</h2>
+                <div class="clearfix" style="height:1px;"></div>
+               <div class="w-col  w-col-4 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6" >
+                 <div class="featured-box">
+                   <div class="col-num">1</div>
+                   <h4>sign up!</h4>
+                   <p>Once a month, you’ll receive a rotating selection of best selling and seasonal cookie dough flavors! A surprise gift will also be included in your box! 
+                   </p>
+                 </div>
+              </div>
+               <div class="w-col  w-col-4 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6" >
+                  <div class="featured-box">
+                   <div class="col-num">2</div>
+                   <h4>prepare for delivery</h4>
+                   <p>Shipments ship out the first Tuesday
+                      of every month and should
+                      arrive within the first week of the month.
+                    </p>
+                 </div>
+              </div>
+               <div class="w-col  w-col-4 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6" >
+                  <div class="featured-box">
+                   <div class="col-num">3</div>
+                   <h4>enjoy a sweet treat</h4>
+                    <p>Enjoy some dōlicious treats and don’t forget to share with friends and family. Remember to #showusyourdo and tag <br/><a href="https://www.instagram.com/cookiedonyc/?hl=en" target="_blank" style="color: #ff007b; font-family: poppins;">@cookiedonyc</a>.</p>
+                 </div>
+              </div>
+                
+              </div>
+            </div>
+        </div>
+        <div class="clearfix" style="background: #f6f6f6;height: 2px;margin: 25px 15px;display: block;"></div>
+        <p class="text-center">Adjust your subscription anytime, anywhere. Once you’ve subscribed you can manage your subscription in your account settings.</p>
+         <div class="clearfix" style="margin-bottom: 25px;"></div>
+          <a href="https://www.cookiedonyc.com/collections/subscriptions" class="btn subscribe_btn">SUBSCRIBE TODAY!</a>
+        
+          
+      </div>
+      </div>
+    
+      <div class="product-row">
+        <div class="div-container">
+          
+          <h2 class="text-center" style="font-weight: 700; font-family: 'Poppins', sans-serif;" >Subscription Options</h2>
+          <div class="clearfix" style="height:35px;"></div>
+        <div class="inner-row">
+            <div class="w-col  w-col-3 w-col-tiny-tiny-stack w-col-medium-6" >
+              <a href="https://www.cookiedonyc.com/products/month-to-month-edible-cookie-dough-subscription">
+                <div class="product-box">
+                  <div class="prodcut-img">
+                   <img src="{{ 'product-1.png' | asset_img_url: '700x' }}" alt="" />
+                  </div>
+                  <div class="product-info">
+                    <h4>1 Month $75</h4>
+                    <p style="text-align:center">A month-to-month subscription. This subscription will auto-renew every month.<br>&nbsp;</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <div class="w-col  w-col-3 w-col-tiny-tiny-stack w-col-medium-6" >
+              <a href="https://www.cookiedonyc.com/products/3-month-edible-cookie-dough-subscription">
+                <div class="product-box">
+                  <div class="prodcut-img">
+                   <img src="{{ 'product-2.png' | asset_img_url: '700x' }}" alt="" />
+                  </div>
+                  <div class="product-info">
+                    <h4>3 Month $200</h4>
+                    <p style="text-align:center">A 3-month subscription. You'll receive cookie dough every month, for three months!<br>&nbsp;</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <div class="w-col  w-col-3 w-col-tiny-tiny-stack w-col-medium-6" >
+              <a href="https://www.cookiedonyc.com/products/6-month-edible-cookie-dough-subscription">
+                <div class="product-box">
+                  <div class="prodcut-img">
+                   <img src="{{ 'product-3.png' | asset_img_url: '700x' }}" alt="" />
+                  </div>
+                  <div class="product-info">
+                    <h4>6 Month $400</h4>
+                    <p style="text-align:center">A 6-month subscription. You'll receive cookie dough every month, for six months! The last month's free!</p>
+                  </div>
+                    <div class="discount_badge">
+                      <div class="bage_box">
+                        <span style="display: block;">
+                          <span>Last</span><span>Month</span><span>Free!</span>
+                        </span>
+                      </div>
+                    </div>
+                </div>
+              </a>
+            </div>
+          <div class="w-col  w-col-3 w-col-tiny-tiny-stack w-col-medium-6" >
+              <a href="https://www.cookiedonyc.com/products/12-month-edible-cookie-dough-subscription">
+                <div class="product-box">
+                  <div class="prodcut-img">
+                   <img src="{{ 'product-4.png' | asset_img_url: '700x' }}" alt="" />
+                  </div>
+                  <div class="product-info">
+                    <h4>1 Year $800</h4>
+                    <p style="text-align:center">A year-round subscription. You'll receive cookie dough every month, for one full year! Last 2 months are free!</p>
+                  </div>
+                  <div class="discount_badge">
+                      <div class="bage_box">
+                        <span style="display: block;">
+                          <span>Last 2</span><span>Months</span><span>Free!</span>
+                        </span>
+                      </div>
+                    </div> 
+                </div>
+              </a>
+            </div>
+        </div>
+          
+         <div class="clearfix" style="height: 50px;"></div>
+      <div class="text-center">
+          <a href="https://www.cookiedonyc.com/collections/subscriptions" class="btn subscribe_btn">SUBSCRIBE TODAY!</a>
+      </div>
+          
+          </div>
+      </div>
+      
+    </div>
+  
+  <div class="clearfix" style="height:35px;"></div>
+   <div class="div-container">
+       <div class="subscription-text">
+      <h2 class="text-center" style="font-weight: 700;">Frequently Asked Questions</h2>
+            <div class="clearfix" style="height:35px;"></div>
+       </div>
+  </div>
+
+
+  <div class="clearfix" style="height:35px;"></div>
+   <div class="div-container">
+       <div class="faq-wrapper">
+
+        <div class="faq-container">
+           <div class="faq-header">
+            <h5>When will I get my Cookie DŌ?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus" style="display:none;"></i>
+               <i class="fas fa-minus"></i>
+             </span>
+           </div>
+           <div class="faq-body" style="display: block;">
+             <p>If you subscribe between the 1st and 20th of the month by 11:59PM EST, your ﬁrst order will ship immediately, and your second order will ship on the 1st Tuesday of the next month. If you subscribe between the 21st and 30th by 11:59PM EST, your ﬁrst order will ship immediately and your second order will ship on the 1st Tuesday of the month after next.</p>
+             <div class="clearfix" style="height:25px;"></div>
+             <p>For example, if you order on June 1-20th, you will receive your ﬁrst order within 3-7 business days and your second order will ship out on the 1st Tuesday of July. If you order on June 21-31st, you will receive your ﬁrst order within 3-7 business days and your second order will ship out on the 1st Tuesday of August.</p>
+            
+             
+             <div class="clearfix" style="height:35px;"></div>
+              <div class="calendar-wrapper">
+              <div class="w-col  w-col-6 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6" >
+                  <img src="{{ 'cal2.png' | asset_img_url: '700x' }}" alt="" />
+               </div>
+                
+              <div class="w-col  w-col-6 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6" >
+                  <img src="{{ 'tab2.png' | asset_img_url: '700x' }}" alt="" />
+               </div>
+               </div>
+           
+           </div>
+         </div>
+         
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>Can I skip my next shipment?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>This option is <strong>only</strong> available for our month-to-month subscription. You can skip your shipment by going to your account, clicking on “delivery schedule”, and choosing the “skip” button for that particular month. We won’t send that scheduled shipment but your delivery schedule will resume as usual for the following month. The deadline for skipping your order for the following month is the 20th of the current month. </p>
+    
+           </div>
+         </div>
+         
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>What’s your cancellation policy?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>Month-to-month subscribers can cancel at any time. Our subscriptions are not eligible for refunds or exchanges.</p>
+           </div>
+         </div>
+         
+         
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>What do I do if my box is damaged during shipping  or I’m missing an item?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>Please contact <a href="mailto:info@cookiedonyc.com">info@cookiedonyc.com</a> immediately with pictures of the damaged box or amount of containers.</p>
+           </div>
+         </div>
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>How much does shipping cost? </h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>Shipping is free!</p>
+           </div>
+         </div>
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>When will I be billed?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>You will incur a one-time charge at the time of purchase for the selected subscription. For every subsequent subscription renewal, you will get charged on the first of the month. For example, if you purchase a 3-month subscription, you will get charged when you first purchase the subscription, and then after the 3 months, for a renewal of that subscription for another 3 months.</p>
+           </div>
+         </div>
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>What’s included in my subscription?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p> Your subscription includes four, 8 oz. containers of cookie dough! You’ll get new flavors as they are introduced on our menu as well as special monthly & holiday customized lids. Your box will also include a free surprise, that will vary each month! </p>
+           </div>
+         </div>
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>Who delivers my box?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>FedEx will deliver your order. Please ensure you are home within 5 hours of delivery- as your order consists of perishable items! You will receive tracking information once your order has been shipped.</p>
+           </div>
+         </div>
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>What if I move or change my address?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>You can edit your shipping address in your account profile by clicking on “subscriptions” and choosing “edit” next to your current shipping address. Please note that we require 14 business day’s notice to modify your shipping address in order for your next order to be delivered to the updated address. </p>
+           </div>
+         </div>
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>Can I update my billing address?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>Yes! Once logged into your account, click on “billing information” and edit either your billing address or credit card information.</p>
+           </div>
+         </div>
+         <div class="faq-container">
+           <div class="faq-header">
+            <h5>Can I have an order shipped to a PO box?</h5>
+             <span class="faq-icon">
+               <i class="fas fa-plus"></i>
+               <i class="fas fa-minus" style="display:none;"></i>
+             </span>
+           </div>
+           <div class="faq-body">
+             <p>We do not ship to P.O. boxes. Please provide an alternate address during checkout. </p>
+           </div>
+         </div>
+     
+     
+       </div>
+   </div>
+
+
+
+
+
+
+<script>
+  jQuery(document).ready(function(){
+    jQuery('.faq-header').click(function(){
+      var parent_div = jQuery(this).parent();
+        jQuery(parent_div).find('.faq-body').slideToggle();
+        jQuery(parent_div).find('.faq-header .faq-icon .fas').toggle();
+    });
+  });
+</script>

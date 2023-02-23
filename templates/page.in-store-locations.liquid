@@ -1,0 +1,25 @@
+{% section "banner-in-store-locations" %}
+
+<style>
+  .box-heading-bold{
+  text-transform: inherit;
+  }
+</style>
+<div id="Team" class="content-section">
+    <div class="content-wrapper w-container">
+{% case page.title %}
+      {% when 'Find Us In-Store' %}
+      	 {% section 'visit-locations-stor-front' %}
+      {% when "Chef's Club" %}
+      	 {% section 'visit-locations-chef-club' %}
+      {% when 'Smorgasburg' %}
+      	 {% section 'visit-locations-smorgasburg' %}
+      {% when 'Citi Field' %}
+      	 {% section 'visit-locations-citi-field' %}
+      {% else %}
+		{% section 'visit-locations' %}
+{% endcase %}
+        {{ page.content }}  
+  </div>
+</div>
+

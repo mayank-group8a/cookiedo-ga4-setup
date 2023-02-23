@@ -1,0 +1,33 @@
+{% for collection in product.collections %}
+   {% assign collection_handle = collection.handle %}
+{% endfor %}
+
+{% if product.tags contains 'nationwide' %}
+	{% assign collection_products = collections.related-products.products %}
+{% elsif product.tags contains 'merch' or 'baking-mixes' %}
+	{% assign collection_products = collections.related-products.products %}
+{% endif %}
+
+
+{% if collection_products.size > 0 %}
+<div id="Team" class="content-section">
+<div class="grid grid--uniform grid--view-items">
+  <div class="div-container">
+
+    <div class="banner2 w-clearfix" style="margin-bottom: 40px;">
+      <h3 class="heading on-lines related-prod-title">check out these other DŌlicious ideas</h3>
+      <div class="lines"></div>
+    </div>
+    
+    
+{% for product in collection_products limit:4 %}
+
+<div class="column-no-padding w-col w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6">
+            {% include 'product-card-grid', max_height: max_height %}
+          </div>
+
+{% endfor %}
+</div>
+</div>
+  </div>
+{% endif %}

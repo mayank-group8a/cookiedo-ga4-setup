@@ -1,0 +1,78 @@
+{% for block in section.blocks %}
+ 	{%- assign collection = collections[block.settings.collection_category] -%}
+	<div class="content-section no-bottom-padding">
+    <div class="div-container">
+      {% if block.settings.collection_heading != blank %}
+      <div class="banner2 w-clearfix">
+        <h3 class="heading on-lines">{{ block.settings.collection_heading }}</h3>
+        <div class="lines"></div>
+      </div>
+      {% endif %}
+        <div class="tab-div">
+          <div class="row-5 w-row">
+          {% for product in collection.products %}
+          		
+          		 <div class="column-no-padding w-col w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6">
+               			{% include 'product-card-grid' %}
+                  </div>
+          		
+          {% endfor %}
+            </div>
+        </div>
+      </div>
+      </div>
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Collection",
+    "class": "collection-section",
+    "settings": [
+      
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "label": "Show 'View all' button",
+        "default": false
+      }
+    ],
+	"blocks": [
+            {
+              "type": "first-section",
+              "name": "Collection Sections",
+              "settings": [
+                  {
+                  "type": "text",
+                  "id": "collection_heading",
+                  "label": "Collection Name",
+				  "default": "Heading / Title"
+                },
+				{
+                  "type": "collection",
+                  "id": "collection_category",
+                  "label": "Select collection"
+                }
+              ]
+            }
+	],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

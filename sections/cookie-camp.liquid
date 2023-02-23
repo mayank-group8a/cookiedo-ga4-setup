@@ -1,0 +1,156 @@
+<style>
+  .new-container-cookie-camp {
+    padding-left:100px;
+    padding-right:100px;
+  }
+  @media (max-width: 479px)
+     {
+        .new-container-cookie-camp {
+          padding-left:10px;
+          padding-right:10px;
+        }
+     }
+  
+</style>
+
+<div class="new-container-cookie-camp">
+<div class="container-3 w-container" style="padding-left:100px; padding-right:100px;">
+<div class="row-4 w-row">
+  {% for block in section.blocks %}
+  	{% case block.type %}
+  		{% when 'first-section' %}
+            {% include 'snippet_first-section' %}
+  	{% endcase %}
+  {% endfor %}
+</div>
+</div>
+
+<div class="grid">
+
+        {% for block in section.blocks %}
+        <div class="grid-item">
+          {% case block.type %}
+          
+            {% when 'second-section' %}
+            {% include 'cookiecampsnippet' %}
+
+            {% when 'third-section' %}
+            {% include 'snippet_third-section' %}
+
+            {% when 'fourth-section' %}
+            {% include 'snippet_fourth-section' %}
+
+          {% endcase %}
+        </div>
+        {% endfor %}
+      </div>
+  
+</div>
+
+
+<script>
+jQuery(document).ready(function() {
+  jQuery('a[href^="#"]').click(function() {
+      var target = $(this.hash);
+      if (target.length == 0) target = jQuery('a[name="' + this.hash.substr(1) + '"]');
+      if (target.length == 0) target = jQuery('html');
+      jQuery('html, body').animate({ scrollTop: target.offset().top-100 }, 1000);
+      return false;
+  });
+});
+</script>
+
+
+{% schema %}
+  {
+    "name": "FAQ's",
+	"class": "faq-sections",
+    "settings": [
+	
+	],
+	"blocks": [
+            {
+              "type": "first-section",
+              "name": "FAQ's Tab Button",
+              "settings": [
+                  {
+                  "type": "text",
+                  "id": "tab_button_text",
+                  "label": "Button text"
+                },
+				{
+                  "type": "text",
+                  "id": "tab_button_url",
+                  "label": "Target section id"
+                }
+              ]
+            },
+            {
+              "type": "second-section",
+              "name": "FAQ's image / heading",
+              "settings": [
+                  {
+                  "id": "faq_section_heading",
+                  "type": "text",
+                  "label": "Section heading"
+                  },
+				  {
+                  "id": "faq_section_image",
+                  "type": "image_picker",
+                  "label": "Section Image"
+                  },
+				  {
+                  "id": "faq_section_id",
+                  "type": "text",
+                  "label": "Section ID"
+                  }
+              ]
+            },
+            {
+              "type": "third-section",
+              "name": "Add New FAQ's",
+              "settings": [
+                  {
+                  "id": "faq_title",
+                  "type": "text",
+                  "label": "FAQ title"
+                  },
+ 				  {
+                  "id": "faq_description",
+                  "type": "richtext",
+                  "label": "FAQ description"
+                  }
+              ]
+            },
+              { 
+                "type": "fourth-section",
+                "name": "Back top Link", 
+                "settings": [ 
+                  {
+                  "id": "top_link",
+                  "type": "text",
+                  "label": "Top link text",
+				  "default": "back to top"
+                  },
+				  {
+                  "id": "top_link_url",
+                  "type": "text",
+                  "label": "Top link ID"
+                  },
+				  {
+                  "id": "top_link_icon",
+                  "type": "image_picker",
+                  "label": "Top link icon"
+                  }
+              ]
+            } 
+          ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

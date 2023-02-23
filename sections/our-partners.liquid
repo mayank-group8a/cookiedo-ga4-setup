@@ -1,0 +1,90 @@
+  <div class="content-section social-share">
+    <div class="div-container">
+      
+      {% if section.settings.title != blank %}
+        <h1 class="h3 left">{{ section.settings.title | escape }}</h1>
+      {% endif %}
+    </div>
+    <div class="div-container">
+
+    {% for block in section.blocks %}
+      <a href="{% if block.settings.button_link != blank %} {{ block.settings.button_link }} {% else %} javascript:void('0') {% endif %}" target="_blank" class="press-link w-inline-block">
+        <img src="{{ block.settings.image | img_url: 'medium' }}" class="image-3" alt="{{ block.settings.image.alt | escape }}">
+      </a>
+    {% endfor %}
+
+    </div>
+  </div>
+
+
+{% schema %}
+  {
+    "name": "Our Partners",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Our Partners"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Our Partners",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

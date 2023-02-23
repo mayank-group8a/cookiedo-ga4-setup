@@ -1,0 +1,202 @@
+
+{% for block in section.blocks %}
+
+  {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+  {% if thecycle == 'even' %}
+    <div class="content-section photo"></div>
+  {% endif %}
+
+  {% if thecycle == 'odd' %}
+  <div class="content-section">
+    <div class="w-container">
+      <div class="div flex community-media-title-sidebyside">
+        <div class="div-50 media-block-community">
+          
+          {% if block.settings.video_url %}
+         	 <div class="video w-video w-embed">
+               <div class="video-wrapper">
+                 {{ block.settings.video_url }}
+               </div>
+          	 </div>
+          
+          {% else %}
+          
+          {% if block.settings.enable_image %}
+          <div class="about-image" id="{{ img_id }}" style="background-image:url('{{ block.settings.image | img_url: '1200x1200' }}');"></div>
+          {% endif %}
+          {% endif %}
+          
+          
+        </div>
+        <div class="div-50 center colored-box-title-donation">
+          <div class="div-50 colored-box">
+            <div class="colored-box-1">
+              <div class="colored-box-2">
+
+                <h2 class="box-heading-bold curly" style="text-transform:lowercase;">about</h2>
+                {% if block.settings.title != blank %}
+                    <h2 class="box-heading-bold">{{ block.settings.title | escape }}</h4>
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-7 w-row after-colored-box">
+        <div class="column-padding w-col w-col-12">
+          <div class="w-richtext text-columns">
+              {% if block.settings.text != blank %}
+                {{ block.settings.text }}
+              {% endif %}
+            {% if block.settings.title != blank %}
+            <h1 class="neon signature">~donations</h1>
+          {% endif %}
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% if thecycle == 'even' %}
+  <div class="content-section">
+    <div class="circles flavor-page w-hidden-tiny"></div>
+    <div class="container-4 w-container">
+      <div class="div flex" style="margin-top:40px;">
+        <div class="div-50 colored-box">
+          <div class="colored-box-1 yellow">
+            <div class="colored-box-2 yellow">
+              <h2 class="box-heading-bold curly">request</h2>
+              {% if block.settings.title != blank %}
+                  <h2 class="box-heading-bold">{{ block.settings.title | escape }}</h4>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="w-richtext text-after-box">
+            {% if block.settings.text != blank %}
+              {{ block.settings.text }}
+            {% endif %}
+            
+            {% if block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="btn button">{{ block.settings.button_label }}</a>
+            {% endif %}
+            
+          </div>
+        </div>
+        
+       <div class="div-50">  
+      {% if block.settings.enable_image %}
+        <div class="about-image" id="{{ img_id }}" style="background-image:url('{{ block.settings.image | img_url: '1200x1200' }}'); float:right;"></div>
+      {% endif %}
+      </div>  
+      </div>
+      
+      
+    </div>
+ 
+    
+  </div>
+  {% endif %}
+
+
+{% endfor %}
+	<!-- -------------- -->
+
+
+{% schema %}
+  {
+    "name": "Text columns with images",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Text columns with images"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+		  {
+            "type": "html",
+            "id": "video_url",
+            "label": "Video",
+            "default": "Vimeo or Youtube video iframe"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

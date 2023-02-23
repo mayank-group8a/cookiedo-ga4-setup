@@ -1,0 +1,207 @@
+
+
+#gs__toggle-box {
+    display: none !important;
+  }
+  .gs__line .btn {
+    margin: 5px 5px 0 0;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: normal;
+    padding: 8px 15px;
+    height: auto;
+}
+  .hidden_hard {
+    display: none !important;
+  }
+  .gs__line-item-props > p:first-child{ 
+	display: none !important;
+  }
+
+.cart__meta-text{
+	padding:0px;
+}
+  
+  
+  #ui-datepicker-div{
+  	z-index:999 !important;
+  }
+  
+.picker__list-item,
+.picker--opened .picker__holder,
+  .ui-datepicker {
+    background: #ff007b !important;
+    color: #fff !important;
+padding:17px;
+border:0px;
+        width: 100%;
+        font-weight: 700 !important;
+}
+ 
+.ui-datepicker table {
+    width: 100%;
+}
+.ui-datepicker table tr{
+	display: table;
+  width:100%;
+}
+.ui-datepicker table td {
+	text-align:center;
+  display: table-cell;
+      width: 14.28%;
+      padding-top: 0px;
+    padding-bottom: 0px;
+}
+ 
+.ui-datepicker a {
+cursor:pointer;
+text-decoration:none;
+}
+ 
+.ui-datepicker-prev {
+}
+ 
+.ui-datepicker-next {
+float:right;
+}
+ 
+.ui-datepicker-title {
+text-align: center;
+font-weight:bold;
+}
+  
+ 
+  .ui-datepicker td span, .ui-datepicker td a{
+  	padding:0px;
+    background:none !important;
+        border: 1px solid #ff007b!important;
+    font-size:13px;
+    color: #fff !important;
+    font-weight:700 !important;
+    text-align:center;
+  }
+  .ui-datepicker td a:hover{
+	color: #ff007b !important;
+  }
+
+  
+  .ui-datepicker table td.ui-datepicker-current-day a{
+    	background: #fff  !important;
+      color:#ff007b !important;
+  }
+  
+  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div,
+  .xdsoft_datetimepicker .xdsoft_calendar td, .xdsoft_datetimepicker .xdsoft_calendar th{
+  	background:#fff !important;
+  }
+  .xdsoft_datetimepicker .xdsoft_calendar th{
+  	border:0px !important;
+    color:#222;
+  }
+  .ui-datepicker-calendar tr th{
+  	font-size:13px;
+    padding:inherit;;
+    text-transform: uppercase;
+    display: table-cell;
+    width: 14.28%;
+  }
+
+  .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
+	opacity:0.6;
+  }	
+  .ui-state-disabled:hover, .ui-widget-content .ui-state-disabled:hover, .ui-widget-header .ui-state-disabled:hover{
+	background:none !important;
+  }
+ 
+  
+  .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default, .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current, .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div.xdsoft_current{
+  	background:#eee !important;
+    color:#344e48 !important;
+    box-shadow:none;
+  }
+  
+  .ui-datepicker .ui-datepicker-header {
+      position: relative;
+      padding: .2em 0;
+      background: none;
+      border: 0px;
+  }
+  .ui-datepicker .ui-datepicker-title{
+  	 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:#fff;
+  }
+  
+   .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div:hover{
+  	    background-color: #ff007b !important;
+  }
+  .xdsoft_datetimepicker .xdsoft_calendar td:hover,
+  .ui-datepicker-calendar tbody tr td:hover{
+  	background: #fff !important;
+        color: #ff007b !important;
+  }
+#storePickupApp tr th,
+  #storePickupApp tr td{
+  	padding:0px;
+    border: 0px;
+    text-align:center;
+    display: table-cell;
+    width: 14.28%;
+  }
+  
+
+.picker__year,
+.picker__weekday{
+	color:#fff;
+  	text-transform: uppercase;
+}
+.picker__box{
+	padding:0px;
+}
+  .picker--focused .picker__day--selected, .picker__day--selected, .picker__day--selected:hover{
+  	    background: #fff !important;
+    	color: #ff007b !important;
+  }
+.picker--focused .picker__day--highlighted, .picker__day--highlighted:hover, .picker__day--infocus:hover, .picker__day--outfocus:hover{
+background: #fff !important;
+    	color: #ff007b !important;
+}
+.picker__day--disabled, .picker__day--disabled, .picker__day--disabled:hover{
+  	background:none !important;
+    border: 0px;
+    color:#fff !important;
+    font-size: 13px;
+  	opacity:0.6;
+  }
+.picker__month, .picker__year,
+.picker__day{
+    font-weight: 700;
+}
+#storePickupApp tr{
+	display:table !important;
+      width: 100%;
+}
+#storePickupApp .picker__weekday{
+	padding:0px !important;
+}
+
+ .cart__image-wrapper{padding-right:10px !important;}
+
+  @media screen and (max-width:768px){
+  
+    .picker__table thead,
+    .ui-datepicker-calendar thead{
+    	    display: inherit !important;
+    	width: 100%;
+    }
+  
+   
+}
+  
+
+
+
+  @media screen and (max-width:480px){
+    
+  }

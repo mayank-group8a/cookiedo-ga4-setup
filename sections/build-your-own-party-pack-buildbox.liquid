@@ -1,0 +1,286 @@
+<style>
+.switch {
+position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    top: 12px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+    height: 18px;
+    width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ff007b;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ff007b;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+  .heading.on-lines{
+  text-transform: capitalize;
+  }
+  
+.key {
+  position:absolute;
+  bottom:320px;
+  margin-bottom:25px;
+}
+  .div-center .button-link{
+  	margin-right:0px;
+  }
+  
+@media (max-width:700px) {
+  .key {
+    bottom: 575px;
+    padding-bottom:25px;
+    padding-top:25px;
+    margin-bottom:5px;
+    margin-top:15px;
+  }
+}
+</style>
+<div class="msgpopup" style="display: none;">
+  
+</div>  
+
+<ul class="flavers-list">
+  <li> 
+       <label class="switch" for="flavor_type_gluten">
+         <span style="display:none !important;">Gluten Free Option Available </span>
+        <input type="checkbox" id="flavor_type_gluten" name="floval_countrol" onclick="flavor_visibility('flavor_type_gluten',this)">
+        <span class="slider round"></span>
+      </label>
+        Gluten Free Option Available 
+  </li>
+  <li>
+    <label class="switch" for="flavor_type_vegan">
+      <span style="display:none !important;">Vegan Option Available</span>
+      <input type="checkbox" id="flavor_type_vegan" name="floval_countrol" onclick="flavor_visibility('flavor_type_vegan',this)">
+      <span class="slider round"></span>
+    </label>
+     Vegan Option Available
+  </li>
+</ul>
+{% comment %}
+{% endcomment %}
+{% for block in section.blocks %}
+
+{% if block.settings.flavor_type == 'gluten' %}
+	{%- assign flavor_type = 'gluten' -%}
+{% elsif block.settings.flavor_type == 'vegan' %}
+	{%- assign flavor_type = 'vegan' -%}
+{% elsif block.settings.flavor_type == 'gluten_vegan' %}
+	{%- assign flavor_type = 'gluten_vegan' -%}
+{% elsif block.settings.flavor_type == 'flavor_type_gluten_and_vegan' %}
+	{%- assign flavor_type = 'gluten_and_vegan' -%}
+{% elsif block.settings.flavor_type == 'regular' %}
+	{%- assign flavor_type = 'regular' -%}
+{% endif %}
+<div class="flavor_type_{{flavor_type}} flavor-box team-member-box _50 w-inline-block  hover_link_image ">
+  
+  <div class="team-member-box side-border last">
+    <div class="cookie">
+      <img src="{{ block.settings.image | img_url: '240x240' }}" data-w-id="42aff536-1bbd-ef47-c5f8-d0656e6f1419" class="cookie-image" width="200" alt="{% if block.settings.image.alt != blank %}{{ block.settings.image.alt | escape }}{% else %}CookieDO NYC{% endif %}">
+    </div>
+    <div class="team-member-text oatmeal">
+      <div class="title tiny">{{ block.settings.title | escape }}</div>
+    </div>
+    <div style="display:none;opacity:0" class="hidden-ingredients oatmeal">
+      <div class="div-center _50">
+        <div class="div-center">
+          <form method="post" action="/cart/add" data-productid="{{ product.id }}" class="button-link w-inline-block">
+<!-- Begin ReCharge code -->
+{% if product.available %}{% include 'subscription-product' %}{% endif %}
+<!-- End ReCharge code -->
+				
+            <label for="add-to-buildbox"><span style="display:none;">add to cart</span></label>
+            <input name="id" id="add-to-buildbox" data-productid="{{ product.id }}" value="9217048838196" type="hidden">
+            <a href="javascript:void('0')" onclick="create_buildbox(this)" data-id="9217048870964" data-title="{{ block.settings.title | escape }}" data-price="{{section.settings.price}}" data-image="{{ block.settings.image | img_url: '240x240' }}" style="margin-right:0px;" class="add button-link w-inline-block">
+              <div class="button small">
+                <div>Add to Box</div>
+              </div>
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function flavor_visibility(flavor_class, $this){
+    
+    if(jQuery('#flavor_type_gluten').is(':checked') && jQuery('#flavor_type_vegan').is(':checked')) {
+    	  
+       	  jQuery('.flavor-box').hide();	
+          jQuery('.flavor_type_vegan').hide();
+          jQuery('.flavor_type_gluten').hide();
+          jQuery('.flavor_type_gluten_vegan').show();
+      
+    }else if(jQuery('#flavor_type_gluten').is(':checked')){
+      
+    	jQuery('.flavor-box').hide();
+        jQuery('.flavor_type_gluten').show();
+      jQuery('.flavor_type_gluten_vegan').show();
+        jQuery('.flavor_type_gluten_and_vegan').show();
+      
+    }else if(jQuery('#flavor_type_vegan').is(':checked')){
+      
+       jQuery('.flavor-box').hide();
+       jQuery('.flavor_type_vegan').show();
+      jQuery('.flavor_type_gluten_vegan').show();
+      jQuery('.flavor_type_gluten_and_vegan').show();
+      
+    }else{
+      jQuery('.flavor-box').show();
+    }
+  }
+</script>
+
+{% endfor %}
+
+
+{% schema %}
+  {
+    "name": "Buildbox Flavors",
+	"class": "index-section",
+    "settings": [
+            {
+              "type": "text",
+              "id": "gluten_title",
+              "label": "Heading",
+              "default": "Gluten Free Option Available"
+            },
+            {
+              "type": "image_picker",
+              "id": "gluten_image",
+              "label": "Gluten Image"
+            },
+            {
+              "type": "text",
+              "id": "vegan_title",
+              "label": "Heading",
+              "default": "Vegan Option Available"
+            },
+            {
+              "type": "image_picker",
+              "id": "vegan_image",
+              "label": "Vegan Image"
+            },
+            {
+              "type": "text",
+              "id": "price",
+              "label": "Price/Item"
+            }
+	],
+	"blocks": [
+      {
+        "type": "text_block",
+        "name": "Flavors",
+        "settings": [
+          {
+            "type": "select",
+            "id": "flavor_type",
+            "label": "Flavor types",
+            "default": "regular",
+            "options": [
+              {
+                "value": "gluten",
+                "label": "Gluten Free"
+              },
+			  {
+                "value": "gluten_vegan",
+                "label": "Gluten Free + Vegan"
+              },
+			  {
+                "value": "vegan",
+                "label": "Vegan"
+              },
+              {
+                "value": "flavor_type_gluten_and_vegan",
+                "label": "Gluten Free, Vegan options"
+              },
+              {
+                "value": "regular",
+                "label": "Regular"
+              }
+            ]
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

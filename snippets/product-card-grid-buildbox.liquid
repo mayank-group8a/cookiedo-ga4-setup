@@ -1,0 +1,61 @@
+			
+					<div class="team-member-box _50 w-inline-block  hover_link_image ">
+                      
+                     <!-- Gluten -->
+                      {% if variant.title == 'gluten free heavenly' or variant.title == 'gluten free sugar cookie' or variant.title == 'gluten free signature chocolate chip' %}
+                      	<ul class="flavers-list-item">
+            				<li><img src="{{ 'gluten2.png' | asset_url }}" alt="icon"/></li>
+                      	</ul>
+                      {% endif %}
+                      
+                      <!-- Vegan -->
+                      {% if variant.title == 'vegan signature chocolate chip' %}
+                      	<ul class="flavers-list-item">
+                          <li><img src="{{ 'vegan3.png' | asset_url }}" alt="icon"/></li>
+                      	</ul>
+                      {% endif %}
+                      
+                      <!-- Gluten + Vegan -->
+                      {% if variant.title == 'gluten free/vegan pb snickerdoodle' %}
+                      	<ul class="flavers-list-item">
+                          <li><img src="{{ 'gluten2.png' | asset_url }}" alt="icon"/></li>
+                          <li><img src="{{ 'vegan3.png' | asset_url }}" alt="icon"/></li>
+                      	</ul>
+                      {% endif %}
+                      
+                      
+
+                    <div class="team-member-box side-border last">
+                        <div class="cookie">
+                            <img src="{{ variant.image.src | img_url: 'medium' }}" data-w-id="42aff536-1bbd-ef47-c5f8-d0656e6f1419" class="cookie-image" width="200" alt="{{variant.title}}">
+                        </div>
+                        <div class="team-member-text oatmeal">
+                          <div class="title tiny">{{variant.title}}</div>
+                        </div>
+                        <div style="display:none;opacity:0" class="hidden-ingredients oatmeal">
+                          <div class="div-center _50">
+                            <div class="div-center">
+									<form method="post" action="/cart/add" data-productid="{{ product.id }}" class="button-link w-inline-block">
+
+
+
+
+                            <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" />
+                            <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> 
+                            <div class="button small" style="padding:0px;">
+                            <input type="submit" value="add to cart" class="btn" style="padding: 5.5px 8px; font-weight: 300; letter-spacing: 0px;"/>
+                            </div>-->
+                            <a href="javascript:void('0')" onclick="create_buildbox(this)" data-id="{{variant.id}}" data-title="{{variant.title}}" data-price="{{ variant.price }}" data-image="{{ variant.image.src | img_url: 'medium' }}" style="margin-right:0px;" class="add button-link w-inline-block">
+                              <div class="button small">
+                                <div>Add to Box</div>
+                              </div>
+                            </a>
+                            
+                            
+                          </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    </div>

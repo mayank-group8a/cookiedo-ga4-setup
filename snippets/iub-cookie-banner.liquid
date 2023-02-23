@@ -1,0 +1,51 @@
+<script type="text/javascript">
+var _iub = _iub || [];
+_iub.csConfiguration = {
+      "gdprAppliesGlobally":false,
+      "countryDetection":true,
+      "consentOnContinuedBrowsing":false,
+      "perPurposeConsent":true,
+      "whitelabel":false,
+      "lang":"en",
+      "siteId":2291779,
+      "cookiePolicyId":42608914, 
+      "banner":{ 
+          "brandBackgroundColor":"none",
+          "brandTextColor":"black",
+          "acceptButtonDisplay":true,
+          "customizeButtonDisplay":true,
+          "acceptButtonColor":"#ff007b",
+          "acceptButtonCaptionColor":"white",
+          "customizeButtonColor":"#DADADA",
+          "customizeButtonCaptionColor":"#4D4D4D",
+          "rejectButtonDisplay":true,
+          "rejectButtonColor":"#1f2533",
+          "rejectButtonCaptionColor":"white",
+          "position":"float-bottom-left",
+          "textColor":"black",
+          "backgroundColor":"white" 
+      }
+  };
+  
+      _iub.csConfiguration.perPurposeConsent = false;
+    _iub.csConfiguration.callback = {
+        onPreferenceFirstExpressed: function(consent) {
+            window.Shopify.customerPrivacy.setTrackingConsent(consent.consent, function() {});
+        }
+    };
+
+</script>
+<script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+
+<!-- Tracking API -->
+<script type="text/javascript">
+    window.Shopify.loadFeatures([{
+            name: 'consent-tracking-api',
+            version: '0.1',
+        }, ],
+        function(error) {
+            if (error) {
+                throw error;
+            }
+        });
+</script>

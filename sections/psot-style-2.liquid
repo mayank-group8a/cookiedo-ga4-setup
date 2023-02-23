@@ -1,0 +1,26 @@
+{% assign blog_handles = "the-do-life;do-around-town;thats-so-rando" %}
+{% assign blog_list = blog_handles | split: ';' %}
+{% assign article_list = '' %}
+
+
+
+{% for blog_handle in blog_list %}
+{% for article in blogs[blog_handle].articles limit: 1 %}
+
+<h1>{{ article.title }}</h1>
+
+{% endfor %}
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [] 
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

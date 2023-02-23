@@ -1,0 +1,212 @@
+				{% assign discount_offer = ''  %}
+                {% assign string_enable = ''  %}
+                {% for tag in product.tags %}
+                  {% if tag contains 'pink-1' %}
+                    {% assign discount_offer = '<span>1</span><span>Month</span><span>Free!</span>'%}
+                  {% elsif tag contains 'pink-2' %}
+                    {% assign discount_offer = '<span>2</span><span>Months</span><span>Free!</span>'%}
+                  {% elsif tag contains 'pink-3' %}
+                    {% assign discount_offer = '<span>3</span><span>Months</span><span>Free!</span>'%}
+                  {% elsif tag contains 'pink-4' %}
+                    {% assign discount_offer = '<span>4</span><span>Months</span><span>Free!</span>'%}
+                  {% elsif tag contains 'pink-' %}
+                      {%assign tag_string = tag | replace: 'pink-', '' %}
+                      {%assign string_enable = 'enable' %}
+                      {% assign discount_offer = tag_string %}
+                  {% endif %}
+                {% endfor %}
+
+{% if discount_offer != blank %}
+<style>
+.discount_badge{
+    width: auto;
+    padding-right: 7px;
+    padding-left: 7px;
+    padding-bottom: 35px;
+    height: auto;
+        font-size: 12px;
+}
+  .bage_box{
+   padding-top: 10px;
+        line-height: 18px;
+  }
+</style>
+{% endif %}
+
+				{%- assign current_variant = product.selected_or_first_available_variant -%}
+				{% assign delivery_option = product.metafields.buildbox %}
+				
+				{% assign key = 'buildbox' %}
+
+				{% if delivery_option['buildbox'] != blank %}
+					{% assign product_url =  product.url %}
+				{% else %}
+					{% assign product_url = product.url %}
+				{% endif %}
+
+				{% assign redirect = product.metafields.page_redirect %}
+        	    {% assign key = 'page_redirect' %}
+				{% assign discount_key = product.metafields.product %}
+
+				{% assign price_hide = product.metafields.price_hide['price_hide'] %}
+
+				
+				{% if redirect['page_redirect'] != blank %}
+                  {% if redirect['page_redirect'] == '1' %}
+                      {% assign product_url = product.url %}
+                  {%else%}
+                      {% assign product_url = redirect['page_redirect'] %}
+                  {% endif %}
+				{% else %}
+					{% assign product_url = product.url %}
+				{% endif %}
+			
+					<div class="outer-div">
+                      <a href="{% if product.id == 6153584607427 %}/products/gift-card{% elsif product.id == 6153580871875 %}/collections/subscriptions{% else %}{{ product_url }}{% endif %}" data-w-id="4408ceaf-a581-1d23-9d78-9ac1f5b7eaa6" class="team-member-box w-inline-block">
+                   
+                             
+                        {% if discount_offer != blank %}
+                        	<div class="discount_badge">
+                              <div class="bage_box">
+                                <span style="display: block;">
+                                  {%if string_enable != blank %}
+                                  	<span style="display: block;width:70px;">{{discount_offer}}</span>
+                                  {% else %}
+                                    {{discount_offer}}
+                                  {% endif %}
+                                </span>
+                            	</div>
+                        	</div>
+                        {% endif %}
+                         {% if product.compare_at_price_max > product.price and discount_offer == blank %}
+                        <div class="discount_badge">
+                              <div class="bage_box">
+                                <span style="display: block;">
+{{ product.compare_at_price_min | minus: product.price | times: 100.0 | 
+divided_by: product.compare_at_price_min | money_without_currency | times: 100 
+| replace: '.0', ''}}<span>%</span></span><span>Off</span> </div>
+                            </div>
+                        {% endif %}
+                   
+                        <div class="out-div">
+                          {% if product.images.size > 0 %}
+                          {% assign sale_background = '' %}
+                          {% if current_variant.compare_at_price > current_variant.price %}{% assign sale_background = 'style="background-color: #ff007b;"' %}{% endif %}
+                          
+                          <div class="cta-image move" style="background-image:url('{{ product | img_url: 'original' }}');">
+                            {% if current_variant.compare_at_price > current_variant.price %}
+                            	<!-- <div class="on-sale">SALE!</div> -->
+                            {% endif %}
+                            
+                            <!--<div class="price" {{sale_background}}>
+                              	<div>{{ product.price | money }}</div>
+                            </div>-->
+                            
+                          </div>
+                          
+                          {% else %}
+                          	<div class="cta-image move" style="background-image:url('{{ 'FIND-FULL-SIZE.jpeg' | asset_img_url: '300x' }}');">
+                              {% if current_variant.compare_at_price > current_variant.price %}
+                            	<div class="on-sale">SALE!</div>
+                              {% endif %}
+                              <div class="price" {{sale_background}}>
+
+                                  <div>{{ product.price | money }}</div>
+
+                              </div>
+                            </div>
+                          {% endif %}
+                        </div>
+                        <div class="center-div move {% if current_variant.compare_at_price %} discount-price{% endif %}">
+                          {% if product.title != blank %}
+                          <div class="title tiny white-bg"> {{ product.title }}<br >
+                           
+                          {% if product.id != 6153584607427 and  product.id != 6153583493315 and product.id != 6153580871875 %}
+                          
+                          	{% if current_variant.compare_at_price %}
+                            <span class="offPrice"><span style="color:#000;">{{ current_variant.compare_at_price | money }}</span></span>
+                            {% endif %}
+                            {% if price_hide == '1' %}
+                            
+                            {% else %}
+                            <span class="pro_price">{{ product.price | money }} </span>
+                            {% endif %}
+                            
+                         	{% endif %}
+                            
+                          </div>
+                          {% endif %}
+                          
+                        </div>
+                      </a>
+                  
+                  	 
+                  	 {% if delivery_option['buildbox'] != blank  or redirect['page_redirect']  != blank %}
+                      
+                      {% if redirect['page_redirect'] == '1' %}
+                      	{% assign product_url = product.url %}
+                      {%else%}
+                      	{% assign product_url = redirect['page_redirect'] %}
+                      {% endif %}
+                      
+                      <div class="team-member-text _10">
+                        <div class="div-mobile w-hidden-main">
+                          <a href="{% if product.id == 6153584607427 %}/products/gift-card{% elsif product.id == 6153580871875 %}/collections/subscriptions{% else %}{{product_url}}{% endif %}" class="button-link-mobie w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                        
+                        </div>
+                        <div class="_2-buttons w-hidden-medium w-hidden-small w-hidden-tiny">
+                          <a href="{% if product.id == 6153584607427 %}/products/gift-card{% elsif product.id == 6153580871875 %}/collections/subscriptions{% else %}{{product_url}}{% endif %}" class="button-link w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                     
+                        </div>
+                      </div>
+                  	 {% else %}
+                  	  <div class="team-member-text _10">
+                        <div class="div-mobile w-hidden-main">
+                          <a href="{% if product.id == 6153584607427 %}/products/gift-card{% elsif product.id == 6153580871875 %}/collections/subscriptions{% else %}{{ product.url }}{% endif %}" class="button-link-mobie w-inline-block" style="position: relative; top: -2px;">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                          {% if product.id != 6153584607427 and  product.id != 6153583493315 and product.id != 6153580871875 %}
+                      
+                          <form method="post" action="/cart/add" class="button-link w-inline-block">
+                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                            <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+                            <div class="button small {% if product.url =="/collections/baking-mixes" %} hide-cart{% endif %}" style="padding:0px;">
+                            
+                              <input type="submit" value="add to cart" class="btn" style="padding: 9px 8px; font-weight: 300; letter-spacing: 0px;"/>
+                            
+                            </div>
+                          </form>
+                          {% endif %}
+                        </div>
+                        <div class="_2-buttons w-hidden-medium w-hidden-small w-hidden-tiny">
+                          <a href="{% if product.id == 6153584607427 %}/products/gift-card{% elsif product.id == 6153580871875 %}/collections/subscriptions{% else %}{{ product.url }}{% endif %}" class="button-link w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                     {% if product.id != 6153584607427 and  product.id != 6153583493315 and product.id != 6153580871875 %}
+                          <form method="post" action="/cart/add" class="button-link w-inline-block" style="top: -1px; position:  relative;">
+                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                            <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+                            <div class="button small {% if product.url =="/collections/baking-mixes" %} hide-cart{% endif %}" style="padding:0px;">
+                            
+                              <input type="submit" value="add to cart" class="btn" style="padding: 5.5px 8px; font-weight: 300; letter-spacing: 0px;"/>
+                            
+                            </div>
+                          </form>
+                          {% endif %}
+                        </div>
+                      </div>
+                  	{% endif %}
+                    </div>
+

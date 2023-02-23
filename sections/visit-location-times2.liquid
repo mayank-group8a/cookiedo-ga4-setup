@@ -1,0 +1,200 @@
+<style>
+  @media screen and (min-width: 767px){
+    .text-padding{
+    	padding: 0px 20px;
+    } 
+  }
+</style>
+<div class="div-50 _100 _25">
+<div class="w-row visit-timing-wrapper">
+  {% if section.settings.hide_1 == true %}
+<div class="w-col {% if section.settings.hide_2 == false %} w-col-12{% else %}w-col-6{% endif %}">
+  <div class="location-box" {% if section.settings.hide_2 == false %} style="max-width:100%;" {% endif %}>
+  
+    {% if section.settings.hide_2 == false %}
+    <div class="w-row">
+      <div class="w-col w-col-6">
+    {% endif %}
+                
+                
+    {% if section.settings.left_image != blank %}
+  <img class="location-image" src="{{ section.settings.left_image | img_url: '600x' }}" alt="CookieDO NYC"/>
+ {% endif %}
+ <div class="div-50 colored-box" style="max-width:100%;">
+  <div class="colored-box-1">
+{% if section.settings.left_title != blank %}
+  <h2 class="box-heading-bold curly">{{ section.settings.left_title }}</h2>
+ {% endif %}
+
+  </div>
+  </div>
+    {% if section.settings.hide_2 == false %}
+        <div class="empty-spacer" style="display:block;"></div>
+      </div>
+      
+      <div class="w-col w-col-6">
+        <div class="text-padding">
+    {% endif %}
+    
+    
+     {% if section.settings.left_description != blank %}
+      <div class="location-description">
+      {{ section.settings.left_description }}
+      </div>
+    {% endif %}
+    {% if section.settings.left_location != blank %}
+    <div class="location">
+    	{{ section.settings.left_location }}
+    </div>
+    {% endif %}
+  {% if section.settings.left_url != blank %}
+       <a class="btn view_more" style="background-color:#000000 !important;" href="{{section.settings.left_url}}">view menu</a>
+    {% endif %}
+    
+    
+     {% if section.settings.hide_2 == false %}
+        </div>
+      </div>
+  </div>
+    {% endif %}
+    
+  </div>
+</div>
+{% endif %}
+  {% if section.settings.hide_2 == true %}
+<div class="w-col  {% if section.settings.hide_1 == false %}w-col-12{% else %}w-col-6{% endif %}">
+  <div class="location-box"  {% if section.settings.hide_1 == false %} style="max-width:100%;" {% endif %}>
+ 
+    {% if section.settings.hide_1 == false %}
+    <div class="w-row">
+      <div class="w-col w-col-6">
+    {% endif %}
+    
+    
+    
+    {% if section.settings.right_image != blank %}
+  <img class="location-image" src="{{ section.settings.right_image | img_url: '600x' }}" alt="CookieDO NYC"/>
+ {% endif %}
+  <div class="div-50 colored-box" style="max-width:100%;">
+  <div class="colored-box-1">
+
+  {% if section.settings.right_title != blank %}
+  <h2 class="box-heading-bold curly">{{ section.settings.right_title }}</h2>
+ {% endif %}
+
+  </div>
+  </div>
+        
+        {% if section.settings.hide_1 == false %}
+        <div class="empty-spacer" style="display:block;"></div>
+      </div>
+      <div class="w-col w-col-6">
+        <div class="text-padding">
+    {% endif %}
+        
+  
+ <div class="location-description">
+  {{ section.settings.right_description }}
+  </div>
+     {% if section.settings.right_location != blank %}
+    <div class="location">
+    	{{ section.settings.right_location }}
+    </div>
+    {% endif %}
+  {% if section.settings.right_url != blank %}
+       <a class="btn view_more" style="background-color:#000000 !important;" href="{{section.settings.left_url}}">view menu</a>
+    {% endif %}
+        </div>
+</div>
+  </div>
+  {% endif %}
+    
+     {% if section.settings.hide_1 == false %}
+      </div>
+  </div>
+    {% endif %}
+    
+    
+</div>
+</div>
+{% schema %}
+  {
+    "name": "Visit Timing",
+    "settings": [ 
+			{
+              "type": "checkbox",
+              "id": "hide_1",
+              "label": "Enable / Disable",
+			  "default": true
+            },
+			{
+              "type": "text",
+              "id": "left_title",
+              "label": "Title"
+            },
+			{
+              "type": "image_picker",
+              "id": "left_image",
+              "label": "Image"
+            },
+			{
+              "type": "html",
+              "id": "left_description",
+              "label": "Description"
+            },
+			{
+              "type": "html",
+              "id": "left_location",
+              "label": "Location"
+            },
+			{
+              "type": "url",
+              "id": "left_url",
+              "label": "URL"
+            },
+			{
+              "type": "checkbox",
+              "id": "hide_2",
+              "label": "Enable / Disable",
+			  "default": true
+            },
+			{
+              "type": "text",
+              "id": "right_title",
+              "label": "Title"
+            },
+			{
+              "type": "image_picker",
+              "id": "right_image",
+              "label": "Image"
+            },
+			{
+              "type": "html",
+              "id": "right_description",
+              "label": "Description"
+            },
+			{
+              "type": "html",
+              "id": "right_location",
+              "label": "Location"
+            },
+			{
+              "type": "url",
+              "id": "right_url",
+              "label": "URL"
+            }
+		],
+	"presets": [
+      {
+        "name": "Visit Timing 2",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

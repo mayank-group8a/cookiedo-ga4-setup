@@ -1,0 +1,40 @@
+
+      	{% assign tag_handle = blog.handle %}
+      
+      	{% if tag_handle == 'bts-behind-the-scenes' %}
+        {% assign color_code = '#FFDF00' %}
+        {% elsif tag_handle == 'cookie-dough-101' %}
+            {% assign color_code = '#3CA5D5' %}
+        {% elsif tag_handle == 'do-around-town' %}
+            {% assign color_code = '#96D1F2' %}
+        {% elsif tag_handle == 'in-your-kitchen' %}
+            {% assign color_code = '#D3DF44' %}
+        {% elsif tag_handle == 'thats-so-rando' %}
+            {% assign color_code = '#F04937' %}
+        {% elsif tag_handle == 'the-do-life' %}
+            {% assign color_code = '#EE3D8B' %}
+        {% endif %}
+ 
+<div class="w-col  w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third">
+      <div class="cat-inner-wrapper">
+        <a href="{{ article.url }}">
+          {% if article.image != blank %}
+            <div class="cat-image">
+              <div class="image-thumbnail" style="background-image:url({{ article.image | img_url: '300x300' }});"></div>
+            </div>
+          {% else %}
+          	 <div class="cat-image">
+              <div class="image-thumbnail" style="background-image:url({{ 'logo_300x300.gif' | asset_img_url: '100x100' }}); background-color:#f0f0f0; background-size: 100px;"></div>
+            </div>
+          {% endif %}
+          <div class="cat-content">
+           	
+            	<span class="btn-outline" style="color:{{color_code}}; border-color:{{color_code}};">{{blog.title}}</span>
+           
+              {% if article.title != blank %}
+            	<p style="color:{{color_code}}">{{ article.title }}</p>
+              {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>

@@ -1,0 +1,119 @@
+				{%- assign current_variant = product.selected_or_first_available_variant -%}
+				{% assign delivery_option = product.metafields.buildbox %}
+				
+				{% assign key = 'buildbox' %}
+
+				{% if delivery_option['buildbox'] != blank %}
+					{% assign product_url =  product.url %}
+				{% else %}
+					{% assign product_url = product.url %}
+				{% endif %}
+
+				{% assign redirect = product.metafields.page_redirect %}
+        	    {% assign key = 'page_redirect' %}
+
+					<div class="outer-div">
+                      <a href="{{ product_url }}" data-w-id="4408ceaf-a581-1d23-9d78-9ac1f5b7eaa6" class="team-member-box w-inline-block">
+                        <div class="out-div">
+                          {% if product.images.size > 0 %}
+                          {% assign sale_background = '' %}
+                          {% if current_variant.compare_at_price > current_variant.price %}{% assign sale_background = 'style="background-color: #ff007b;"' %}{% endif %}
+                          
+                          <div class="cta-image move" style="background-image:url('{{ product.images.first | product_img_url: 'original' }}');">
+                            {% if current_variant.compare_at_price > current_variant.price %}
+                            	<div class="on-sale">SALE!</div>
+                            {% endif %}
+                            <div class="price" {{sale_background}}>
+                              
+                              	<div>{{ product.price | money }}</div>
+                              
+                            </div>
+                          </div>
+                          
+                          {% else %}
+                          	<div class="cta-image move" style="background-image:url('{{ 'FIND-FULL-SIZE.jpeg' | asset_img_url: '300x' }}');">
+                              {% if current_variant.compare_at_price > current_variant.price %}
+                            	<div class="on-sale">SALE!</div>
+                              {% endif %}
+                              <div class="price" {{sale_background}}>
+
+                                  <div>{{ product.price | money }}</div>
+
+                              </div>
+                            </div>
+                          {% endif %}
+                        </div>
+                        <div class="center-div move">
+                          {% if product.title != blank %}
+                          <div class="title tiny white-bg">{{ product.title }}</div>
+                          {% endif %}
+                        </div>
+                      </a>
+                  
+                  	 
+                  	 {% if delivery_option['buildbox'] != blank  or redirect['page_redirect']  != blank %}
+                      <div class="team-member-text _10">
+                        <div class="div-mobile w-hidden-main">
+                          <a href="{{product.url}}" class="button-link-mobie w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                        
+                        </div>
+                        <div class="_2-buttons w-hidden-medium w-hidden-small w-hidden-tiny">
+                          <a href="{{product.url}}" class="button-link w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                     
+                        </div>
+                      </div>
+                  	 {% else %}
+                  	  <div class="team-member-text _10">
+                        <div class="div-mobile w-hidden-main">
+                          <a href="{{ product.url }}" class="button-link-mobie w-inline-block" style="position: relative; top: -2px;">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                          <form method="post" action="/cart/add" data-productid="{{ product.id }}" class="button-link w-inline-block">
+
+
+
+
+                            <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" />
+                            <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+                            <div class="button small {% if product.url =="/collections/baking-mixes" %} hide-cart{% endif %}" style="padding:0px;">
+                            
+                              <input type="submit" value="add to cart" class="btn" style="padding: 9px 8px; font-weight: 300; letter-spacing: 0px;"/>
+                            
+                            </div>
+                          </form>
+                        </div>
+                        <div class="_2-buttons w-hidden-medium w-hidden-small w-hidden-tiny">
+                          <a href="{{ product.url }}" class="button-link w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                     
+                          <form method="post" action="/cart/add" data-productid="{{ product.id }}" class="button-link w-inline-block" style="top: -1px; position:  relative;">
+
+
+
+
+                            <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" />
+                            <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+                            <div class="button small {% if product.url =="/collections/baking-mixes" %} hide-cart{% endif %}" style="padding:0px;">
+                            
+                              <input type="submit" value="add to cart" class="btn" style="padding: 5.5px 8px; font-weight: 300; letter-spacing: 0px;"/>
+                            
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                  	{% endif %}
+                    </div>
+

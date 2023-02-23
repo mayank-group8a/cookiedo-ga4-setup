@@ -1,0 +1,324 @@
+<style>
+  .tab-div{
+  	justify-content: inherit;
+  }
+.switch {
+position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    top: 12px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+    height: 18px;
+    width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ff007b;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ff007b;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+  .bg-seasonal{flex-wrap: wrap;     justify-content: center; }
+  
+{% if page.title != 'Seasonal-Flavors' %}  
+  
+  .bg-seasonal .team-member-box._25{
+    border-color: #39bcdb;
+    display:flex !important;
+    text-align:center;
+    align-items: flex-start;
+    min-width: 210px;
+  }
+  .bg-seasonal .team-member-box._25 .seasonal{
+
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    background: #39bcdb;
+    color: #fff;
+    padding: 3px 10px;
+    font-weight: 100;
+    letter-spacing: 0.1px;
+
+}
+  
+ {% endif %}
+  
+  .team-member-box.side-border.last
+  {
+    width: 100% !important;
+  }
+  
+  @media screen and (min-width: 994px){
+  	.bg-seasonal > a{max-width: 23%; }
+  }
+  @media (max-width: 479px)
+     {
+       .seasonal-product {
+         width: 98% !important;
+       }
+     }
+</style>
+
+{% if page.handle == 'seasonal-flavors' %}
+
+
+{% if section.settings.section_title != blank %}
+	  <div class="banner2 w-clearfix" style="margin-bottom: 130px;">
+        <h3 class="heading on-lines">{{ section.settings.section_title | escape }}</h3>
+        <div class="lines"></div>
+      </div>
+  {% endif %}
+
+{% endif %}
+{% assign count = 0 %}
+  <div class="tab-div">
+  <div class="bg-seasonal">
+  {% for block in section.blocks %}
+    
+    
+    {% if block.settings.enable_image %}
+    
+    {% assign count = count | plus: 1 %}
+   
+    <a href="{% if block.settings.button_link != blank %}{{ block.settings.button_link }}{% else %}javascript:void('0'){% endif %}" class="seasonal-product flavor_type_{{block.settings.flavor_type}} {% if block.settings.seasonal_flavor == 'yes' %} flavor_type_seasonal {%endif%}  team-member-box _25 w-inline-block {% if block.settings.seasonal_flavor == 'no' and  block.settings.matrial_image != blank %} hover_link_image {% endif %}">
+      
+      <div class="team-member-box side-border last">
+       
+          {% if block.settings.flavor_image != blank %}
+            <div class="cookie">
+              <img src="{{ block.settings.flavor_image | img_url: '500x500' }}" width="200" data-w-id="42aff536-1bbd-ef47-c5f8-d0656e6f1419" class="cookie-image" alt="{% if block.settings.title != blank %}{{ block.settings.title | escape }}{% else %}CookieDO{% endif %}">
+            </div>
+          {% endif %}
+        <div class="team-member-text oatmeal">
+          {% if block.settings.title != blank %}
+            <div class="title tiny">{{ block.settings.title | escape }}</div>
+          {% endif %}
+          {% if block.settings.text != blank %}
+          	<p class="description">{{ block.settings.text }}</p>
+          {% endif %}
+        
+        </div>
+        <div style="display:none;opacity:0" class="hidden-ingredients oatmeal">
+          <div class="div-center _50">
+            <div class="div-center">
+              {% if block.settings.matrial_image != blank %}
+             	 <img src="{{ block.settings.matrial_image | img_url: '500x500' }}" class="ingredient" alt="{{ block.settings.matrial_image.alt | escape }}">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        
+        {% if block.settings.flavor_type != 'none' %}
+           <ul class="flavers-list-item" style="display:none;">
+             {% if block.settings.flavor_type == 'gluten' %}
+            	<li><img src="{{ 'gluten2.png' | asset_url }}" alt="icon"/></li>
+             {% endif %}
+             {% if block.settings.flavor_type == 'vegan' %}
+            	<li><img src="{{ 'vegan3.png' | asset_url }}" alt="icon"/></li>
+             {% endif %}
+             {% if block.settings.flavor_type == 'gluten_vegan' %}
+             	<li><img src="{{ 'gluten2.png' | asset_url }}" alt="icon"/></li>
+            	<li><img src="{{ 'vegan3.png' | asset_url }}" alt="icon"/></li>
+             {% endif %}
+          </ul>
+        {% endif %}
+       
+      </div>
+      {% if block.settings.seasonal_flavor == 'yes' %}
+     	 <div class="tag-text seasonal">Seasonal</div>
+      	<div class="seasonal-tag"></div>
+      {% endif %}
+       {% if page.handle != 'seasonal-flavors' %} 
+        <span class="seasonal">seasonal</span>
+        {% endif %}
+    </a>
+    
+    {% if count == 4 %} <div class="clearfix" style="display:block; clear:both; width:100%;"></div> {% assign count = 0 %} {% endif %}
+    
+    {% endif %}
+  {% endfor %}
+      </div>
+  </div>
+
+
+<script>
+  function flavor_visibility(flavor_class, $this){
+    
+    if(jQuery('#flavor_type_gluten').is(':checked') && jQuery('#flavor_type_vegan').is(':checked')) {
+    	  
+       	  jQuery('.tab-div > .team-member-box').hide();	
+          //jQuery('.flavor_type_vegan').show();
+          //jQuery('.flavor_type_gluten').show();
+          jQuery('.flavor_type_gluten_vegan').show();
+      
+    }else if(jQuery('#flavor_type_gluten').is(':checked')){
+      
+    	jQuery('.tab-div > .team-member-box').hide();
+        jQuery('.flavor_type_gluten').show();
+        jQuery('.flavor_type_gluten_vegan').show();
+      
+    }else if(jQuery('#flavor_type_vegan').is(':checked')){
+      
+       jQuery('.tab-div > .team-member-box').hide();
+       jQuery('.flavor_type_vegan').show();
+       jQuery('.flavor_type_gluten_vegan').show();
+      
+    }else{
+      jQuery('.tab-div > .team-member-box').show();
+    }
+  }
+</script>
+
+{% schema %}
+  {
+    "name": "CookieDO Seasonal Flavors",
+    "class": "flovars-section",
+	"settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Heading",
+        "default": "CookieDO Flavors"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show section",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "flavor_image",
+            "label": "Flavor Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "matrial_image",
+            "label": "Flavor matrial Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Detail link"
+          },
+          {
+              "type": "select",
+              "id": "seasonal_flavor",
+              "label": "Flavor seasonal",
+              "default": "no",
+              "options": [
+                {
+                  "value": "yes",
+                  "label": "Yes"
+                },
+                {
+                  "value": "no",
+                  "label": "No"
+                }
+              ]
+            },
+         	{
+              "type": "select",
+              "id": "flavor_type",
+              "label": "Flover Type",
+              "default": "none",
+              "options": [
+                {
+                  "value": "none",
+                  "label": "None"
+                },
+                {
+                  "value": "gluten",
+                  "label": "Gluten Free"
+                },
+                {
+                  "value": "vegan",
+                  "label": "Vegan Option"
+                },
+                {
+                  "value": "gluten_vegan",
+                  "label": "Gluten Free + Vegan Option"
+                }
+              ]
+            }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "CookieDO Flavors",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,29 @@
+<div class="content-wrapper w-container">
+    <div class="responsive_video" style="width:100%; max-width:100%;">
+      {% if section.settings.video_featured != blank %}
+      <div class="video-wrapper h1">
+        	{{ section.settings.video_featured }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% schema %}
+  {
+    "name": "Video",
+    "class": "featured-image-section",
+    "settings": [
+      {
+        "type": "html",
+        "id": "video_featured",
+        "label": "Video"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Image",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,205 @@
+<div class="clearfix"></div>
+{% if section.blocks.size > 0 %}
+ <div id="home" class="section-top hero" data-section-id="{{ section.id }}" data-section-type="slideshow-section">
+    <div data-animation="slide" data-duration="500" data-infinite="1" class="slider-2 w-slider">
+      <div class="w-slider-mask">
+        {% for block in section.blocks %}
+        
+        <div class="w-slide" style="background-size:cover; text-align:center; background-position: 50% 50% !important; {% if block.settings.image %} background-image: url('{{ block.settings.image | img_url: '2048x' }}'); background-position: {{ block.settings.alignment }}; {% endif %}">
+          {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}" class="hero-link w-inline-block-v2">
+          <picture>
+                <source media='(min-width: 810px)'
+                    srcset="{{ block.settings.image-desktop | img_url: '2048x' }}" style="background-size:cover; text-align:center; background-position: 50% 50% !important;"/>
+                <source media='(max-width: 809px)'
+                    srcset="{{ block.settings.image-mobile | img_url: '2048x' }}"/>
+                <img src='images/photo-small.jpg'/ alt="CookiDO NYC">
+        </picture>
+        </a>
+        {% endif %}
+        {% comment %}
+          {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="hero-link w-inline-block-v2">
+            {% else %}
+            <a href="javascrip:void('0')" class="hero-link w-inline-block-v2">
+            {% endif %}
+            
+                {% if block.settings.link != blank %} </a> {% else %} </a> {% endif %}{% endcomment %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="w-slider-arrow-left">
+        <div class="icon w-icon-slider-left"></div>
+      </div>
+      <div class="w-slider-arrow-right">
+        <div class="icon w-icon-slider-right"></div>
+      </div>
+      <div class="w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-slider-nav w-round"></div>
+    </div>
+    <div class="border-div w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">
+      <div class="div-float"><a href="#" data-w-id="6514c907-b46a-a60f-1667-a0a8d95e09b9" style="opacity:0" class="button hero w-button">discover our flavors</a></div>
+    </div>
+  </div>
+    {% endif %}
+
+<style>
+</style>
+
+{% schema %}
+  {
+    "name": "HomeSlideshow",
+    "class": "index-section index-section--flush",
+    "max_blocks": 6,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Auto-rotate slides",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "autoplay_speed",
+        "label": "Change slides every",
+        "options": [
+          { "value": "5000", "label": "5 seconds" },
+          { "value": "6000", "label": "6 seconds" },
+          { "value": "7000", "label": "7 seconds" },
+          { "value": "8000", "label": "8 seconds" },
+          { "value": "9000", "label": "9 seconds" },
+          { "value": "10000", "label": "10 seconds" }
+        ],
+        "default": "7000"
+      },
+      {
+        "type": "select",
+        "id": "slider_height",
+        "label": "Section height",
+        "default": "small",
+        "options": [
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_size",
+        "label": "Text size",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image-desktop",
+            "label": "Image Desktop"
+          },
+          {
+            "type": "image_picker",
+            "id": "image-mobile",
+            "label": "Image Mobile"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Slide link"
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Video slide",
+        "settings": [
+          {
+            "type": "video_url",
+            "id": "video_url",
+            "label": "Video link",
+            "accept": ["youtube"],
+            "default": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc"
+          },
+          {
+            "type": "select",
+            "id": "video_type",
+            "label": "Style",
+            "options": [
+              {
+                "value": "chrome",
+                "label": "Image with play button"
+              },
+              {
+                "value": "background-chrome",
+                "label": "Background video with play button"
+              },
+              {
+                "value": "background",
+                "label": "Background video"
+              }
+            ]
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Fallback when autoplaying video is not supported on mobile devices"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Video slide"
+          },
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading",
+            "default": "Tell your brand's story through video and images"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "HomeSlideshow",
+      "category": "Image",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": "5000"
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }]
+  }
+{% endschema %}
+
+
+
+

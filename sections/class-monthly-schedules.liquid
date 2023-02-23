@@ -1,0 +1,104 @@
+
+{% if section.settings.section_showHide == 'show' %}
+<div class="clearfix">
+  {% for block in section.blocks %}
+{% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+    <div class="w-col w-col-12">
+      <div class="monthly-schedule">
+     
+        <div class="month-name">
+        	<h3>{{ block.settings.title | escape }}</h3>
+        </div>
+        <div class="month-schedule">
+        	{% if block.settings.text != blank %}
+            {{ block.settings.text }}
+          {% endif %}
+        </div>
+     
+      
+      </div>
+      <!-- <div class="div-celebrate acadomy">
+        {% if block.settings.title != blank %}
+        	{% if block.settings.button_link != blank %}
+        	  <a href="{{ block.settings.button_link }}" class="hero-link horizontal move w-inline-block">
+        	{% endif %}	
+                <div class="tag-text left">{{ block.settings.title | escape }}</div>
+             	 
+                <img src="{{ 'paper-tag-vertical.png' | asset_url }}" class="tag-2">
+        	</a>
+          {% endif %}
+        
+        <div class="w-richtext">
+         {% if block.settings.text != blank %}
+            {{ block.settings.text }}
+          {% endif %}
+        </div>
+      </div> 
+  		{% if forloop.last == true %}{% else %}
+		{% if thecycle == 'even' %}
+			<div class="row-14 w-row reponsive-fix-margin"></div>
+			</div><div class="clearfix">
+		{% endif %}
+		{% endif %}
+		-->
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Monthly Schedules",
+    "class": "monthly-class-schedules",
+    "settings": [
+	  
+      {
+        "type": "select",
+        "id": "section_showHide",
+        "label": "Show/Hide",
+        "default": "show",
+        "options": [
+          {
+            "value": "hide",
+            "label": "Hide"
+          },
+          {
+            "value": "show",
+            "label": "Show"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Class schedules",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_block",
+            "label": "Show Block",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+		  {
+            "type": "html",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Detail link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

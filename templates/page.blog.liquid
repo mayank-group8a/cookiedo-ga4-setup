@@ -1,0 +1,80 @@
+{% section 'header-featured-banner' %}
+
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+{% assign featuredBlogs = 'in-your-kitchen,the-do-life,thats-so-rando,bts-behind-the-scenes,cookie-dough-101,do-around-town' | split:',' %}
+{% assign article_list = '' %}
+
+{% comment %}
+Set the featuredArticles variable to false by default.
+{% endcomment %}
+{% assign featuredArticles = false %}
+
+{% comment %}
+Grab the last 50 (default) articles from each Blog. Add the articles to the featureArticles variable.
+{% endcomment %}
+{% for featuredBlog in featuredBlogs %}
+	{% if blogs[featuredBlog].articles limit: 5 %}
+		{% if featuredArticles %}
+			{% assign featuredArticles = featuredArticles | concat:blogs[featuredBlog].articles %}
+		{% else %}
+			{% assign featuredArticles = blogs[featuredBlog].articles %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+
+{% comment %}
+If featuredArticles is not false we should have articles to show.
+{% endcomment %}
+{% if featuredArticles %}
+	{% assign featuredArticles = featuredArticles | sort:'published_at' | reverse %}
+
+	{% comment %}
+	Now a quick example of showing the latest 10 articles from our master article list
+	{% endcomment %}
+
+	{% for article in featuredArticles limit:10 %}
+		
+		{% for blog_handle in featuredBlogs %}
+            <p class="blog_handle">
+              <a href="{{ blogs[blog_handle].url }}">{{ blogs[blog_handle].title }}</a>
+            </p>
+            {% endfor %}
+
+        <h2 class="article_title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+
+        <p class="blog_meta">
+          {% if settings.blog_author %}
+            <span id="by">by</span>
+          <span id="article-author">{{ article.author }}</span>
+          {% endif %}
+
+          {% if settings.blog_date %}
+            <span id="published-date">{{ article.published_at | date: format: "month_day_year" }}</span>
+          {% endif %}
+
+          {% if article.excerpt != blank %}
+          <div class="excerpt"><section>{{ article.content | strip_html | truncatewords: 30 }}</section></div>          
+        {% endif %}  
+      
+        {% if settings.read_more_link %}
+          <div class="read_more">
+            <a href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }}</a>
+            {%comment%}<a href="{{ article.url }}" title="{{ article.title | escape }}" class="action_button">View Full Post </a>{%endcomment%}
+            </div>
+        {% endif %}
+
+      <hr class="divider" />
+
+	{% endfor %}
+
+{% endif %}
+    </div>
+  </div>
+</div>
+

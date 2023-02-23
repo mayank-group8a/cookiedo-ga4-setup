@@ -1,0 +1,411 @@
+{% section 'banner-plan-your-event' %}
+
+<style>
+  /* .corrporate-btn {
+    display: inline-block;
+    font-size: 25px;
+    font-family: Replica, sans-serif;
+    font-weight: 700;
+    text-align: center;
+    clear: both;
+    padding: 20px 50px;
+    background: #ff007b;
+    color: #fff;
+    margin: 10px 0px;
+  }
+
+  .corporate-button-wrapper {
+    max-width: 800px;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+   */
+</style>
+<div
+  id="Team"
+  class="content-section sprinkles less-padding plan-event-content-sec"
+>
+  <div class="content-wrapper w-container" style="text-align: left">
+    <div
+      class="grid__item medium-up--five-sixths medium-up--push-one-twelfth boxes-block-sec"
+    >
+      <!-- <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div> -->
+
+      {% if page.content.size > 0 %}
+      <div class="rte">
+        {{ page.content }}
+      </div>
+      {% endif %}
+
+      <div
+        hidden
+        class="form-block left-0 w-form plan-event-form-block"
+        style="
+          background: rgba(255, 255, 255, 0.8);
+          box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+        "
+      >
+        <div id="email-form-3" class="w-clearfix">
+          <div
+            class="contact-form form-vertical"
+            style="
+              background: rgba(255, 255, 255, 0.8);
+              box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+            "
+          >
+            {% form 'contact' %} {% if form.posted_successfully? %}
+            <div style="padding-top: 50px; display: block; clear: both"></div>
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+            {% endif %}
+
+            {{ form.errors | default_errors }}
+
+            <input type="hidden" name="contact[subject]" value="Plan a Party" />
+            <div class="grid grid--half-gutters">
+              <div
+                class="grid__item medium-up--one-half column-9 w-col w-col-6"
+              >
+                <label for="ContactFormName">First Name*</label>
+                <input
+                  type="text"
+                  id="ContactFormName"
+                  name="contact[first_name]"
+                  value="{% if form[first_name] %}{{
+                    form[first_name]
+                  }}{% elsif customer %}{{ customer.first_name }}{% endif %}"
+                  class="field w-input"
+                  required
+                />
+              </div>
+              <div
+                class="grid__item medium-up--one-half column-9 w-col w-col-6"
+              >
+                <label
+                  for="ContactFormLastName"
+                  class="{% if form.errors contains 'lastName' %}label--error{% endif %}"
+                  >Last Name*</label
+                >
+                <input
+                  type="text"
+                  id="ContactFormLastName"
+                  name="contact[last_name]"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  value="{% if form.last_name %}{{
+                    form.last_name
+                  }}{% elsif customer %}{{ customer.last_name }}{% endif %}"
+                  class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label
+                  for="ContactFormEmail"
+                  class="{% if form.errors contains 'email' %}label--error{% endif %}"
+                  >Email Address*</label
+                >
+                <input
+                  type="email"
+                  id="ContactFormEmail"
+                  name="contact[email]"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  value="{% if form.email %}{{
+                    form.email
+                  }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="grid grid--half-gutters">
+              <div
+                class="grid__item medium-up--one-half column-9 w-col w-col-6"
+              >
+                <label for="ContactFormPhone">Phone Number*</label>
+                <input
+                  type="tel"
+                  id="ContactFormPhone"
+                  name="contact[phone]"
+                  pattern="[0-9\-]*"
+                  value="{% if form[phone] %}{{
+                    form[phone]
+                  }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                  class="field w-input"
+                  required
+                />
+              </div>
+              <div
+                class="grid__item medium-up--one-half column-9 w-col w-col-6"
+              >
+                <label for="ContactFormDate">Event Date</label>
+                <input
+                  type="date"
+                  id="ContactFormDate"
+                  name="contact[date]"
+                  value="{% if form[date] %}{{
+                    form[date]
+                  }}{% elsif customer %}{{ customer.date }}{% endif %}"
+                  class="field w-input"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormEvent">Event Type</label>
+                <select
+                  id="ContactFormEvent"
+                  name="contact[event_type]"
+                  class="field w-input"
+                >
+                  <option value="Baby Shower">Baby Shower</option>
+                  <option value="Bachelorette Parties">
+                    Bachelorette Parties
+                  </option>
+                  <option value="Bar/Bat Mitzvah">Bar/Bat Mitzvah</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Camp Visiting Day">Camp Visiting Day</option>
+                  <option value="Corporate Event">Corporate Event</option>
+                  <option value="Sorority Bid Day">Sorority Bid Day</option>
+                  <option value="Sweet 16">Sweet 16</option>
+                  <option value="Wedding">Wedding</option>
+                  <option value="Wedding Shower">Wedding Shower</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormOther">Other</label>
+                <input
+                  type="text"
+                  id="ContactFormOther"
+                  name="contact[other]"
+                  value="{% if form[other] %}{{
+                    form[other]
+                  }}{% elsif customer %}{{ customer.other }}{% endif %}"
+                  class="field w-input"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid--half-gutters">
+              <div
+                class="grid__item medium-up--one-half column-9 w-col w-col-6"
+              >
+                <label for="ContactFormPeople">Number of People</label>
+                <input
+                  type="text"
+                  id="ContactFormPeople"
+                  name="contact[number_of_people]"
+                  value="{% if form[number_of_people] %}{{
+                    form[number_of_people]
+                  }}{% elsif customer %}{{
+                    customer.number_of_people
+                  }}{% endif %}"
+                  class="field w-input"
+                />
+              </div>
+
+              <div
+                class="grid__item medium-up--one-half column-9 w-col w-col-6"
+              >
+                <label for="ContactFormBudget">Budget</label>
+                <input
+                  type="text"
+                  id="ContactFormBudget"
+                  name="contact[budget]"
+                  value="{% if form[budget] %}{{
+                    form[budget]
+                  }}{% elsif customer %}{{ customer.budget }}{% endif %}"
+                  placeholder="$"
+                  class="field w-input"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormIdea"
+                  >Do you have an idea of what you want to order?</label
+                >
+                <input
+                  type="text"
+                  id="ContactFormIdea"
+                  name="contact[Do_you_have_an_idea_of_what_you_want_to_order]"
+                  value="{% if form[Do_you_have_an_idea_of_what_you_want_to_order] %}{{
+                    form[Do_you_have_an_idea_of_what_you_want_to_order]
+                  }}{% elsif customer %}{{
+                    customer.Do_you_have_an_idea_of_what_you_want_to_order
+                  }}{% endif %}"
+                  placeholder="Add Detail"
+                  class="field w-input"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormLocation">Event Location</label>
+                <input
+                  type="text"
+                  id="ContactFormLocation"
+                  name="contact[event_location]"
+                  value="{% if form[event_location] %}{{
+                    form[event_location]
+                  }}{% elsif customer %}{{
+                    customer.event_location
+                  }}{% endif %}"
+                  class="field w-input"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters w-col w-col-12 div-form">
+              <div class="grid__item">
+                <label for="ContactFormLogoSticker"
+                  >Do you want to add a custom logo / sticker? (Extra charges
+                  apply)</label
+                >
+
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_to_add_a_custom_logo_or_sticker]"
+                    value="Yes"
+                    class="w-radio-input"
+                    id="logo_yes"
+                  /><label for="logo_yes" class="_14 w-form-label">Yes</label>
+                </div>
+
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_to_add_a_custom_logo_or_sticker]"
+                    value="No"
+                    class="w-radio-input"
+                    id="logo_no"
+                  /><label for="logo_no" class="_14 w-form-label">No</label>
+                </div>
+
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_to_add_a_custom_logo_or_sticker]"
+                    value="Not Sure"
+                    class="w-radio-input"
+                    id="logo_not_sure"
+                  /><label for="logo_not_sure" class="_14 w-form-label"
+                    >Not Sure</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormCookieCart"
+                  >Do you want the cookie dough cart? (Starting at $375 for 4
+                  hours)</label
+                >
+
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_the_cookie_dough_cart]"
+                    value="Yes"
+                    class="w-radio-input"
+                    id="cart_yes"
+                  /><label for="cart_yes" class="_14 w-form-label">Yes</label>
+                </div>
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_the_cookie_dough_cart]"
+                    value="No"
+                    class="w-radio-input"
+                    id="cart_no"
+                  /><label for="cart_no" class="_14 w-form-label">No</label>
+                </div>
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_the_cookie_dough_cart]"
+                    value="Not Sure"
+                    class="w-radio-input"
+                    id="cart_not_sure"
+                  /><label for="cart_not_sure" class="_14 w-form-label"
+                    >Not Sure</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormDelivery"
+                  >Do you want delivery? (Please note, only certain products are
+                  eligible for delivery.)</label
+                >
+
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_delivery]"
+                    value="Yes"
+                    class="w-radio-input"
+                    id="delivery_yes"
+                  /><label for="delivery_yes" class="_14 w-form-label"
+                    >Yes</label
+                  >
+                </div>
+
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_delivery]"
+                    value="No"
+                    class="w-radio-input"
+                    id="delivery_no"
+                  /><label for="delivery_no" class="_14 w-form-label">No</label>
+                </div>
+
+                <div class="radio-button-field w-radio">
+                  <input
+                    type="radio"
+                    name="contact[Do_you_want_delivery]"
+                    value="Not Sure"
+                    class="w-radio-input"
+                    id="delivery_not_sure"
+                  /><label for="delivery_not_sure" class="_14 w-form-label"
+                    >Not Sure</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="btn-content-block">
+              <input
+                type="submit"
+                class="btn button submit w-button"
+                value="Submit"
+              />
+            </div>
+            {% endform %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

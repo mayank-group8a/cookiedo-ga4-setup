@@ -1,0 +1,172 @@
+<!--
+<div data-ix="show-logo-bar-on-scroll-for-inner-pages" id="top" class="hero-section header line" style="background-image:url('{{ section.settings.featured_banner | img_url: '1500x1500' }}') !important">
+    <div class="content-wrapper w-container">
+      <div class="title move">{{ page.title }}</div>
+    </div>
+  </div> -->
+
+<div id="Team" class="content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+<div id="Our-Promise" class="content-section our-promise">
+    <div class="content-wrapper our-promise w-container">
+      <div class="w-row">
+        {% if section.settings.chef_image != blank %}
+        <div class="column our-promise w-col w-col-5 w-col-medium-6">
+          <div class="the-guy"><img src="{{ section.settings.chef_image | img_url: '1500x1500' }}" class="image-4" width="458"></div>
+        </div>
+        {% endif %}
+        <div class="column-3 w-col w-col-7 w-col-medium-6">
+          <div class="our-promise-text-box">
+            {% if section.settings.chef_title != blank %}
+            	<div class="title yellow">{{ section.settings.chef_title }}</div>
+            {% endif %}
+            {% if section.settings.chef_description != blank %}
+            	<h3 class="heading-3">{{ section.settings.chef_description }}</h3>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sprinkles flex">
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+      <div class="underline fun-facts yellow"></div>
+    </div>
+  </div>
+
+<div data-w-id="294a27dd-ce58-74d0-1273-a7f02e8bde30" class="section-parallax">
+<div class="div-block-3">
+  {% for block in section.blocks %}
+  	
+  	{% if block.settings.scroll_type == 'top' %}
+  	  {% capture i %}{% cycle "blue", "pink", "yellow", "blue", "pink", "yellow" %}{% endcapture %}
+   	  <img src="{{ block.settings.scroll_image | img_url: 'medium' }}" class="image2 {{ i }}">
+  	{% endif %}
+  {% endfor %}
+</div>
+<div class="div-block-3 bottom">
+  {% for block in section.blocks %}
+  	{% if block.settings.scroll_type == 'bottom' %}
+  	 {% capture i %}{% cycle "blue", "pink", "yellow", "blue", "pink", "yellow" %}{% endcapture %}
+  		<img src="{{ block.settings.scroll_image | img_url: 'medium' }}" class="image2 {{ i }}">
+  	{% endif %}
+  {% endfor %}
+</div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Line & closing policy",
+	"class": "line-close-policy",
+    "settings": [
+		{
+        "type": "image_picker",
+        "id": "featured_banner",
+        "label": "Header Image"
+      	},
+        {
+        "type": "image_picker",
+        "id": "chef_image",
+        "label": "Chef Image"
+      	},
+        {
+        "type": "image_picker",
+        "id": "chef_section_bg",
+        "label": "Chef section backgroud image"
+      	},
+        {
+        "type": "text",
+        "id": "chef_title",
+        "label": "Title"
+      	},
+        {
+        "type": "html",
+        "id": "chef_description",
+        "label": "Description"
+      	}
+      ],
+      "blocks": [
+            {
+			 "type":  "section_scroll",
+              "name": "Scroll images",
+              "settings": [                  
+
+                  {
+                     "type":      "select",
+                     "id":        "scroll_type",
+                     "label":     "Select scroll",
+                     "options": [
+                       {
+                         "value": "top",
+                         "label": "Top scroll"
+                       },
+                       {
+                         "value": "bottom",
+                         "label": "Bottom scroll"
+                       }
+                     ],
+                     "default":   "top",
+                     "info":      "Top scroll"
+                  },
+				  {
+                  "type": "image_picker",
+                  "id": "scroll_image",
+                  "label": "Image"
+                }
+              ]
+            }
+		]
+  }
+{% endschema %}
+
+

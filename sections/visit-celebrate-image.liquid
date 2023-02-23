@@ -1,0 +1,110 @@
+{% if section.settings.section_enable_disable == 'enable'%}
+<div class="content-section full-bleed" style="{% if section.settings.image != blank %} background-image: url('{{ section.settings.image | img_url: '1500x1500' }}'); {% else %} background-color: #ff007b; {% endif %}">
+    <div class="contact-div _0">
+      <div class="div-50 colored-box">
+        {% if section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="w-inline-block">
+        {% else %}
+          <a href="javascript:void('0')" class="w-inline-block">
+        {% endif %}
+          <div class="link-box taller">
+            {% if section.settings.title != blank %}
+              <h2 class="box-heading-bold bottom-padding">{{ section.settings.title | escape }}</h2>
+            {% endif %}
+            {% if section.settings.text != blank %}
+              <h2 class="box-heading-bold curly">{{ section.settings.text }}</h2>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Image with text",
+    "class": "celebrate-section-image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image-position",
+        "label": "Image position",
+        "default": "center center",
+        "options": [
+          {
+            "value": "left center",
+            "label": "Left Center"
+          },
+          {
+            "value": "right center",
+            "label": "Right Center"
+          },
+          {
+            "value": "center center",
+            "label": "Center"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "section_enable_disable",
+        "label": "Image visibility",
+        "default": "enable",
+        "options": [
+          {
+            "value": "enable",
+            "label": "Enable"
+          },
+          {
+            "value": "disable",
+            "label": "Disable"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "image-size",
+        "label": "Image size",
+        "default": "cover",
+        "options": [
+          {
+            "value": "cover",
+            "label": "Cover"
+          },
+          {
+            "value": "contain",
+            "label": "Contain"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Title"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "Subtitle"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with text",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

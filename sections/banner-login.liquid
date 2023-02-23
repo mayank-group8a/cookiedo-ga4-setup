@@ -1,0 +1,92 @@
+<div class="hero-image {% if section.settings.featured_image == 'no' %} no_featured_image {% endif %} {% if section.settings.image_overlay_color != 'no' %} {{section.settings.image_overlay_color}} {% endif %} text-{{section.settings.text_align}}" {% if section.settings.image != blank %} style="background-image:url('{{section.settings.image  | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+        {{ 'customer.login.title' | t }}
+      </h1>
+    </div>
+  </div>
+
+{% schema %}
+  {
+    "name": "Featured Image",
+    "class": "featured-image-section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "featured_image",
+        "label": "Featured Image",
+        "default": "yes",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "image_overlay_color",
+        "label": "Image Overlay",
+        "default": "no",
+        "options": [
+          {
+            "value": "no",
+            "label": "No"
+          },
+          {
+            "value": "white_overlay",
+            "label": "White"
+          },
+          {
+            "value": "black_overlay",
+            "label": "Black"
+          },
+          {
+            "value": "pink_overlay",
+            "label": "Pink"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_align",
+        "label": "Text Align",
+        "default": "right",
+        "options": [
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Image",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

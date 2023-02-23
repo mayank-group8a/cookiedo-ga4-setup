@@ -1,0 +1,217 @@
+    {%- assign grid_item_width = 'medium-up--one-third' -%}
+    {%- assign max_height = 345 -%}
+    {% case section.blocks.size %}
+      {% when 1 %}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+      {% when 2 %}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+      {% when 4 %}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+    {% endcase %}
+    {% for block in section.blocks %}
+      {% if section.blocks.size == 5 and forloop.index < 3 %}
+        {%- assign column_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+      {% else %}
+        {%- assign column_width = grid_item_width -%}
+      {% endif %}
+
+	
+
+      {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+
+       <div class="w-row">
+        {% if thecycle == 'odd' %}
+        <div class="column w-clearfix w-col w-col-6">
+            {% if block.settings.enable_image %}
+          {% if block.settings.image != blank %}
+            {% capture img_id %}TextColumnImage-{{ block.id }}{% endcapture %}
+            {% capture wrapper_id %}TextColumnImageWrapper-{{ block.id }}{% endcapture %}
+            {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            {% include 'image-style' with image: block.settings.image, width: max_height, height: max_height, small_style: true, wrapper_id: wrapper_id, img_id: img_id %}
+  
+            <img src="{{ block.settings.image | img_url: '800x800' }}" data-src="{{ img_url }}" class="image _100" alt="{{ block.settings.image.alt | escape }}" data-sizes="auto">
+            <noscript>
+              <p>
+                {{ block.settings.image | img_url: '480x480', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+              </p>
+            </noscript>
+          {% else %}
+            <p>
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </p>
+          {% endif %}
+           {% endif %}
+      
+        </div>
+        {% endif %}
+
+        <div class="{% if thecycle == 'odd' %} column-22 w-col w-col-6 {% else %} column w-col w-col-6 {% endif %}">
+          <div class="div-celebrate">
+            <div class="div-50 colored-box auto">
+              <div class="colored-box-1 
+      {% if forloop.index == 1 %}pink{% endif %}
+      {% if forloop.index == 2 %}light-blue{% endif %}
+      {% if forloop.index == 3 %}blue{% endif %}
+      {% if forloop.index == 4 %}yellow{% endif %}
+      {% if forloop.index == 5 %}green{% endif %}
+      {% if forloop.index == 6 %}red{% endif %}
+      {% if forloop.index == 7 %}pink{% endif %}
+      {% if forloop.index == 8 %}light-blue{% endif %}
+      {% if forloop.index > 9 %}pink{% endif %}">
+                <div class="colored-box-2 one-line 
+       {% if forloop.index == 1 %}pink{% endif %}
+      {% if forloop.index == 2 %}light-blue{% endif %}
+      {% if forloop.index == 3 %}blue{% endif %}
+      {% if forloop.index == 4 %}yellow{% endif %}
+      {% if forloop.index == 5 %}green{% endif %}
+      {% if forloop.index == 6 %}red{% endif %}
+      {% if forloop.index == 7 %}pink{% endif %}
+      {% if forloop.index == 8 %}light-blue{% endif %}
+      {% if forloop.index > 9 %}pink{% endif %}
+                            ">
+                   {% if block.settings.title != blank %}
+                      <h2 class="box-heading-bold">{{ block.settings.title | escape }}</h2>
+                   	  <h2 class="box-heading-bold">{{ block.settings.sub-title | escape }}</h2>
+                  	{% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="popup w-richtext">
+              {% if block.settings.text != blank %}
+                {{ block.settings.text }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% if thecycle == 'even' %}
+        <div class="column w-clearfix w-col w-col-6">
+            {% if block.settings.enable_image %}
+          {% if block.settings.image != blank %}
+            {% capture img_id %}TextColumnImage-{{ block.id }}{% endcapture %}
+            {% capture wrapper_id %}TextColumnImageWrapper-{{ block.id }}{% endcapture %}
+            {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            {% include 'image-style' with image: block.settings.image, width: max_height, height: max_height, small_style: true, wrapper_id: wrapper_id, img_id: img_id %}
+  
+            <img src="{{ block.settings.image | img_url: '800x800' }}" data-src="{{ img_url }}" class="image _100" alt="{{ block.settings.image.alt | escape }}" data-sizes="auto">
+            <noscript>
+              <p>
+                {{ block.settings.image | img_url: '480x480', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+              </p>
+            </noscript>
+          {% else %}
+            <p>
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </p>
+          {% endif %}
+          {% endif %}
+      
+        </div>
+        {% endif %}
+
+      </div>
+      
+
+
+    {% endfor %}
+
+
+
+{% schema %}
+  {
+    "name": "Text columns with images",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Text columns with images"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+		  {
+            "type": "text",
+            "id": "sub-title",
+            "label": "Sub-Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

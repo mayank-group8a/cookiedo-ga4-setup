@@ -1,0 +1,138 @@
+{% if section.settings.flavors_section_showhide == 'yes' %} 
+{% if section.settings.section_title != blank %}  
+  <div class="banner2">
+    <h3 class="heading on-lines">{{ section.settings.section_title | escape }}</h3>
+    <div class="lines"></div>
+  </div>
+
+<div class="banner2 left"></div>
+{% endif %}
+
+
+  <div class="tab-div">
+  {% for block in section.blocks %}
+    {% if block.settings.enable_image %}
+    <a href="{% if block.settings.button_link != blank %}{{ block.settings.button_link }}{% else %}javascript:void('0'){% endif %}" class="team-member-box _25 w-inline-block {% if block.settings.seasonal_flavor == 'no' and  block.settings.matrial_image != blank %} hover_link_image {% endif %}">
+      
+      <div class="team-member-box side-border last">
+          {% if block.settings.flavor_image != blank %}
+            <div class="cookie">
+              <img alt="CookieDO NYC" src="{{ block.settings.flavor_image | img_url: '500x500' }}" width="200" data-w-id="42aff536-1bbd-ef47-c5f8-d0656e6f1419" class="cookie-image">
+            </div>
+          {% endif %}
+        <div class="team-member-text oatmeal">
+          {% if block.settings.title != blank %}
+            <div class="title tiny">{{ block.settings.title | escape }}</div>
+          {% endif %}
+          {% if block.settings.text != blank %}
+          	<p class="description">{{ block.settings.text }}</p>
+          {% endif %}
+        
+        </div>
+        <div style="display:none;opacity:0" class="hidden-ingredients oatmeal">
+          <div class="div-center _50">
+            <div class="div-center">
+              {% if block.settings.matrial_image != blank %}
+             	 <img src="{{ block.settings.matrial_image | img_url: '500x500' }}" class="ingredient" alt="CookieDO NYC">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if block.settings.seasonal_flavor == 'yes' %}
+     	 <div class="tag-text seasonal">Seasonal</div>
+      	<div class="seasonal-tag"></div>
+      {% endif %}
+    </a>
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "October flavors",
+    "class": "oct-flavors-section",
+	"settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Heading",
+        "default": "October"
+      },
+	  {
+        "type": "select",
+        "id": "flavors_section_showhide",
+        "label": "Section Show/Hide",
+        "default": "yes",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show section",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "flavor_image",
+            "label": "Flavor Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "matrial_image",
+            "label": "Flavor matrial Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Detail link"
+          },
+          {
+              "type": "select",
+              "id": "seasonal_flavor",
+              "label": "Flavor seasonal",
+              "default": "no",
+              "options": [
+                {
+                  "value": "yes",
+                  "label": "Yes"
+                },
+                {
+                  "value": "no",
+                  "label": "No"
+                }
+              ]
+            }
+        ]
+      }
+    ]
+  }
+{% endschema %}

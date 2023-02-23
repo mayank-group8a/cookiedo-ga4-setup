@@ -1,0 +1,367 @@
+{% assign featuredBlogs = 'in-your-kitchen,the-do-life,thats-so-rando,bts-behind-the-scenes,cookie-dough-101,do-around-town' | split:',' %}
+{% assign article_list = '' %}
+
+{% comment %}
+Set the featuredArticles variable to false by default.
+{% endcomment %}
+{% assign featuredArticles = false %}
+
+{% comment %}
+Grab the last 50 (default) articles from each Blog. Add the articles to the featureArticles variable.
+{% endcomment %}
+{% for featuredBlog in featuredBlogs %}
+	{% if blogs[featuredBlog].articles  %}
+		{% if featuredArticles %}
+			{% assign featuredArticles = featuredArticles | concat:blogs[featuredBlog].articles %}
+		{% else %}
+			{% assign featuredArticles = blogs[featuredBlog].articles %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+
+{% comment %}
+If featuredArticles is not false we should have articles to show.
+{% endcomment %}
+{% if featuredArticles %}
+	{% assign featuredArticles = featuredArticles | sort:'published_at' | reverse %}
+
+	{% comment %}
+	Now a quick example of showing the latest 10 articles from our master article list
+	{% endcomment %}
+	<div class="banner2 w-clearfix">
+            <h3 class="heading on-lines">Featured Posts</h3>
+            <div class="lines"></div>
+          </div>
+	<div class="featured-products">
+	{% for article in featuredArticles limit:2 %}
+     
+      
+      {% for tag in article.tags %}
+      
+      	{% assign tag_name = tag %}
+      	{% assign tag_handle = tag | handle %}
+      
+      	{% if tag_handle == 'behind-the-scenes' %}
+        {% assign color_code = '#FFDF00' %}
+        {% elsif tag_handle == 'cookie-do-101' %}
+            {% assign color_code = '#3CA5D5' %}
+        {% elsif tag_handle == 'do-around-town' %}
+            {% assign color_code = '#96D1F2' %}
+        {% elsif tag_handle == 'in-your-kitchen' %}
+            {% assign color_code = '#D3DF44' %}
+        {% elsif tag_handle == 'thats-so-rando' %}
+            {% assign color_code = '#F04937' %}
+        {% elsif tag_handle == 'the-do-life' %}
+            {% assign color_code = '#EE3D8B' %}
+        {% endif %}
+      
+      {% endfor %} 
+		
+	<div class="w-col  w-col-6 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third">
+      <div class="cat-inner-wrapper">
+        <a href="{{ article.url }}">
+          {% if section.settings.cat_image_1 != blank %}
+            <div class="cat-image">
+              <div class="image-thumbnail" style="background-image:url({{ article.image.src  | img_url: '2000x'  }});"></div>
+            </div>
+          {% endif %}
+          <div class="cat-content">
+           	 {% if section.settings.cat_title_1 != blank %}
+            	<span class="btn-outline" style="color:{{color_code}}; border-color:{{color_code}};">{{tag_name}}</span>
+             {% endif %}
+              {% if section.settings.cat_text_1 != blank %}
+                  <h4 style="color:{{color_code}}">{{ article.title | escape }}</h4>
+              {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+
+	{% endfor %}
+      
+	</div>
+
+<div class="banner2 w-clearfix all-blog-header">
+            <h3 class="heading on-lines">Read More</h3>
+            <div class="lines"></div>
+          </div>
+{% assign paginate_counter2 = 1 %}
+	<div class="featured-products blog-paginate-container" id="page_number_{{paginate_counter2}}">
+      
+      {% assign counter = 1 %}
+      {% assign paginate_counter = 1 %}
+    
+      {% assign page_count = featuredArticles.size | times: 1.0 | divided_by: 12  | ceil %}
+      
+      
+      {% capture pagination %}
+        <ul class="blog-pagination">
+          {% for i in (1..page_count) %}
+          <li class="page-{{i}} {% if i == 1 %}active{% endif %}"><a href="#page_number_{{i}}">{{i}}</a></li>
+          {% endfor %}
+        </ul>
+      {% endcapture %}
+    
+      
+	{% for article in featuredArticles limit:200 %}
+     
+      
+     {% for tag in article.tags %}
+      	{% assign tag_name = tag %}
+      	{% assign tag_handle = tag | handle %}
+      
+      	{% if tag_handle == 'behind-the-scenes' %}
+        {% assign color_code = '#FFDF00' %}
+        {% elsif tag_handle == 'cookie-do-101' %}
+            {% assign color_code = '#3CA5D5' %}
+        {% elsif tag_handle == 'do-around-town' %}
+            {% assign color_code = '#96D1F2' %}
+        {% elsif tag_handle == 'in-your-kitchen' %}
+            {% assign color_code = '#D3DF44' %}
+        {% elsif tag_handle == 'thats-so-rando' %}
+            {% assign color_code = '#F04937' %}
+        {% elsif tag_handle == 'the-do-life' %}
+            {% assign color_code = '#EE3D8B' %}
+        {% endif %}
+      
+      {% endfor %} 
+      
+      {% if counter <= 2 %}
+      
+      {% else %}
+      
+      
+		
+	<div class="w-col blog-col  w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third">
+      <div class="cat-inner-wrapper">
+        <a href="{{ article.url }}">
+          {% if section.settings.cat_image_1 != blank %}
+            <div class="cat-image">
+              <div class="image-thumbnail" style="background-image:url({{ article.image.src  | img_url: '2000x'  }});"></div>
+            </div>
+          {% endif %}
+          <div class="cat-content">
+           	 {% if section.settings.cat_title_1 != blank %}
+            	<span class="btn-outline" style="color:{{color_code}}; border-color:{{color_code}};">{{tag_name}}</span>
+             {% endif %}
+              {% if section.settings.cat_text_1 != blank %}
+                  <p style="color:{{color_code}}">{{ article.title | escape }}</p>
+              {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+      
+      
+       {% assign paginate_counter = paginate_counter | plus: 1 %}
+      {% if paginate_counter == 13 or forloop.last == true %}
+      {% assign paginate_counter2 = paginate_counter2 | plus: 1 %}
+      {{pagination}}
+      </div>
+	  <div class="featured-products blog-paginate-container" style="display:none;" id="page_number_{{paginate_counter2}}">
+      {% assign paginate_counter = 1 %}
+      {% endif %}
+      
+      
+	{% endif %}
+      {% assign counter = counter | plus: 1 %}
+     
+	{% endfor %}
+    </div>  
+	
+
+{% endif %}
+
+
+
+
+
+<!--
+<div class="featured-products">
+  {% if section.settings.cat_title_1 != blank or section.settings.cat_image_1 != blank %}
+	<div class="w-col  w-col-6 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third">
+      <div class="cat-inner-wrapper">
+        <a href="{{ section.settings.cat_url_1 }}">
+          {% if section.settings.cat_image_1 != blank %}
+            <div class="cat-image">
+              <div class="image-thumbnail" style="background-image:url({{ section.settings.cat_image_1  | img_url: '2000x'  }});"></div>
+            </div>
+          {% endif %}
+          <div class="cat-content">
+           	 {% if section.settings.cat_title_1 != blank %}
+            	<span class="btn-outline" style="color:{{ section.settings.cat_color_1 }}; border-color:{{ section.settings.cat_color_1 }};">{{ section.settings.cat_title_1 | escape }}</span>
+             {% endif %}
+              {% if section.settings.cat_text_1 != blank %}
+                  <h4 style="color:{{ section.settings.cat_color_1 }}; ">{{ section.settings.cat_text_1 | escape }}</h4>
+              {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if section.settings.cat_title_2 != blank or section.settings.cat_image_2 != blank %}
+	<div class="w-col  w-col-6 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third">
+      <div class="cat-inner-wrapper">
+        <a href="{{ section.settings.button_link }}">
+          {% if section.settings.cat_image_2 != blank %}
+            <div class="cat-image">
+              <div class="image-thumbnail" style="background-image:url({{ section.settings.cat_image_2  | img_url: '2000x'  }});"></div>
+            </div>
+          {% endif %}
+          <div class="cat-content">
+           	 {% if section.settings.cat_title_2 != blank %}
+            	<span class="btn-outline" style="color:{{ section.settings.cat_color_2 }}; border-color:{{ section.settings.cat_color_2 }};">{{ section.settings.cat_title_2 | escape }}</span>
+             {% endif %}
+              {% if section.settings.cat_text_2 != blank %}
+                  <h4 style="color:{{ section.settings.cat_color_2 }};">{{ section.settings.cat_text_2 | escape }}</h4>
+              {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+-->
+
+<!--
+<div class="featured-products">
+{% for block in section.blocks %}
+
+	<div class="w-col  w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third">
+      <div class="cat-inner-wrapper">
+        <a href="{{ block.settings.button_link }}">
+          {% if block.settings.title != blank %}
+            <div class="cat-image">
+              <div class="image-thumbnail" style="background-image:url({{ block.settings.image  | img_url: '2000x'  }});"></div>
+            </div>
+          {% endif %}
+          <div class="cat-content">
+           	 {% if block.settings.title != blank %}
+            	<span class="btn-outline" style="color:{{ block.settings.color_code }}; border-color:{{ block.settings.color_code }};">{{ block.settings.title | escape }}</span>
+             {% endif %}
+              {% if block.settings.text != blank %}
+            	<p>{{ block.settings.text | strip_html }}</p>
+              {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+
+{% endfor %}
+</div>	
+-->
+
+
+{% schema %}
+  {
+    "name": "Featured Categories",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "cat_title_1",
+        "label": "Feature Category Title"
+      },
+	  {
+        "type": "text",
+        "id": "cat_text_1",
+        "label": "Subtitle"
+      },
+	  {
+        "type": "url",
+        "id": "cat_url_1",
+        "label": "URL"
+      },
+	  {
+        "type": "image_picker",
+        "id": "cat_image_1",
+        "label": "Image"
+      },
+	  {
+        "type": "color",
+        "id": "cat_color_1",
+        "label": "Color"
+      },
+	  {
+        "type": "text",
+        "id": "cat_title_2",
+        "label": "Feature Category Title"
+      },
+	  {
+        "type": "text",
+        "id": "cat_text_2",
+        "label": "Subtitle"
+      },
+	  {
+        "type": "url",
+        "id": "cat_url_2",
+        "label": "URL"
+      },
+	  {
+        "type": "image_picker",
+        "id": "cat_image_2",
+        "label": "Image"
+      },
+	  {
+        "type": "color",
+        "id": "cat_color_2",
+        "label": "Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Add a title here"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Link"
+          },
+			{
+            "type": "color",
+            "id": "color_code",
+            "label": "Color"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

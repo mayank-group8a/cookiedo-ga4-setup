@@ -1,0 +1,31 @@
+<div class="hero-image" {% if section.settings.image != blank %} style="background-image: url('{{section.settings.image | img_url: '1500x1500'}}')" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+          
+        {% if template == 'cart' %}
+          {{ 'cart.general.title' | t }}
+        {% else %}
+          {{ page.title }} 
+        {% endif %}
+      </h1>
+    </div>
+  </div>
+{% schema %}
+  {
+    "name": "Featured Image",
+    "class": "featured-image-section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Image",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

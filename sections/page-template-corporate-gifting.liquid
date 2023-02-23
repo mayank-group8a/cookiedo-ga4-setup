@@ -1,0 +1,227 @@
+<style>
+  .section-title{display:block; margin-bottom:55px; }
+  .section-title h2{
+    color: #ff007b;
+    font-size: 42px;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .section-title h2 strong{
+    display: block;
+    font-weight: 900;
+    font-size: 72px;
+  }
+  .content-wrapper.text-block p{
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.25;
+}
+  .content-wrapper.text-block a{font-size: 22px; font-weight:700;}
+  .text-block .counter{
+    display: block;
+    color: #fff;
+    background: #ff007b;
+    font-weight: 900;
+    font-size: 35px;
+    font-family: Replica, sans-serif;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    margin: 0px auto;
+}
+  .text-block p,
+  .text-block{display:block; text-align:center;}
+  .text-block h3{
+    font-family: Replica, sans-serif;
+    color: #ff007b;
+    font-weight: 700;
+}
+  .column-center .text-block{display:block; padding:15px 0px; }
+  .corrporate-btn{
+    display: inline-block;
+    font-size: 25px;
+    font-family: Replica, sans-serif;
+    font-weight: 700;
+    text-align: center;
+    clear: both;
+    padding: 20px 50px;
+    background: #ff007b;
+    color: #fff;
+        margin: 10px 0px;
+}
+  .btn-wrapper{display:block; text-align:center; }
+  
+  @media screen and (min-width: 768px){
+    .image-block{
+      display: block;
+      position: relative;
+      padding-top: 100%;
+    }
+    .image-block img{position: absolute;
+    	left:0;
+      	top:0;
+      width:100%; height:100%;
+      object-fit:contain;
+          object-position: bottom;
+    }
+  }
+  
+  @media screen and (max-width: 767px){
+    .div-block-21{margin-top:15px; }
+    .section-title {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .section-title h2{
+      font-size: 20px;
+      line-height: 1.2;
+    }
+    .section-title h2 strong{
+          font-size: 35px;
+    }
+    .parent-wrapper{padding-top:30px; }
+    .corrporate-btn{
+    	font-size:20px;
+          padding: 20px 20px;
+    }
+    .btn-wrapper{padding-bottom: 25px; }
+  }
+</style>
+
+{% if page.content != blank %}
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  </div>
+</div>  
+{% endif %}
+<div class="content-section parent-wrapper">
+      <div class="w-container">
+        {% if section.settings.title != blank %}
+          <div class="section-title">
+            <h2>{{section.settings.title}}</h2>
+          </div>
+        {% endif %}
+          <div class="clearfix"></div>
+        {% if section.settings.text != blank %}
+          <div class="text-block content-wrapper">
+			{{section.settings.text}}
+          </div>
+        {% endif %}
+        
+        <div class="">
+          <div class="div-block-21">
+          {% for block in section.blocks %}
+        	<div class="column-center w-col w-col-4">
+              <a href="{% if block.settings.url != blank %}{{block.settings.url}}{% else %}javascript:void(0){% endif %}">
+              {% if block.settings.image != blank %}
+              <div class="image-block">
+              	<img src="{{block.settings.image | img_url: "600x" }}" alt="image" />
+              </div>
+                {% endif %}
+              <div class="text-block">
+                <div class="counter"><span>{{forloop.index}}</span></div>
+                {% if block.settings.title != blank %}
+                <h3>{{block.settings.title}}</h3>
+                {% endif %}
+                {{block.settings.text}}
+              </div>
+              </a>
+              </div>
+          {% endfor %}
+             </div>
+        </div>
+        
+        <div class="btn-wrapper">
+          {% if section.settings.btn_text != blank %}
+          <a class="corrporate-btn" target="_blank" href="{{section.settings.btn_url}}">{{section.settings.btn_text}}</a>
+          {% endif %}
+          {% if section.settings.btn_text2 != blank %}
+          <div class="clearifx"></div>
+          <a class="corrporate-btn"  target="_blank" href="{{section.settings.btn_url2}}">{{section.settings.btn_text2}}</a>
+          {% endif %}
+          
+        </div>
+      </div>
+  </div>
+
+{% schema %}
+  {
+    "name": "Corporate Gifting",
+    "settings": [
+		{
+			"type" : "text",
+			"id"   : "title",
+			"label": "Title"
+		},
+		{
+			"type" : "richtext",
+			"id"   : "text",
+			"label": "Text"
+		},
+		{
+			"type" : "text",
+			"id"   : "btn_text",
+			"label": "Button Text"
+		},
+		{
+			"type" : "url",
+			"id"   : "btn_url",
+			"label": "Button URL"
+		},
+		{
+			"type" : "text",
+			"id"   : "btn_text2",
+			"label": "Button Text 2"
+		},
+		{
+			"type" : "url",
+			"id"   : "btn_url2",
+			"label": "Button URL 2"
+		} 
+	 ],
+	 "blocks": [
+		{
+			"type": "image_with_text",
+			"name": "Image with text",
+			"settings": [
+				{
+                    "type" : "text",
+                    "id"   : "title",
+                    "label": "Title"
+                },
+                {
+                    "type" : "richtext",
+                    "id"   : "text",
+                    "label": "Text"
+                },
+                {
+                    "type" : "image_picker",
+                    "id"   : "image",
+                    "label": "Image"
+                },
+                {
+                    "type" : "url",
+                    "id"   : "url",
+                    "label": "URL"
+                }
+			]
+		}
+	 ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

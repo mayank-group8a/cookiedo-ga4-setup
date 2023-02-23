@@ -1,0 +1,97 @@
+<h3>Hello CookieDŌ</h3>
+<div class="outer-div">
+                      <a href="/products/gift-card" data-w-id="4408ceaf-a581-1d23-9d78-9ac1f5b7eaa6" class="team-member-box w-inline-block">
+                        <div class="out-div">
+                          {% if product.images.size > 0 %}
+                          {% for image in product.images %}
+                          <div class="cta-image move" style="background-image:url('{{ image.src | product_img_url: 'original' }}');">
+                            <div class="price">
+                              
+                              	<div>{{ product.price | money }}</div>
+                              
+                            </div>
+                          </div>
+                          {% endfor %}
+                          {% else %}
+                          	<div class="cta-image move" style="background-image:url('{{ 'FIND-FULL-SIZE.jpeg' | asset_img_url: '300x' }}');">
+                              <div class="price">
+
+                                  <div>{{ product.price | money }}</div>
+
+                              </div>
+                            </div>
+                          {% endif %}
+                        </div>
+                        <div class="center-div move">
+                          {% if product.title != blank %}
+                          <div class="title tiny white-bg">{{ product.title }}</div>
+                          {% endif %}
+                        </div>
+                      </a>
+                  
+                  	 
+                  	 {% if delivery_option['buildbox'] != blank %}
+                      <div class="team-member-text _10">
+                        <div class="div-mobile w-hidden-main">
+                          <a href="/products/gift-card" class="button-link-mobie w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                        
+                        </div>
+                        <div class="_2-buttons w-hidden-medium w-hidden-small w-hidden-tiny">
+                          <a href="/products/gift-card" class="button-link w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                     
+                        </div>
+                      </div>
+                  	 {% else %}
+                  	  <div class="team-member-text _10">
+                        <div class="div-mobile w-hidden-main">
+                          <a href="/products/gift-card" class="button-link-mobie w-inline-block" style="position: relative; top: -2px;">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                          <form method="post" action="/cart/add" class="button-link w-inline-block">
+                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                            <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+                            <div class="button small" style="padding:0px;">
+                            <input type="submit" value="add to cart" class="btn" style="padding: 9px 8px; font-weight: 300; letter-spacing: 0px;"/>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="_2-buttons w-hidden-medium w-hidden-small w-hidden-tiny">
+                          <a href="/products/gift-card" class="button-link w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                     
+                          <form method="post" action="/cart/add" class="button-link w-inline-block" style="top: -1px; position:  relative;">
+                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                            <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+                            <div class="button small" style="padding:0px;">
+                            <input type="submit" value="add to cart" class="btn" style="padding: 5.5px 8px; font-weight: 300; letter-spacing: 0px;"/>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                  	{% endif %}
+                    </div>
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

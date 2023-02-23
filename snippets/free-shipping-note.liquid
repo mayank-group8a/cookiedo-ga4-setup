@@ -1,0 +1,76 @@
+{% assign amount = %}
+
+{% assign cart_amount =  cart.total_price | money | remove: "$" %}
+	{% assign cart_amount =  cart_amount | remove: ".00" %}
+{% if cart_amount != blank %}
+	{% assign progrss_amount = amount | minus: cart_amount %}
+{% endif %}
+{% assign cart_amount =  cart.total_price | money | remove: "$" %}
+{% assign cart_amount =  cart_amount | divided_by: amount %}
+{% assign progress =  cart_amount | times: 100 %}
+
+<div class="free-shipping-alert" data-amount="{{amount}}">
+  <div class="alert-wrapper">
+    <div class="alert-content">
+        
+     <span>{% if progrss_amount > 0  %}Psst...You’re just ${{progrss_amount }} from FREE Shipping!{% else %}Don’t forget some of our favorites...{% endif %}</span> 
+    </div>
+  </div> 
+ {% comment %} <div class="progressbar-wrapper">
+  <div class="progressbar">
+    <div class="progressbar-fill" style="width:{{progress}}%;"></div>
+  </div>
+  </div>  {% endcomment %}
+</div>
+
+
+<style>
+  .progressbar-wrapper{
+    display: block;
+    padding: 3px 0px;
+    border-radius: 14px;
+}
+  .free-shipping-alert{
+    display: block;
+    margin: 0px auto;
+    max-width: 100%;
+    padding: 10px 0 20px;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+}
+  .free-shipping-alert{}
+  .progressbar{
+    width: 100%;
+    max-width: 100%;
+    height: 12px;
+    border: 1px solid #3FBDDB;
+    background: #fff;
+    display: block;
+    margin: 7px 0px;
+    position: relative;
+    border-radius: 10px;
+  }
+  .free-shipping-alert a{
+  	text-transform: uppercase;
+  }
+  .progressbar-fill{
+    background: #3FBDDB;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    height: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  .alert-content{font-size:20px; text-align:center; font-weight: 600; }
+  
+ 
+  @media screen and (max-width: 900px){
+    .alert-content{font-size:17px;}
+    .alert-content{
+    	font-size: 11px;
+    }
+    .free-shipping-alert{padding-bottom:0px;}
+  }
+</style>

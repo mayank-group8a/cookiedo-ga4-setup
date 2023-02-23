@@ -1,0 +1,159 @@
+<div class="w-container">
+
+</div>
+
+<!-- ================= gallery ================ -->
+<div class="clearfix" style="padding-top:90px; "></div>
+<div class="collage insepration-gallery" style="overflow:hidden;">
+    <div class="collage-row w-row">
+      
+      <div class="collage-col w-col w-col-3 w-col-small-6 w-col-tiny-6">
+        {% if section.settings.section_logo != blank %}
+        <div class="logo-in-collage"><img src="{{ section.settings.section_logo | img_url: '300x300' }}" alt="CookieDO NYC" class="image-19"></div>
+        {% endif %}
+      {% for block in section.blocks %}
+        
+        {% if block.settings.image_bg != blank and block.settings.image_text != blank %}
+        <div class="collage-div _275" style="background-image: url('{{ block.settings.image_bg | img_url: '1500x1500'  }}'); height:{{ block.settings.box_height }}px;">
+          <div class="hidden-collage-div" style="background-color:{{ block.settings.color_picker }};">
+            {{ block.settings.image_text }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if block.settings.image_bg != blank and block.settings.image_text == blank %}
+        	<div class="collage-div _400" style="background-image: url('{{ block.settings.image_bg | img_url: '1500x1500'  }}'); height:{{ block.settings.box_height }}px;"></div>
+        {% endif %}
+        {% if block.settings.image_bg == blank and block.settings.image_text != blank %}
+        <div data-w-id="e9a823c9-392a-bf5c-17a7-d72a9bc62500" class="collage-div _250 b" style="height:{{ block.settings.box_height }}px; background-color:{{ block.settings.color_picker }}; visibility:visible; opacity:1;">
+          <div class="hidden-collage-div blue" style="visibility:visible; opacity:1;">
+            {{ block.settings.image_text }}
+          </div>
+        <div></div></div>
+        {% endif %}
+        
+         {% if block.settings.column_break != blank %}  
+           </div>
+           <div class="collage-col right w-col w-col-3 w-col-small-6 w-col-tiny-6">
+        {% endif %}
+        
+       {% endfor %}
+      
+        
+      </div>
+    </div>
+  </div>
+
+<div class="row-8 w-row" style="margin-bottom: 75px;">
+  		{% if section.settings.leftContent != blank %}
+  			<div class="column-center w-col w-col-6">
+              {% if section.settings.leftContentURL != blank %}
+              	<a href="{{ section.settings.leftContentURL }}" style="text-decoration:none;">
+              {% endif %}
+        		{{ section.settings.leftContent }}
+              {% if section.settings.leftContentURL != blank %}
+              	</a>
+              {% endif %}
+ 			</div>
+  		{% endif %}
+        {% if section.settings.rightContent != blank %}
+  			<div class="column-center w-col w-col-6">
+              {% if section.settings.rightContentURL != blank %}
+              	<a href="{{ section.settings.rightContentURL }}" style="text-decoration:none;">
+              {% endif %}
+        		{{ section.settings.rightContent }}
+               {% if section.settings.rightContentURL != blank %}
+              	</a>
+              {% endif %}
+            </div>
+  		{% endif %}
+      </div>
+
+
+{% schema %}
+  {
+    "name": "Additional Content",
+    "class": "inspiration-section",
+    "settings": [
+      {
+        "type": "html",
+        "id": "leftContent",
+        "label": "Plan Event",
+        "default": "Plan Event link content"
+      },
+		{
+        "type": "url",
+        "id": "leftContentURL",
+        "label": "URL"
+      },
+	 {
+        "type": "html",
+        "id": "rightContent",
+        "label": "Download creating",
+        "default": "Download our creating"
+      },
+	  {
+        "type": "url",
+        "id": "rightContentURL",
+        "label": "URL"
+      },
+	  {
+        "type": "image_picker",
+        "id": "section_logo",
+        "label": "DO Logo"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_bg",
+            "label": "Image"
+          },
+          {
+            "type": "html",
+            "id": "image_text",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "number",
+            "id": "box_height",
+            "label": "Image box height",
+			"default": 275
+          },
+          {
+            "type": "color",
+            "id": "color_picker",
+            "label": "Hover color"
+          },
+          {
+            "type": "checkbox",
+            "id": "column_break",
+            "label": "Collumn break"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

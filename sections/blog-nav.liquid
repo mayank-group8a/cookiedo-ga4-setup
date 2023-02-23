@@ -1,0 +1,100 @@
+<div class="w-container" style="max-width:1140px; padding-top:50px;">
+<div class="banner2 w-clearfix" style="margin-bottom:10px;">
+            <h1 class="heading on-lines" style="width:auto;">Explore the DŌ Blog</h1>
+            <div class="lines"></div>
+          </div>
+  <div class="clearfix"></div>
+  
+<div class="tag-navigations-wrapper" style="padding-top:0px;">
+  <ul class="navigations">
+      {% for block in section.blocks %}
+          <li>
+      		<a href="{% if block.settings.button_link != blank %}{{ block.settings.button_link }}{% else %}javascript:void(0){% endif %}">
+              	{% if block.settings.image != blank %}
+              		{% if blog.handle == block.settings.blog_slug %}
+              		<span class="blog-nav-icon" style="background-image: url('{{ block.settings.image_2 | img_url: 'original' }}');"></span>
+              		{% else %}
+              		<span class="blog-nav-icon blog-nav-icon-{{ block.id }}"></span>
+              	    <style>
+                      .blog-nav-icon-{{ block.id }} { background-image: url('{{ block.settings.image | img_url: 'original' }}'); }
+                      .blog-nav-icon-{{ block.id }}:hover , .blog-nav-icon-{{ block.id }}:focus { background-image: url('{{ block.settings.image_2 | img_url: 'original' }}'); }
+              		</style>
+              		{% endif %}
+              {% endif %}
+              	<span style="display:none;">{{ block.settings.button_label }}</span>
+            </a>
+    	  </li>
+      {% endfor %}
+	</ul>
+  
+</div>
+
+</div>
+
+{% schema %}
+
+
+{
+    "name": "Categories",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Text columns with images"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		  {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image Hover"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Category Name"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "blog_slug",
+            "label": "Slug"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Categories",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+

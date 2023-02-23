@@ -1,0 +1,273 @@
+<!--
+<div data-ix="show-logo-bar-on-scroll-for-inner-pages" id="top" class="hero-section header line" style="background-image:url('{{ section.settings.featured_banner | img_url: '1500x1500' }}') !important">
+    <div class="content-wrapper w-container">
+      <div class="title move">{{ page.title }}</div>
+    </div>
+  </div> -->
+
+<div id="Team" class="content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+
+<div class="content-section fun-facts">
+    <div class="w-container">
+      <div class="w-row">
+        {% if section.settings.request_image != blank %}
+          <div class="w-col w-col-6">
+            <div class="fun-facts-box left-side-border"><img src="{{ section.settings.request_image | img_url: '1500x1500' }}" class="fun-fact-icon"></div>
+          </div>
+        {% endif %}
+        <div class="w-col w-col-6">
+          <div class="fun-facts-box left-side-border left">
+            {% if section.settings.request_title != blank %}
+            	<h3 class="heading left pink">{{ section.settings.request_title }}</h3>
+            {% endif %}
+            <div class="sprinkles">
+              <div class="underline fun-facts"></div>
+              <div class="underline fun-facts"></div>
+              <div class="underline fun-facts"></div>
+            </div>
+            {% if section.settings.request_description != blank %}
+            	{{ section.settings.request_description }}
+            {% endif %}
+            
+            {% if section.settings.request_btn_text != blank %}
+           	  <a href="{{ section.settings.request_btn_url }}" class="button two w-button">{{ section.settings.request_btn_text }}</a>
+          	{% endif %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="section-2">
+    <div class="content-wrapper w-container">
+      {% if section.settings.partner_text != blank %}
+      <div class="title">{{ section.settings.partner_text }}</div>
+     {% endif %}
+      <div class="row w-row">
+        {% for block in section.blocks %}
+       		<div class="w-col w-col-3">
+              {% if block.settings.partner_url != blank %}
+             	 <a href="{{ block.settings.partner_url }}" target="_blank" class="link-block-3 w-inline-block">
+              {% else %}
+                <a href="javascript:void('0')" class="link-block-3 w-inline-block">
+              {% endif %}
+                {% if block.settings.partner_url != blank %}
+                <img src="{{ block.settings.partner_logo  | img_url: '400x400'  }}" data-w-id="b9783f3b-78ab-cd11-b488-b1a89cf3da33" style="transform: translateX(0px) translateY(0px) translateZ(0px) scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(0deg) skewY(0deg);">
+              {% endif %}
+              </a>
+        	</div>
+    
+        {% endfor %}
+      </div>
+    
+    </div>
+  </div>
+
+
+
+
+<div class="content-section fun-facts">
+    <div class="w-container">
+      <div class="w-row">
+        {% if section.settings.doserves_image != blank %}
+          <div class="w-col w-col-6">
+            <div class="fun-facts-box left-side-border"><img src="{{ section.settings.doserves_image | img_url: '1500x1500' }}" class="fun-fact-icon"></div>
+          </div>
+        {% endif %}
+        <div class="w-col w-col-6">
+          <div class="fun-facts-box left-side-border left">
+            {% if section.settings.doserves_title != blank %}
+            	<h3 class="heading left pink">{{ section.settings.doserves_title }}</h3>
+            {% endif %}
+            <div class="sprinkles">
+              <div class="underline fun-facts"></div>
+              <div class="underline fun-facts"></div>
+              <div class="underline fun-facts"></div>
+            </div>
+            {% if section.settings.doserves_description != blank %}
+            	{{ section.settings.doserves_description }}
+            {% endif %}
+            
+            {% if section.settings.partner_logo != blank %}
+           	  <a href="{{ section.settings.partner_logo  }}" class="button two w-button">{{ section.settings.doserves_btn_text }}</a>
+          	{% endif %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="grid">
+
+       {% for block in section.blocks %}
+        <div class="grid-item">
+          {% case block.type %}
+          
+            {% when 'collection' %}
+            {% include 'our-partners' %}
+
+          {% endcase %}
+        </div>
+        {% endfor %}
+      </div>
+
+<div data-w-id="294a27dd-ce58-74d0-1273-a7f02e8bde30" class="section-parallax">
+
+<div class="div-block-3">
+  {% for block in section.blocks %}
+  	{% if block.settings.scroll_type == 'top' %}
+  	  {% capture i %}{% cycle "blue", "pink", "yellow", "blue", "pink", "yellow" %}{% endcapture %}
+   	 	{% include 'section-scroll' %}
+  	{% endif %}
+ {% endfor %}
+</div>
+<div class="div-block-3 bottom">
+  {% for block in section.blocks %}
+  	{% if block.settings.scroll_type == 'bottom' %}
+  	 {% capture i %}{% cycle "blue", "pink", "yellow", "blue", "pink", "yellow" %}{% endcapture %}
+  		{% include 'section-scroll' %}
+  	{% endif %}
+  {% endfor %}
+</div>
+ 
+ 
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+	"class": "community",
+    "settings": [
+		{
+        "type": "image_picker",
+        "id": "featured_banner",
+        "label": "Header Image"
+      	},{
+        "type": "image_picker",
+        "id": "request_image",
+        "label": "Request Image"
+        },
+        {
+        "type": "text",
+        "id": "request_title",
+        "label": "Title"
+        },
+        {
+        "type": "richtext",
+        "id": "request_description",
+        "label": "Description"
+        },
+        {
+        "type": "text",
+        "id": "request_btn_text",
+        "label": "Button text"
+        },
+        {
+        "type": "url",
+        "id": "request_btn_url",
+        "label": "Button url"
+        },
+		{
+        "type": "image_picker",
+        "id": "doserves_image",
+        "label": "Doserves Image"
+        },
+        {
+        "type": "text",
+        "id": "doserves_title",
+        "label": "Title"
+        },
+        {
+        "type": "richtext",
+        "id": "doserves_description",
+        "label": "Description"
+        },
+        {
+        "type": "text",
+        "id": "doserves_btn_text",
+        "label": "Button text"
+        },
+        {
+        "type": "url",
+        "id": "doserves_btn_url",
+        "label": "Button url"
+        },
+        {
+        "type": "text",
+        "id": "partner_text",
+        "label": "Partner Heading",
+        "default": "Partners"
+        }
+      ],
+	"blocks": [
+      {
+        "type": "collection",
+        "name": "Our partners",
+        "settings": [
+          {
+            "label": "URL",
+            "id": "partner_url",
+            "type": "text"
+          },{
+            "label": "Logo",
+            "id": "partner_logo",
+            "type": "image_picker"
+          }
+        ]
+      },
+	  {
+			 "type":  "section-scroll",
+              "name": "Scroll images",
+              "settings": [                  
+
+                  {
+                     "type":      "select",
+                     "id":        "scroll_type",
+                     "label":     "Select scroll",
+                     "options": [
+                       {
+                         "value": "top",
+                         "label": "Top scroll"
+                       },
+                       {
+                         "value": "bottom",
+                         "label": "Bottom scroll"
+                       }
+                     ],
+                     "default":   "top",
+                     "info":      "Top scroll"
+                  },
+				  {
+                  "type": "image_picker",
+                  "id": "scroll_image",
+                  "label": "Image"
+                }
+              ]
+            }
+
+    ]
+
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

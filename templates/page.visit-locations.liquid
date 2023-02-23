@@ -1,0 +1,199 @@
+{% section "banner-locations-hours" %}
+
+<style>
+  .location-box{
+    display: block;
+    max-width: 450px;
+    margin: 0px auto;
+  }
+  .visit-timing-wrapper p{
+      font-family: 'Poppins' !important;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    color: #000;
+  }
+ 
+  .location-description p{
+  	display:block;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .w-col.w-col-4{
+  	padding-top:35px;
+  }
+  .insepration-gallery .collage-row > .collage-col{
+  	padding-left:4px;
+    padding-right:4px;
+  }
+  .colored-box-2 {
+    position: relative;
+    z-index: 999;
+    display: block;
+    padding: 25px 25px 25px 15px;
+    background-color: rgba(255, 0, 123, 0.5);
+}
+  
+ .visit-timing-wrapper .box-heading-bold.curly{
+  	font-family: Replica, sans-serif;
+    font-weight: 700;
+        padding: 0px 25px;
+   font-size: 30px;
+   line-height: 34px;
+  }
+ .visit-timing-wrapper .colored-box-1 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+ .visit-timing-wrapper .box-heading-bold.curly span{
+    display: block;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+
+  .div-50.colored-box {
+    position: relative;
+    z-index: 9;
+    display: inline-block;
+    overflow: visible;
+   width: 100%;
+max-width: 300px;
+  }
+  .content-section.locations{
+  	padding-top:0px;
+  }
+  .empty-spacer{padding:10px 0px;}
+  
+  .visit-timing-wrapper .colored-box-1 {
+      min-height: 130px;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+  
+  .location{
+  	display:block;
+    text-align:center;
+  }
+   .location-description{
+  	display:block;
+    padding-bottom:15px;
+  }
+  .location p{text-align:center;}
+  .location strong{font-weight: 500; }
+  .location a{ font-size: 18px; }
+  .location a:hover{color: #ff7fbd;}
+  
+  .location-image{max-height:250px; width:100%; object-fit: cover;     object-position: bottom;}
+  
+  #address .colored-box-2{
+  	background:none;
+  }
+  
+ .btn.view_more{
+    display: block;
+    width: 240px;
+    height: 64px;
+    background: #000;
+    color: #fff;
+    line-height: 62px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 33px;
+   transition: all 0.4s;
+   margin-left:auto;
+   margin-right: auto;
+}
+ .btn.view_more:hover{
+  background: #333;
+  }
+  
+  @media screen and (min-width: 768px){
+  .div-50.colored-box{margin-top:20px; }
+    
+     .location{
+      min-height:100px;
+    }
+     .location-description{
+      min-height: 265px;
+    }
+    
+  }
+  @media screen and (max-width: 767px){
+    .div-block-15{
+      padding-right:0px;
+    }
+    .insepration-gallery{
+    	padding-left:0px !important;
+      padding-right:0px !important;
+      margin-left:0px !important;
+      margin-right:0px !important;
+      
+    }
+    #shopify-section-location-hourrse .div-block-21{
+    	 margin-top:0px !important;
+    }
+    
+    .div-50.colored-box{left:0; top:0;}
+    .colored-box-1{width:100%;}
+    
+    .visit-timing-wrapper > div:nth-child(odd){
+    	margin-bottom:50px;
+    }
+    .empty-spacer{padding:0px;}
+  }
+ 
+  
+  
+  li, li a, .product-single__title, .hidden-text, .hidden-text p, .product-single__description p, h5, label, .locations h3,.locations  h5,.locations .heading-3.smaller {
+    font-family: 'Poppins' !important;
+  }
+  
+  li a {
+    font-weight: 400 !important;
+  }
+  
+</style>
+
+<script src="//cdn.shopifycloud.com/web/assets/main-549bc1a3307da246678ee80d3d5c77590e2404694a79974323ad00ee6f3d1fe0.js"></script>
+{% if page.handle == 'location-hours' %}
+<div class="content-section locations">
+<div class="div-container">
+<div class="div-block-16">
+<div class="div-block-15">
+
+<div class="colored-box auto" style="height: 25px;"></div>
+  
+ {% section "visit-location-times" %}<br><br>
+   {% section "visit-location-times2" %}<br><br>
+     {% section "visit-locaton-times3" %}
+
+</div>
+</div>
+</div>
+ {% comment %}
+{% section "location-hourrse" %}
+   {% endcomment %}
+  {% section "location-buttons" %}
+
+
+  {% else %}
+  {% section "visit-location-2" %}
+  
+  {% endif %}
+  
+</div>
+
+<style>
+  .colored-box-1 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .div-50 colored-box {
+    margin-bottom: 0px;
+    margin-left: 0px;
+</style>
+

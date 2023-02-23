@@ -1,0 +1,268 @@
+{% if page.handle  == 'our-story' %}
+	<!-- -------------- -->
+	<!-- start our story -->
+	<!-- -------------- -->
+
+{% for block in section.blocks %}
+
+  {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+  {% if thecycle == 'even' %}
+    <div class="content-section photo"></div>
+  {% endif %}
+
+  {% if thecycle == 'odd' %}
+  <div class="content-section">
+    <div class="w-container">
+      <div class="div flex">
+        <div class="div-50">
+          {% if block.settings.enable_image %}
+          <div class="about-image" id="{{ img_id }}" style="background-image:url('{{ block.settings.image | img_url: '1200x1200' }}');"></div>
+          {% endif %}
+          
+        </div>
+        <div class="div-50 center">
+          <div class="div-50 colored-box">
+            <div class="colored-box-1">
+              <div class="colored-box-2">
+
+                <h2 class="box-heading-bold curly">about</h2>
+                {% if block.settings.title != blank %}
+                    <h2 class="box-heading-bold">{{ block.settings.title | escape }}</h4>
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-7 w-row">
+        <div class="column-padding w-col w-col-12">
+          <div class="w-richtext text-columns">
+              {% if block.settings.text != blank %}
+                {{ block.settings.text }}
+              {% endif %}
+            {% if block.settings.title != blank %}
+            <h1 class="neon signature">~{{ block.settings.title | escape }}</h1>
+          {% endif %}
+          </div>
+          
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% if thecycle == 'even' %}
+  <div class="content-section our-story-howbegin-block">
+    <div class="circles flavor-page w-hidden-tiny"></div>
+    <div class="container-4 w-container">
+      <div class="div flex">
+        <div class="div-50 colored-box">
+          <div class="colored-box-1 yellow">
+            <div class="colored-box-2 yellow">
+              <h2 class="box-heading-bold curly">how it all</h2>
+              {% if block.settings.title != blank %}
+                  <h2 class="box-heading-bold">{{ block.settings.title | escape }}</h4>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="container-3 w-container">
+      <div class="row-3 _0 w-row">
+        <div class="w-col w-col-6">
+          <div class="w-richtext">
+            {% if block.settings.text != blank %}
+              {{ block.settings.text }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% if block.settings.enable_image %}
+        <img src="{{ block.settings.image | img_url: '1200x1200' }}" data-w-id="4d3bf610-c78f-d4b0-a056-25bb95ef6fb4" style="opacity:1; max-width:700px; height:auto;" class="brownie-tray">
+      {% endif %}
+
+      </div>
+  </div>
+  {% endif %}
+
+
+{% endfor %}
+	<!-- -------------- -->
+	<!-- end our story -->
+	<!-- -------------- -->
+
+{% else %}
+
+<div class="page-width">
+  {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="grid {% unless section.blocks.size == 5 %}grid--uniform{% endunless %} grid--flush-bottom">
+    {%- assign grid_item_width = 'medium-up--one-third' -%}
+    {%- assign max_height = 345 -%}
+    {% case section.blocks.size %}
+      {% when 1 %}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+      {% when 2 %}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+      {% when 4 %}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+    {% endcase %}
+    {% for block in section.blocks %}
+      {% if section.blocks.size == 5 and forloop.index < 3 %}
+        {%- assign column_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+      {% else %}
+        {%- assign column_width = grid_item_width -%}
+      {% endif %}
+      <div class="grid__item {{ column_width }} text-{{ section.settings.align_text }}" {{ block.shopify_attributes }}>
+        {% if block.settings.enable_image %}
+          {% if block.settings.image != blank %}
+            {% capture img_id %}TextColumnImage-{{ block.id }}{% endcapture %}
+            {% capture wrapper_id %}TextColumnImageWrapper-{{ block.id }}{% endcapture %}
+            {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            {% include 'image-style' with image: block.settings.image, width: max_height, height: max_height, small_style: true, wrapper_id: wrapper_id, img_id: img_id %}
+            <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+              <div style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100}}%;">
+                <img id="{{ img_id }}"
+                     class="feature-row__image lazyload"
+                     src="{{ block.settings.image | img_url: '300x300' }}"
+                     data-src="{{ img_url }}"
+                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                     data-sizes="auto"
+                     alt="{{ block.settings.image.alt | escape }}">
+              </div>
+            </div>
+            <noscript>
+              <p>
+                {{ block.settings.image | img_url: '480x480', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+              </p>
+            </noscript>
+          {% else %}
+            <p>
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </p>
+          {% endif %}
+        {% endif %}
+        {% if block.settings.title != blank %}
+          <h3 class="h4">{{ block.settings.title | escape }}</h3>
+        {% endif %}
+        {% if block.settings.text != blank %}
+          <div class="rte-setting">{{ block.settings.text }}</div>
+        {% endif %}
+        {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+          <a href="{{ block.settings.button_link }}" class="btn btn--secondary btn--small">
+            {{ block.settings.button_label | escape }}
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Text columns with images",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Text columns with images"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+

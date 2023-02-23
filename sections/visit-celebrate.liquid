@@ -1,0 +1,145 @@
+<style>
+  @media screen and (min-width: 768px){
+    .all-month-event{float:left; width: 55%; }
+    .all-month-event .div-celebrate{padding-left: 210px;}
+  }
+  
+  
+
+.carousel-cell {
+  width: 100%; /* full width */
+  height: 220px; /* height of carousel */
+  margin-right: 10px;
+      z-index: 1;
+}
+.is-selected{z-index:9;}
+
+</style>
+
+<script src="{{ 'flickity.pkgd.min.js' | asset_url }}" type="text/javascript"></script>
+<link href="{{ 'flickity.css' | asset_url }}" type="text/css" rel="stylesheet" />
+
+<div class="all-month-event">
+<div class="div-celebrate _300px">
+    {% if section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="hero-link horizontal w-inline-block">
+    {% else %}
+      <a href="javascript:void('0')" class="hero-link horizontal w-inline-block">
+    {% endif %}
+    <div class="tag-text left" style="font-size:18px;">{{ section.settings.button_label | escape }}</div>
+    {% if section.settings.image != blank %}<img src="{{ section.settings.image | img_url: '1200x1200' }}" class="tag-2">{% endif %}
+    </a>
+    {% if section.settings.title != blank %}
+      <h3>{{ section.settings.title | escape }}:</h3>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      {{ section.settings.text }}
+    {% endif %}
+</div>
+  </div>
+  <div class="all-monthe-slider-wrapper">
+    <div id="slider-event">
+      {% for block in section.blocks %}
+      <div class="carousel-cell" id="{{ img_id }}" style="background:url({{ block.settings.image | img_url: '1200x1200' }}) no-repeat center center; background-size:cover;">
+      </div>
+	  {% endfor %}
+    </div>
+  </div>
+  
+  <script>
+    $('#slider-event').flickity();
+ </script>
+  
+  <div class="clearfix"></div>
+  <div class="eca-app-container" data-widgetuuid="d4183716-f9d6-4153-a82f-07abf848cafa"></div>
+<script>(function () {
+window.eventCalId=2344;
+var integrationScript = document.createElement("script");
+integrationScript.async = 1;
+integrationScript.setAttribute("src", "https://api.eventcalendarapp.com/integration-script.js");
+document.head.appendChild(integrationScript);
+if (window.eventCalendarAppUtilities) { window.eventCalendarAppUtilities.init("d4183716-f9d6-4153-a82f-07abf848cafa");}})();
+</script>
+
+  
+{% schema %}
+  {
+    "name": "Celebrate with us",
+    "class": "celebrate-section",
+    "settings": [
+	{
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      	{
+        "type": "select",
+        "id": "layout",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Celebrate with us"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Image Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Celebrate with us",
+        "category": "text",
+  		 "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,108 @@
+<div id="About-Us" class="content-section less-padding">
+    <div class="div-container">
+      {% if section.settings.title != blank %}
+      <h2 class="h2-center">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      <div class="tab-div less-padding">
+        <div class="row-5 w-row">
+          {% for block in section.blocks %}
+          <div class="column-no-padding w-col w-col-4">
+            <div class="outer-div">
+              <a href="{{ block.settings.button_link }}" class="team-member-box w-inline-block">
+                <div class="out-div" data-ix="image-hover">
+                  <div class="cta-image" style="background-image:url('{{ block.settings.image | img_url: 'original' }}');"></div>
+                </div>
+                <div class="center-div move">
+                  {% if block.settings.title != blank %}
+                    <h3 class="h3-white-background">{{ block.settings.title | escape }}</h3>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+         
+        </div>
+      </div>
+      <div class="divider-line top-and-bottom-padding"></div>
+    </div>
+  </div>
+
+
+{% schema %}
+  {
+    "name": "Home featured section",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Home featured section"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home featured section",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

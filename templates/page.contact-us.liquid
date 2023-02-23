@@ -1,0 +1,78 @@
+{% section 'banner-contact' %}
+
+<style>
+@media (max-width: 479px){
+    .content-section {
+        margin-bottom: 0px;
+        padding: 0px 10px;
+        float: none;
+    }
+  .box-heading-bold.third._32{    font-size: 26px;
+    line-height: 32px;}
+  .box-heading-bold.lower{
+      font-size: 22px;
+    line-height: 23px;
+  }
+  .box-heading-bold.lower{
+  	background:none;
+  }
+  .content-section{
+  	padding:0px;
+  }
+  #Team{
+  	padding-left:10px;
+    padding-right:10px;
+  }
+  }
+  #Team{
+  	    background: rgba(255,255,255,0.7);
+  }
+  
+</style>
+<div class="content-section sprinkles">
+<div id="Team" class="content-section content-pages">
+  <div class="content-wrapper w-container">
+    <div class="form-block-2 w-form">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  
+      <div class="form-3 w-clearfix"></div>
+
+
+{% form 'contact' %}
+
+          {% if form.posted_successfully? %}
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+		{{ form.errors | default_errors }}
+		 
+      	  <input type="hidden" name="contact[subject]" value="Contact Us" />
+          <div class="div-block-14">
+            <label for="ContactFormName" style="display:none;">Name</label>		
+         	 <input class="text-field _33 w-input" maxlength="256" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" data-name="Name" placeholder="{{ 'contact.form.name' | t }}" id="ContactFormName" required="" type="text">
+            <label for="ContactFormEmail" style="display:none;">Email</label>		
+         	 <input class="text-field _33 w-input {% if form.errors contains 'email' %}input--error{% endif %}" maxlength="256" name="contact[email]" data-name="email" placeholder="{{ 'contact.form.email' | t }}" id="ContactFormEmail" required="" type="email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocorrect="off" autocapitalize="off" >
+            <label for="ContactFormPhone" style="display:none;">Phone</label>		
+          	<input class="text-field _33 last w-input" maxlength="256" data-name="Email 3" placeholder="{{ 'contact.form.phone' | t }}" id="ContactFormPhone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" required="" type="tel">
+
+          </div>
+		<label for="ContactFormMessage" style="display:none;">Message</label>		
+          <textarea placeholder="{{ 'contact.form.message' | t }}" maxlength="5000" data-name="message" class="text-area w-input" id="ContactFormMessage" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+          <input value="Submit" data-wait="Please wait..." class="button submit w-button" type="submit" value="{{ 'contact.form.submit' | t }}">
+
+   {% endform %}
+</div>
+</div>
+
+{% section "contact-us" %}
+
+
+    

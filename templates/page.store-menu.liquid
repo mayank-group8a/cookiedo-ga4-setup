@@ -1,0 +1,115 @@
+{% section 'banner-nyc-delivery' %}
+<style>
+	.cookie {
+        position: relative;
+        left: 0px;
+        top: 0;
+        right: 0px;
+        margin-bottom: 25px;
+    }
+  .cookie-image{
+  	max-width:100%;
+    width:100%;
+    border-radius:0px;
+  }
+  .team-member-box.side-border.last{height:inherit; padding:0px; min-height:auto; border:0px;}
+  .title.tiny{
+  	font-family: 'Better together demo', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 33px;
+margin-bottom: 15px;
+  }
+  .team-member-box._25:after,
+  .team-member-box.side-border.last:after{
+  	content:"";
+    display:table;
+    clear:both;
+  }
+  .team-member-box._25 {
+    position: relative;
+    width: 31%;
+    margin: 0% 1% 25px;
+	vertical-align: top;
+    height: initial;
+    min-height:500px;
+  }
+  .team-member-text > p{
+  	font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    font-family: 'Conv_Replica-Regular';
+  }
+  .team-member-text p:empty{
+  	display:none;
+  }
+  .team-member-text > .retired{
+  	font-family: 'Conv_Replica-Light';
+    font-size: 14px;
+  }
+  .cookie{overflow:hidden;}
+  .team-member-box._25:hover .cookie-image{
+  	transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  .cookie-image{
+  	-webkit-transition: all 1s;
+	transition: all 1s;
+  }
+  
+  .collage.insepration-gallery{
+  	margin-bottom:-10px;
+  }
+  
+  @media screen and (max-width:993px){
+    .team-member-box.side-border.last{
+    	min-height: 460px;
+    }
+    .team-member-box._25 {
+        width: 48%;
+      	max-width: 280px;
+    }
+  }
+  @media screen and (max-width:766px){
+    .team-member-box.side-border.last{
+    	min-height: inherit;
+    }
+  }
+  
+  @media screen and (max-width:766px){
+    .team-member-box.side-border.last{
+    	min-height: auto;
+    }
+    .team-member-box._25 {
+        max-width:280px;
+    }
+  }
+  @media screen and (max-width:580px){
+    .team-member-box._25 {
+        width: 98%;
+      	display:block;
+        max-width:280px;
+      	min-height:auto;
+    }
+  }
+  
+</style>
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    {% comment %}
+    <div class="rte">
+      {{ page.content }}
+    </div>
+    {% endcomment %}
+    <!-- Catering and store menu are reversed**** -->
+    {% section 'catering-menu-flavors' %}
+  </div>
+</div>
+{% section 'catering-menu' %}
+
+
+

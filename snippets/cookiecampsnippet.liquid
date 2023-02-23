@@ -1,0 +1,13 @@
+</div>
+</div>
+{% if block.settings.faq_section_image %}
+<img src="{{block.settings.faq_section_image | img_url: '1500x'}}" alt="{{block.settings.faq_section_image.alt}}"/>
+{% endif %}
+{% if block.settings.faq_section_heading != blank %}
+<div class="container-3 w-container">
+<div id="{{ block.settings.faq_section_id }}" class="div-faq">
+<div class="banner2 left">
+          <h3 class="heading on-lines">{{block.settings.faq_section_heading}}</h3>
+          <div class="lines"></div>
+        </div>
+ {% endif %}

@@ -1,0 +1,99 @@
+
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+{% assign product_metadata = product.metafields.product %}
+{% assign product_title = product_metadata['title'] %}
+<div class="hero-image">
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+        {% if product_title != blank %}
+          	{{ product_title }}
+          {% else %}
+           {{ product.title }}
+         {% endif %}
+      </h1>
+    </div>
+  </div>
+
+{% section 'offer-build-ownpack' %}
+<!--
+{ if product.handle == 'build-your-own-edible-cookie-dough-6-pack' %}
+	{ section 'offer-build-ownpack' %}
+{ elsif product.handle == 'bridesmaid-proposal-edible-cookie-dough-6-pack' %}
+	{ section 'offer-bridesmaid' %}
+{ elsif product.handle == 'build-your-own-edible-cookie-dough-4-pack' %}
+	{ section 'offer-biuld-4pack' %}
+{ endif %} -->
+
+<div id="Team" class="content-section buildbox-section-main-block">
+<div class="div-container">
+<div class="w-col-6 build-a-box" style="float:right;">
+{% section 'product-template-2' %}
+</div>
+<div id="build-a-box" class="build-a-box w-col-6">  
+ {% if product.handle == "build-your-own-gluten-free-pack" %}
+  	{% section 'build-your-own-taster-6-pack-buildbox' %}
+  {% comment %}
+  {% elsif product.handle == "build-your-own-party-pack" %}
+  	{% section 'build-your-own-party-pack-buildbox' %}
+  {% endcomment %}
+ {% elsif product.handle == "build-your-own-taster-6-pack" %}
+  	{% section 'build-your-own-taster-6-pack-builbbox-2' %}
+ {% else %}
+{% section 'product-buildbox-flavors' %}
+  {% endif %}
+   <div class="clearfix"></div>
+        <div class="mobile_description">
+          
+          	{{ product.description }}
+         
+          
+        </div>
+      </div>
+</div>
+</div>
+
+
+
+
+<script>
+
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>

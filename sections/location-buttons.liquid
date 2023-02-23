@@ -1,0 +1,268 @@
+{%- assign social_icons = false -%}
+
+{% if
+  settings.social_twitter_link != blank
+  or settings.social_facebook_link != blank
+  or settings.social_pinterest_link != blank
+  or settings.social_instagram_link != blank
+  or settings.social_tumblr_link != blank
+  or settings.social_snapchat_link != blank
+  or settings.social_youtube_link != blank
+  or settings.social_vimeo_link != blank
+  or template.name == 'article'
+  or template.name == 'blog'
+%}
+  {%- assign social_icons = true -%}
+{% endif %}
+
+	<div class="div-block-21"><div class="column-center w-col w-col-4">
+         <div class="btn-wrapper">
+          {% if section.settings.btn_text != blank %}
+          <a class="corrporate-btn" target="_blank" href="{{section.settings.btn_url}}">{{section.settings.btn_text}}</a>
+          {% endif %}
+  	</div>
+              
+      </div>
+   
+<div class="column-center w-col w-col-4">
+         <div class="btn-wrapper">
+          {% if section.settings.btn_text2 != blank %}
+          <a class="corrporate-btn" target="_blank" href="{{section.settings.btn_url2}}">{{section.settings.btn_text2}}</a>
+          {% endif %}
+  	</div>
+              
+      </div>
+
+<div class="column-center w-col w-col-4">
+         <div class="btn-wrapper">
+          {% if section.settings.btn_text3 != blank %}
+          <a class="corrporate-btn" target="_blank" href="{{section.settings.btn_url3}}">{{section.settings.btn_text3}}</a>
+          {% endif %}
+  	</div>
+              
+      </div>
+   </div>
+
+<div class="contact-row"></div>
+<!--
+  <div class="map" id="address" data-latitude="{{ section.settings.latitude }}" data-longitude="{{ section.settings.longitude }}">
+ 	<div class="contact-div">
+      <div class="div-50 colored-box">
+        <div class="colored-box-1">
+          <div class="colored-box-2">
+            {% if section.settings.location != blank %}
+            <h3 class="h3-white">{{ section.settings.location }}</h3>
+            {% endif %}
+            
+            <h3 class="h3-white">
+              {% if section.settings.email != blank %}
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+              {% endif %}
+              {% if section.settings.phone != blank %}
+              <br><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
+              {% endif %}
+            
+            </h3>
+            {% if social_icons %}
+            <div class="social-icons-box stay-connected left">
+              {% if settings.social_facebook_link != blank %}
+              <a aria-label="Facebook" href="{{ settings.social_facebook_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">{% include 'icon-facebook' %}</a>
+              {% endif %}
+
+              {% if settings.social_twitter_link != blank %}
+                <a aria-label="Twitter" href="{{ settings.social_twitter_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                  {% include 'icon-twitter' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_instagram_link != blank %}
+              <a aria-label="Instagram" href="{{ settings.social_instagram_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                {% include 'icon-instagram' %}
+              </a>
+              {% endif %}
+
+              {% if settings.social_pinterest_link != blank %}
+                <a aria-label="Pinterest" href="{{ settings.social_pinterest_link | escape }}" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                  {% include 'icon-pinterest' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_tumblr_link != blank %}
+                <a aria-label="Tumblr" class="social-icon w-inline-block" href="{{ settings.social_tumblr_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Tumblr' }}">
+                  {% include 'icon-tumblr' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_snapchat_link != blank %}
+                <a class="ssocial-icon w-inline-block" href="{{ settings.social_snapchat_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Snapchat' }}">
+                  {% include 'icon-snapchat' %}
+                </a>
+              {% endif %}
+              {% if settings.social_youtube_link != blank %}
+                  <a aria-label="YouTube" class="social-icon w-inline-block" href="{{ settings.social_youtube_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'YouTube' }}">
+                    {% include 'icon-youtube' %}
+                  </a>
+              {% endif %}
+              {% if settings.social_vimeo_link != blank %}
+                  <a class="social-icon w-inline-block" href="{{ settings.social_vimeo_link | escape }}" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Vimeo' }}">
+                    {% include 'icon-vimeo' %}
+                  </a>
+              {% endif %}
+              {% if template.name == 'blog' or template.name == 'article' %}
+                  <a class="social-icon w-inline-block" href="{{ shop.url }}{{ blog.url }}.atom" data-ix="show-social-icon-on-hover" >
+                    {% include 'icon-rss' %}
+                  </a>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+-->
+   
+      
+      <!-- ================= gallery ================ -->
+<div class="clearfix" style="padding-top:0px; "></div>
+
+      
+       <style>
+        #Footer .w-container{
+        	max-width: 1093px;
+        }
+      </style>
+
+{% schema %}
+  {
+    "name": "Button Set",
+    "settings": [
+
+		{
+			"type" : "text",
+			"id"   : "btn_text",
+			"label": "Button Text"
+		},
+		{
+			"type" : "url",
+			"id"   : "btn_url",
+			"label": "Button URL"
+		},
+		{
+			"type" : "text",
+			"id"   : "btn_text2",
+			"label": "Button Text 2"
+		},
+		{
+			"type" : "url",
+			"id"   : "btn_url2",
+			"label": "Button URL 2"
+		}, 
+
+	{
+			"type" : "text",
+			"id"   : "btn_text3",
+			"label": "Button Text 3"
+		},
+		{
+			"type" : "url",
+			"id"   : "btn_url3",
+			"label": "Button URL 3"
+	}
+	 ]
+  }
+{% endschema %}
+
+
+<style>
+  .section-title{display:block; margin-bottom:55px; }
+  .section-title h2{
+    color: #ff007b;
+    font-size: 42px;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .section-title h2 strong{
+    display: block;
+    font-weight: 900;
+    font-size: 72px;
+  }
+  .content-wrapper.text-block p{
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.25;
+}
+  .content-wrapper.text-block a{font-size: 22px; font-weight:700;}
+  .text-block .counter{
+    display: block;
+    color: #fff;
+    background: #ff007b;
+    font-weight: 900;
+    font-size: 35px;
+    font-family: Replica, sans-serif;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    margin: 0px auto;
+}
+  .text-block p,
+  .text-block{display:block; text-align:center;}
+  .text-block h3{
+    font-family: Replica, sans-serif;
+    color: #ff007b;
+    font-weight: 700;
+}
+  .column-center .text-block{display:block; padding:15px 0px; }
+  .corrporate-btn{
+    display: inline-block;
+    font-size: 25px;
+    font-family: Replica, sans-serif;
+    font-weight: 700;
+    text-align: center;
+    clear: both;
+    padding: 20px 50px;
+    background: #ff007b;
+    color: #fff;
+        margin: 10px 0px;
+}
+  .btn-wrapper{display:block; text-align:center; }
+  
+  @media screen and (min-width: 768px){
+    .image-block{
+      display: block;
+      position: relative;
+      padding-top: 100%;
+    }
+    .image-block img{position: absolute;
+    	left:0;
+      	top:0;
+      width:100%; height:100%;
+      object-fit:contain;
+          object-position: bottom;
+    }
+  }
+  
+  @media screen and (max-width: 767px){
+    .div-block-21{margin-top:15px; }
+    .section-title {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .section-title h2{
+      font-size: 20px;
+      line-height: 1.2;
+    }
+    .section-title h2 strong{
+          font-size: 35px;
+    }
+    .parent-wrapper{padding-top:30px; }
+    .corrporate-btn{
+    	font-size:20px;
+          padding: 20px 20px;
+    }
+    .btn-wrapper{padding-bottom: 25px; }
+  }
+</style>

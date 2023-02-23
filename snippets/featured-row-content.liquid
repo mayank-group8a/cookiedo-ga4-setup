@@ -1,0 +1,31 @@
+<div class="content-section fun-facts">
+    <div class="w-container">
+      <div class="w-row">
+        {% if section.settings.request_image != blank %}
+          <div class="w-col w-col-6">
+            <div class="fun-facts-box left-side-border"><img src="{{ section.settings.request_image | img_url: '1500x1500' }}" class="fun-fact-icon"></div>
+          </div>
+        {% endif %}
+        <div class="w-col w-col-6">
+          <div class="fun-facts-box left-side-border left">
+            {% if section.settings.request_title != blank %}
+            	<h3 class="heading left pink">{{ section.settings.request_title }}</h3>
+            {% endif %}
+            <div class="sprinkles">
+              <div class="underline fun-facts"></div>
+              <div class="underline fun-facts"></div>
+              <div class="underline fun-facts"></div>
+            </div>
+            {% if section.settings.request_description != blank %}
+            	{{ section.settings.request_description }}
+            {% endif %}
+            
+            {% if section.settings.request_btn_text != blank %}
+           	  <a href="{{ section.settings.request_btn_url }}" class="button two w-button">{{ section.settings.request_btn_text }}</a>
+          	{% endif %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

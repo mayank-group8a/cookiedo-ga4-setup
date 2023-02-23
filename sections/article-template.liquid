@@ -1,0 +1,160 @@
+<style>
+  @media screen and (min-width: 994px){
+    .w-container{
+    	    max-width: 960px;
+    }
+  }
+  .blog-div h3,
+  .blog-div h4,
+  .blog-div h5{
+  	font-weight:600;
+        margin-bottom: 5px;
+    margin-top: 25px;
+  }
+    .blog-div p{
+  margin-bottom: 25px;
+  }
+   .blog-div img{
+  	margin-bottom: 25px;
+  }
+  .blog-div h3, .blog-div h4, .blog-div h5,
+  h4 b,
+  h3 b,
+  h2 b,
+  h4,
+  h3,
+  h2{
+  	font-weight:400 !important;
+        font-family: 'Poppins', sans-serif;
+  }
+  h2 a{
+  	font-size:36px;
+    font-weight:400;
+  }
+  h3 a{
+  	    font-size: 24px;
+  }
+  
+  @media screen and (max-width: 768px){
+    .blog-div img{
+        margin: 1%;
+        max-width: 98% !important;
+    }
+  }
+  @media screen and (max-width: 480px){
+  .grid .grid__item{
+  	padding-right:5px;
+  }
+  }
+  
+  #Team .blog-div a{
+  	font-family: poppins;
+	color: #EE3D8B;
+  }
+</style>
+
+
+<div id="Team" class="content-section" style="padding-top:0px;">
+    <div class="w-container">
+  
+      <div class="div-container" style="width:100%;">
+        <!--<div class="div-block-18"><a href="{{ blog.url }}">Blog Home</a></div> -->
+        <div class="blog-div">
+          
+  
+          
+         <div class="div-block-13 left" style="border: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+            <h1 class="blog-header" style="font-weight: 400 !important;
+    font-family: 'Poppins', sans-serif;margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 46px;
+    line-height: 45px;
+    color: #ff007b;">{{ article.title }}</h1>
+          </div>
+          {% if section.settings.blog_show_author %}
+          <!--<h6 class="posted-by">posted {{ 'blogs.article.by_author' | t: author: article.author }}</h6> -->
+         {% endif %}
+          {% if section.settings.blog_show_date %}
+          <h6 class="posted-by" style="font-style:italic; font-weight:300;font-size: 18px;">{{ article.published_at | time_tag: format: 'month_day_year' }}</h6>
+          {% endif %}
+          <div class="blog w-richtext">
+         	{{ article.content }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-the-author" style="width:100%; display:none;">
+        <div class="w-row">
+          {% if section.settings.author_image %}
+          <div class="column-19 w-col w-col-2">
+            <div class="author" style="background-image: url('{{ section.settings.author_image | img_url: '1500x1500'  }}'); "></div>
+          </div>
+          {% endif %}
+          <div class="column-18 w-col w-col-10">
+            <div class="div-block-17">
+              {% if section.settings.author_name %}
+              <h4>{{ section.settings.author_name }}</h4>
+              {% endif %}
+              {% if section.settings.author_info %}
+              <p class="small-paragraph">{{ section.settings.author_info }} {% if section.settings.author_url %}<a href="{{ section.settings.author_url }}">Read More</a>{% endif %}</p>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="article-sharing-social">
+{% if section.settings.show_share_buttons %}
+  {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+{% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Posts",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      },
+	  {
+        "type": "image_picker",
+        "id": "author_image",
+        "label": "Author Image"
+      },
+	  {
+        "type": "text",
+        "id": "author_name",
+        "label": "Author Name/Heading",
+        "default": "About Author"
+      },
+      {
+        "type": "html",
+        "id": "author_info",
+        "label": "Author Bio"
+      },
+      {
+        "type": "url",
+        "id": "author_url",
+        "label": "URL"
+      }
+    ]
+  }
+{% endschema %}

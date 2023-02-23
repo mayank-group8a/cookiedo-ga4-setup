@@ -1,0 +1,398 @@
+<style>
+@media screen and (min-width: 850px){
+  .footer-row{display:flex;}
+}
+</style>
+
+{%- assign social_icons = false -%}
+
+{% if
+  settings.social_twitter_link != blank
+  or settings.social_facebook_link != blank
+  or settings.social_pinterest_link != blank
+  or settings.social_instagram_link != blank
+  or settings.social_tumblr_link != blank
+  or settings.social_snapchat_link != blank
+  or settings.social_youtube_link != blank
+  or settings.social_vimeo_link != blank
+  or template.name == 'article'
+  or template.name == 'blog'
+%}
+  {%- assign social_icons = true -%}
+{% endif %}
+<div class="clearfix"></div>
+<footer id="Footer" data-ix="go-up" class="footer">
+
+<div class="lines white-footer"></div>
+    <div class="content-wrapper w-container">
+      <div class="about-our-company left-side-border w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">
+
+        <h3 class="gold">contact</h3>
+        <div class="details-text-box w-clearfix">
+          <div class="phone-icon"><i class="fa fa-phone-square" aria-hidden="true"></i></div>
+          <div class="text-all-caps phone">646.892.3600</div>
+        </div>
+        <div class="details-text-box w-clearfix">
+          <div class="phone-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+          <div class="text-all-caps email on-footer">info@cookieDOnyc.com</div>
+        </div>
+        <div class="details-text-box no-bottom-line w-clearfix">
+          <div class="phone-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+          <div class="text-all-caps">550 LaGuardia Place. New York, NY 10012</div>
+        </div>
+      </div>
+      <div class="w-row footer-row">
+        <div class="column w-clearfix w-col w-col-2">
+          	<img style="width:100%; max-width: 130px !important; display:block; margin-top:20px;" src="https://cdn.shopify.com/s/files/1/2509/8354/files/CookieDO_pink_cdc_R_1.png?v=1620736988" alt=""  />
+            <p style="transition: color 500ms ease;
+            font-family: 'Conv_Replica-Light';
+            color: #fff;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.25px;
+            line-height: 1.3;
+            margin-top: 15px;
+            padding-right:10px;
+            ">The DŌ mark and logo are registered trademarks of Cookie DO, Inc.</p>
+        </div>
+        <div class="column w-clearfix w-col w-col-2">
+          <div class="footer-menu-box left-border">
+            {%- assign footer_linklist = section.settings.footer_linklist -%}
+            <h3 class="gold">{{linklists[footer_linklist].title}}</h3>
+            {% if linklists[footer_linklist].links.size > 0 %}
+              {% for link in linklists[footer_linklist].links %}
+                <div class="menu-item"><a href="{{ link.url }}"  class="link-with-arrow footer-item">{{ link.title }}</a></div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="column w-clearfix w-col w-col-2">
+          <div class="footer-menu-box right-border">
+            {%- assign footer_linklist_two = section.settings.footer_linklist_two -%}
+            <h3 class="gold">{{linklists[footer_linklist_two].title}}</h3>
+            {% if linklists[footer_linklist_two].links.size > 0 %}
+              {% for link in linklists[footer_linklist_two].links %}
+                <div class="menu-item"><a href="{{ link.url }}" class="link-with-arrow footer-item">{{ link.title }}</a></div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="column w-clearfix w-col w-col-3">
+        <div class="footer-menu-box right-border">
+            {%- assign footer_linklist_three = section.settings.footer_linklist_three -%}
+            <h3 class="gold">{{linklists[footer_linklist_three].title}}</h3>
+            {% if linklists[footer_linklist_three].links.size > 0 %}
+              {% for link in linklists[footer_linklist_three].links %}
+                <div class="menu-item"><a href="{{ link.url }}" class="link-with-arrow footer-item">{{ link.title }}</a></div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="w-col w-col-5">
+          <div class="stay-in-touch-box w-clearfix">
+            <div class="stay-tuned-box">
+              <div>
+                <h3 class="gold">subscribe</h3>
+              </div>
+
+
+                {% if section.settings.footer_newsletter_enable %}
+                  <div class="form-email-wrapper w-form">
+                      {% form 'customer' %}
+                        {{ form.errors | default_errors }}
+                        {% if form.posted_successfully? %}
+                          <p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+                        {% else %}
+                          <!-- <label for="Email" class="h4">{{ 'general.newsletter_form.newsletter_email' | t }}</label> -->
+                          <div id="email-form" data-name="Email Form" class="form">
+                            <input type="hidden" name="contact[tags]" value="newsletter">
+                            <label for="Email" style="display:none;">Email</label>
+                            <input type="email"
+                              name="contact[email]"
+                              id="Email"
+                              class="text-field email-input w-input"
+                              value="{% if customer %}{{ customer.email }}{% endif %}"
+                              placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                              autocorrect="off"
+                              autocapitalize="off">
+                    
+                              <button type="submit" class="submit-button w-button" name="commit" id="Subscribe">
+                                {{ 'general.newsletter_form.submit' | t }}
+                              </button>
+                
+                          </div>
+                        {% endif %}
+                      {% endform %}
+                  </div>
+                {% endif %}
+
+            </div>
+
+
+            {% if social_icons %}
+            <div class="stay-connected-box">
+              <h3 class="gold">follow us</h3>
+              <div class="text-all-caps w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">Follow us in our social networks</div>
+              <div class="social-icons-box stay-connected left">
+
+              {% if settings.social_facebook_link != blank %}
+              <a target="_blank" href="{{ settings.social_facebook_link | escape }}" aria-label="Facebook" data-ix="show-social-icon-on-hover" title="facebook" class="social-icon w-inline-block">{% include 'icon-facebook' %}</a>
+              {% endif %}
+
+              {% if settings.social_twitter_link != blank %}
+                <a target="_blank" href="{{ settings.social_twitter_link | escape }}" aria-label="Twitter" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                  {% include 'icon-twitter' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_instagram_link != blank %}
+              <a target="_blank" href="{{ settings.social_instagram_link | escape }}" aria-label="Instagram" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                {% include 'icon-instagram' %}
+              </a>
+              {% endif %}
+
+              {% if settings.social_pinterest_link != blank %}
+                <a target="_blank" href="{{ settings.social_pinterest_link | escape }}" aria-label="Pinterest" data-ix="show-social-icon-on-hover" class="social-icon w-inline-block">
+                  {% include 'icon-pinterest' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_tumblr_link != blank %}
+                <a target="_blank" class="social-icon w-inline-block" href="{{ settings.social_tumblr_link | escape }}" aria-label="Tumblr" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Tumblr' }}">
+                  {% include 'icon-tumblr' %}
+                </a>
+              {% endif %}
+
+              {% if settings.social_snapchat_link != blank %}
+                <a target="_blank" class="ssocial-icon w-inline-block" href="{{ settings.social_snapchat_link | escape }}" aria-label="Snapchat" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Snapchat' }}">
+                  {% include 'icon-snapchat' %}
+                </a>
+              {% endif %}
+              {% if settings.social_youtube_link != blank %}
+                  <a target="_blank" class="social-icon w-inline-block" href="{{ settings.social_youtube_link | escape }}" aria-label="YouTube" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'YouTube' }}">
+                    {% include 'icon-youtube' %}
+                  </a>
+              {% endif %}
+              {% if settings.social_vimeo_link != blank %}
+                  <a target="_blank" class="social-icon w-inline-block" href="{{ settings.social_vimeo_link | escape }}" aria-label="Vimeo" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Vimeo' }}">
+                    {% include 'icon-vimeo' %}
+                  </a>
+              {% endif %}
+              {% if template.name == 'blog' or template.name == 'article' %}
+                  <a class="social-icon w-inline-block" href="{{ shop.url }}{{ blog.url }}" aria-label="Blog" data-ix="show-social-icon-on-hover" >
+                    {% include 'icon-rss' %}
+                  </a>
+              {% endif %}
+              {% if settings.social_tiktok_link != blank %}
+                  <a target="_blank" class="social-icon w-inline-block" href="{{ settings.social_tiktok_link | escape }}" aria-label="Vimeo" data-ix="show-social-icon-on-hover" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Tiktok' }}">
+                    {% include 'icon-tiktok' %}
+                  </a>
+              {% endif %}
+                
+                
+              </div>
+              {% if section.settings.footer_extrnal_logo != blank %}
+              	<a v target="_blank" style="margin: 5px 0px 10px 0px;display: block;width: 100%;max-width: 235px;text-align: center;" href="{{section.settings.footer_extrnal_url}}">
+                  <img width="110" src="{{ section.settings.footer_extrnal_logo | img_url: '635x' }}" alt="CookiDO NYC">
+                </a>
+              {% endif %}
+
+            </div>
+            {% endif %}
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="div-block-2">
+      <div class="w-container">
+        <div class="text-block-2">&copy; {{ 'now' | date: "%Y" }} Cookie DO, Inc. All rights reserved. <!--{{ shop.name | link_to: '/' }} --></div>
+        <div class="text-block-2 right">Web design by <a href="http://responsival.com" target="_blank" class="link-2">Responsival</a></div>
+      </div>
+    </div><a href="#Home" aria-label="Home" class="go-up-box w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-inline-block"></a>
+
+</footer>
+
+ <script src="{{ 'webflow.js' | asset_url }}" type="text/javascript"></script>
+ 
+
+
+<style>
+  #TOP{
+    transform: translateX(0px) translateY(0px) translateZ(0px) scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(0deg) skewY(0deg) !important;
+  }
+</style>
+{% if template == "index" %}
+<script>
+  /*var elmnt = document.getElementById("TOP");
+    var x = elmnt.scrollLeft;
+    var y = elmnt.scrollTop;
+    if(y > 200){
+      console.log("ok");
+      jQuery("#TOP").addClass("hide_top");
+    }
+    $(window).scroll(function() {
+        var Height = $(window).height();
+        var slider_height = $("#home").height();
+        if ($(this).scrollTop() > slider_height) { // this refers to window
+            $("#TOP").addClass("hide_top");
+            $("#Home").fadeIn();
+          $("#shopify-section-hero").fadeOut();
+          
+        }
+    }); */
+</script>
+{% endif %} 
+
+
+<script>
+	
+  function nav_activation(){
+    
+  	jQuery('#mobile-navigation').slideToggle();
+    jQuery('.menu-toggle .fa').toggle();
+  }
+  
+  function have_child_nav($this){
+  	jQuery($this).find('.sub-menu').slideToggle();
+    jQuery($this).find('.fa').toggle();
+  }
+  
+  function cart_active(){
+  	//jQuery('body').toggleClass('drawer--active');
+  }
+  
+  
+  
+</script>
+{% if template == 'cartf' %}
+<script>
+  function product_remove(product_id){
+    
+    jQuery.post('/cart/update.js', 'updates['+product_id+']=0')
+      .done(function() {
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+     setTimeout(function(){ 
+        jQuery.getJSON('/cart.js', function(cart) {
+          
+          var data_array = [];
+              for(var i = 0; i < cart.items.length; i++){
+                	
+                    var price = '';
+                	price = ''+cart.items[i].price+'';
+                	price = price.slice(0, -2);
+                
+                	data_array.push('<div class="cart-drawer__item" data-cart-item="" data-cart-item-id="'+cart.items[i].id+':'+cart.token+'" aria-live="polite"><a href="'+cart.items[i].url+'" class="cart-drawer__item-image" style=\'background-image: url("'+cart.items[i].image+'");\' data-cart-item-background-image="" data-cart-item-href=""></a><div class="cart-drawer__item-content"><a href="'+cart.items[i].url+'" class="h4 cart-drawer__item-title" data-cart-item-href="" data-cart-item-title="">'+cart.items[i].title+'</a><p class="cart-drawer__item-price-container"><span class="cart-drawer__item-price" data-cart-item-price="">$'+price+'.00</span><br />Quantity: '+cart.items[i].quantity+'</p></div></div>');
+            
+              }
+       		  
+          
+             
+              jQuery('body .cart-drawer__item-list').html(data_array);
+          	  
+          if(cart.item_count > 0){
+            jQuery('body').find('.cart-drawer__footer').show();
+          }else{
+          	jQuery('body').find('.cart-drawer__footer').hide();
+          }
+          	
+              var price_total = '';
+              price_total = ''+cart.total_price+'';
+              price_total = price_total.slice(0, -2);
+          	 
+              jQuery('body').find('.cart-drawer__subtotal .cart-drawer__subtotal-number').html('$'+price_total+'.00');
+              jQuery('body').find('.cart-count').html(cart.item_count);
+          
+          /*
+              if(cart.item_count > 0 ){
+               jQuery('body').find('.cart-drawer__no-cookies').show();
+              }else{
+                jQuery('body').find('.cart-drawer__no-cookies').hide();
+              }
+              */
+
+
+              if(cart.item_count > 0 ){
+                jQuery('body').find('.cart-drawer__empty-text').hide();
+                jQuery('body').find('.cart-drawer input[type=submit]').prop('disabled', false);
+              }else{
+                jQuery('body').find('.cart-drawer__empty-text').show();
+                jQuery('body').find('.cart-drawer input[type=submit]').prop('disabled', true);
+              }
+          
+          	  
+          
+          
+          	  
+              
+          
+        } );
+     }, 1000);
+  }
+</script>
+ <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+{% endif %}
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "Primary menu",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_linklist_two",
+        "label": "Additional menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_linklist_three",
+        "label": "Additional menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer_extrnal_logo",
+        "label": "Logo"
+      },
+      {
+        "type": "text",
+        "id": "footer_extrnal_url",
+        "label": "Logo URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_newsletter_enable",
+        "label": "Show newsletter signup",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      }
+    ]
+  }
+{% endschema %}

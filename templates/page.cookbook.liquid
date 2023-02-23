@@ -1,0 +1,618 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<style>
+  
+  li, li a, .product-single__title, .hidden-text, .hidden-text p, .product-single__description p, h5 {
+    font-family: 'Poppins';
+  }
+  
+  li a {
+    font-weight: 400 !important;
+  }
+  .page_header{
+  	display:block;
+    text-align:center;
+  }
+  .page_header .inner_header{
+  	display:inline-block;
+  }
+  .page_header .inner_header h1{
+    font-family: 'Poppins';
+  	display:block;
+    text-transform:uppercase;
+    line-height:1;
+    font-size: 40px;
+    font-weight: normal;
+  }
+  .page_header .inner_header h1 span{
+  	display:block;
+    font-family: 'Better together demo', sans-serif;
+    background:url({{ 'star_icon.png' | asset_img_url: 'full' }}) no-repeat right center;
+        padding-right: 70px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    color: #ff007b;
+    text-transform:lowercase;
+  }
+  .seprator{
+  	text-align:center;
+    display:block;
+    clear:both;
+  }
+  strong{
+  	font-weight:700;
+  }
+  .page_header p{
+  	text-align:center;
+  }
+  
+  .sep_content_wrapper{
+  	display:block;
+    width:100%;
+    position:relative;
+    padding:35px 0px;
+    min-height:100%;
+  }
+  .krist_content_wrapper{
+  	display:inline-flex;
+    align-items:center;
+    width:100%;
+    position:relative;
+    padding:35px 0px;
+    min-height:100%;
+        flex-wrap: wrap;
+  }
+  .krist_content_wrapper:before,
+  .sep_content_wrapper:before{
+  	content:"";
+    position:absolute;
+    height:18px;
+    width:100%;
+    left:0;
+    top:0;
+    background:url({{ 'black-lines-border.png' | asset_img_url: 'full' }}) repeat-x center;
+    
+  }
+   .krist_content_wrapper:after,
+  .sep_content_wrapper:after{
+  	content:"";
+    position:absolute;
+    height:18px;
+    width:100%;
+    left:0;
+    bottom:0;
+    background:url({{ 'black-lines-border.png' | asset_img_url: 'full' }}) repeat-x center;
+  }
+  .sep_content_wrapper h2{
+  	font-weight:900;
+    line-height:1.1;
+  }
+  .sep_content_wrapper h2 span{
+  	font-size:57px;
+  }
+  
+  .partner-container{
+  	display:block;
+    text-align:center;
+  }
+  .partner-container ul{
+    text-align:center;
+    padding:0px;
+    margin:0px;
+        display: flex;
+    flex-wrap: wrap;
+  }
+  .partner-container li{
+    float:left;
+    width:50%;
+    padding:1% 4%;
+    list-style:none;
+  }
+  .followUs_instagram:after,
+  .cookbook_content:after,
+  .partner-container:after,
+  .partner-container ul:after{
+  	clear:both;
+    display:table;
+    content:"";
+  }
+  .cookbook_content{
+  	display:flex;
+    flex-wrap: wrap;
+  }
+  .cookbook_content p span,
+  .cookbook_content p a{
+  	color:#ff007b;
+  }
+  h1,
+  h3,
+  h2{
+  	font-weight:900;
+  }
+  .cookbook-inner-container h2{
+  	text-
+  }
+  .btn-order{
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    background: #ff007b;
+    display: inline-block;
+    line-height: 55px;
+    width: 340px;
+    text-align: center;
+    margin: 0px auto;
+    transition: all 0.3s;
+    border:1px solid #ff007b;
+    margin-bottom: 10px;
+    margin-right: 10px
+    
+}
+  .btn-order:hover{
+    color: #ff007b;
+    background: #fff;
+}
+  .krist_content_wrapper h2{
+  	text-align:center;
+    margin-bottom:25px;
+  }
+  .content-section p {
+    margin-bottom: 15px;
+}
+  .krist_content_wrapper h2 span {
+    font-family: 'Better together demo', sans-serif !important;
+    display: block;
+    color: #ff007b;
+    font-size: 65px;
+    font-weight: 900;
+}
+  
+  .signature{
+  	font-family: 'Better together demo', sans-serif;
+    display:block;
+    text-align:right;
+    font-weight:300;
+  }
+  
+  .page_header img{
+  	max-width:600px;
+  }
+  
+  .followUs_instagram{
+  	display:block;
+    position:relative;
+    padding-left:31px;
+  }
+   .followUs_instagram .instagram_icon{
+      position: absolute;
+
+      bottom: 0;
+      font-size: 30px;
+      color: #ff007b;
+     left:0px;
+    }  
+  .followUs h4 {
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      width: 100%;
+      text-align: center;
+        margin-bottom: 0px;
+        margin-top: 0px;
+  }
+  .followUs{
+  	float:left;
+  }
+  .followUs ul{
+  	margin:0px;
+    padding:0px;
+  }
+   .followUs ul li{
+  	margin:0px;
+        padding: 0px 0px;
+     display:inline-block;
+  }
+
+  .spatula-banner {
+    font-family: 'Poppins';
+    color: white;
+    background: #5fbad7;
+    padding: 15px 20px;
+    margin: 40px 0px;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1em;
+  }
+  
+  .spatula-ready {
+    font-family: 'Poppins';
+    margin: 20px 0px;
+    font-size: 28px;
+    line-height: 1em;
+  }
+  
+  .pre-order-wrapper {
+    position: relative;
+  }
+  
+  .pre-order-wrapper:after {  
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: url(//cdn2.shopify.com/s/files/1/2509/8354/t/24/assets/black-lines-border_small.png?8872) repeat-x center;
+  }
+  .cookbook_textblock:after{
+  	background:none !important;
+  }
+  .cookbook_textblock img.large-image{
+  	width:100%;
+    height:auto;
+  }
+  
+  /************ table **************/
+  .events-grid-wrapper .days{
+      display: block;
+      line-height: 1.2;
+      text-align: left;
+  }
+  .events-grid-wrapper .days span{
+  	display:block
+  }
+  .events-grid-wrapper .location{
+  	display:block;
+    text-align:left;
+  }
+  .events-grid-wrapper .location span{
+  	display:block;
+    font-weight: 700;
+    color:#ff007b;
+    margin-bottom: 10px;
+  }
+.events-button .btn{
+    background: #ff007b;
+    color: #fff;
+    max-width: 190px;
+    width: 100%;
+    text-align: center;
+    padding: 5px 15px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.3;
+    min-height: 74px;
+  float: left;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.events-button .large-btn{
+  	max-width:100%;
+  }
+  
+  .events-grid-row{
+  	display:block;
+    width:100%;
+  }
+  .events-grid-row .event-grid{
+  	float:left;
+    width:40%;
+    padding:15px;
+  }
+  .events-grid-row .event-grid.second-grid{
+  	float:left;
+    width:37%;
+    padding:15px;
+  }
+  .events-grid-row .event-grid.last-grid{
+  	float:left;
+    width:43%;
+    padding:15px;
+  }
+  .events-grid-row .event-grid.first-grid{
+  	width:20%;
+  }
+  
+  .events-grid-row .event-grid .right-btn{
+      width: 49%;
+      margin-left: 1%;
+  }
+  .events-grid-row .event-grid .left-btn{
+      width: 49%;
+      margin-right: 1%;
+  }
+  .star-heading{
+  	display:inline-block;
+    background:url({{ 'star-icon.png' | asset_img_url: '334x' }}) no-repeat right top;
+    background-size: contain;
+    padding: 0px 130px;
+    min-height: 110px;
+  }
+  
+  .section-title{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+  .spoon-title{
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 400;
+}
+  .form-btn{
+    display: block;
+    background: #61bad7;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    font-family: 'Poppins';
+    max-width: 192px;
+    line-height: 46px;
+    margin: 18px auto;
+}
+  .s-title{
+  	font-size:25px;
+  }
+  .scop-title{
+  	display:block;
+     background:url({{ 'diamond.png' | asset_img_url: '334x' }}) no-repeat left top;
+    background-size: contain;
+        background-size: 75px;
+        padding: 0px 90px;
+  }
+  .form-btn:hover{
+  	background: #ee3d8b !important;
+  }
+   div.form_submit_div button:hover{
+  	    background: #61bad7 !important;
+  }
+  
+  /************ tabinlinele end **************/
+  
+  @media screen and (min-width: 992px){
+  	.events-grid-wrapper .days{
+        font-size: 30px;
+    }
+    .events-grid-wrapper .location{
+      font-size: 18px;
+    }
+    .events-grid-wrapper .location span{
+      font-size:22px;
+    }
+    .events-button .btn{
+       font-size: 20px;
+    }
+    .left-side.content{
+    	text-align: left;
+    }
+  }
+  
+   @media screen and (max-width: 992px){
+  	.events-grid-wrapper .days{
+        font-size: 18px;
+    }
+    .events-grid-wrapper .location{
+      font-size: 16px;
+    }
+    .events-grid-wrapper .location span{
+      font-size:18px;
+    }
+    .events-button .btn{
+       font-size: 16px;
+    }
+  }
+  
+  @media screen and (max-width: 768px){
+    .sep_content_wrapper,
+    .krist_content_wrapper{
+      display:block;
+    }
+    .large-image{
+    	margin-bottom:25px;
+      	margin-top:25px;
+      margin-right:auto;
+      margin-left:auto;
+      display:block;
+    }
+  }
+  
+  @media screen and (max-width: 668px){
+    .events-grid-row .event-grid.first-grid{
+        width:25%;
+      }
+  	.events-grid-row .event-grid.second-grid{
+        float:left;
+        width:75%;
+        padding:15px;
+      }
+      .events-grid-row .event-grid.last-grid{
+        float:left;
+        width:100%;
+        padding:15px;
+      }
+    .events-button .btn{
+    	max-width: inherit;
+          min-height: 54px;
+    }
+    .star-heading{
+          background-position: top center;
+          padding: 120px 0px 0px 0px;
+          background-size: 75px;
+      }
+    .scop-title{
+    	padding: 150px 0px 0px 0px;
+    background-position: top center;
+    margin-top: 25px;
+    }
+      
+  }
+  .w-col{
+  box-sizing: border-box;
+  }
+</style>
+
+{% include 'hypervisual' %}
+
+  <div class="content-section">
+    <div class="w-container">
+      <div class="page_header">
+        
+        <div class="inner_header">
+        
+          <h1>THE <strong>HELLO, COOKIE DOUGH</strong> COOKBOOK</h1>
+<!--           
+          <div class="spatula-banner">Order your copy now and get a free cookie scoop! </div>
+          
+          <div class="grid text-center">
+          <div class="star-heading">
+            <div class="section-title">In Partnership with our friends at</div>
+            <div class="oxo-btn"><a href="javascript:void(0)"><img src="{{ 'oxo-btn.png' | asset_img_url: '234x' }}" ></a></div>
+          </div>
+          </div>
+          
+          <div class="clearfix"></div>
+          <div class="grid text-center ">
+            <div class="left-side content w-col w-col-6">
+              <div style="display:inline-block;">
+                <div class="spoon-title">Get a complimentary<br> Medium Cookie Scoop*<br> with your purchase of<br><strong> Hello, Cookie Dough!</strong></div>
+
+              </div>
+            </div>
+            <div class="rihgt-side column-padding w-col w-col-6">
+            	<img src="{{ 'spoon.png' | asset_img_url: '1000x' }}" style="max-width:100%; height: auto;" >
+            </div>
+          </div>
+          <div class="clearfix" style="height:25px;"></div>
+          <div class="scop-title text-center">
+            <div class="s-title">Ready to redeem your free cookie scoop?</div>
+            <a href="#form-wrapper" class="form-btn">click here</a>
+            
+            <div class="form-text" style="display:inline-block; max-width:650px; text-align: left;">
+              <p>*Pre-order oﬀer available while supplies last. Must order Hello, Cookie Dough prior to October 14, 2019 and show proof of purchase to redeem. Only available to ship within the US. All cookie scoops will be mailed 1-2 weeks after the pre-sale campaign ends.</p>
+            </div>
+          </div> -->
+         <!-- {{ 'spatula-5.png' | asset_url | img_tag }}<br><br>
+          
+        
+          <div class="spatula-ready">Ready to redeem your free spatula?</div>
+          
+          <a href="#pre-order" class="btn-order">click here</a>
+          
+          <br>
+          <div style="text-align:center;font-size:10px;">Offer valid from through August 15, 2019. Spatulas will ship 1-2 weeks after August 15. Can not be combined with any other offer.</div>-->
+          
+        </div>
+        <!--<div class="large-image">
+            {{ 'Tagline.jpg' | asset_url | img_tag | image_width: '400px' }}</div> -->
+      </div>
+      <div class="clearfix" style="height:15px;"></div>
+      <div class="cookbook_content">
+      	<div class="column-padding w-col w-col-6">
+            <img class="large-image" src="{{ 'cookbook.png' | asset_img_url: '714x886' }}" alt="cookbook">
+        </div>
+        <div class="column-padding w-col w-col-6 text-center" id="cookbook">
+            <div class="sep_content_wrapper">
+               <p class="text-center"><strong>OMG</strong> our cookbook is here!<br></p>
+              <h2>Order<br/><span>NOW!</span></h2>
+              <div class="seprator">
+          	<img src="{{ 'headingSeprator.png' | asset_img_url: '300x' }}" width="140" alt="seprator">
+          </div>
+              <div class="clearfix" style="height:20px;"></div>
+              <p class="text-center">Safe-to-eat cookie dough secrets<br/> and desserts with a twist from our<br/> founder, <strong>Kristen Tomlan.</strong></p>
+          	
+              <div class="partner-container">
+                <ul class="our-partner">
+                  <li><a href="https://www.amazon.com/Hello-Cookie-Dough-Doughlicious-Confections/dp/1538748886/ref=sr_1_1?keywords=hello%2C+cookie+dough&qid=1552487157&s=gateway&sr=8-1" target="_blank"><img src="{{ 'amazon.png' | asset_img_url: '180x' }}" alt="amazon" /></a></li>
+                  <li><a href="https://www.barnesandnoble.com/w/books/1130707479?ean=9781538748886" target="_blank"><img src="{{ 'barnes.png' | asset_img_url: '180x' }}" alt="barnes" /></a></li>
+                  <li><a href="https://www.indiebound.org/book/9781538748886" target="_blank"><img src="{{ 'indie.png' | asset_img_url: '180x' }}" alt="Indie" /></a></li>
+                  <li><a href="https://geo.itunes.apple.com/us/book/hello-cookie-dough/id1451477645?mt=11" target="_blank"><img src="{{ 'itune.png' | asset_img_url: '180x' }}" alt="Itune" /></a></li>
+                </ul>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <div class="cookbook_content">
+        <div class="column-padding w-col w-col-12">
+          <div class="cookbook-inner-container">
+              <h2 class="text-center">In Stores Now!</h2>
+				<div class="clearfix" style="height:15px;"></div>
+            <p>In her rule-breaking first book, Kristen Tomlan, the Queen of Cookie Dough, spills her secrets about how to make cookie dough safe-to-eat and more than 100 decadent ways to enjoy it. Featuring a mix of fan favorites from her famous New York City confectionery and never-before-seen creations, <strong>HELLO, COOKIE DOUGH</strong> has something for every sweet tooth.
+              </p>
+				<div class="clearfix" style="height:25px;"></div>
+            <div style="text-align:center; align:center;"> <a href="/products/hellocookiedough-cookbook" class="btn-order">Order our cookbook now!</a><a href="/collections/cookbook-merch" class="btn-order">Shop our cookbook bundles!</a></div>
+            </div>
+          <div class="clearfix" style="height:15px;"></div>
+          </div>
+       </div>
+       <div class="cookbook_content">
+         <div class="krist_content_wrapper">
+      	
+        <div class="column-padding w-col w-col-6 text-center"> 
+          <div clas="krist-bio">
+            <h2>
+              <span><img src="{{ 'Hello-light-pink.png' | asset_img_url: '200x' }}" alt="hello,"/></span>
+            	I’m Kristen!
+            </h2>
+            
+            <p>
+              I left behind my life as a design & branding consultant to follow my cookie dough filled dreams. My love for all things <strong>DŌ</strong> turned into a worldwide phenomenon, and I have adored sharing my passion with all of you. NOW... I’m revealing the secrets to making my edible & bakeable cookie dough at home along with my favorite dessert recipes, serving tips, and all sorts of behind the scenes stories!
+			 </p>
+             <p>I can’t wait to share what I’ve created for you! - </p>
+            
+            <h3 class="signature"><img src="{{ 'Signature_Tomlan.png' | asset_img_url: '300x' }}" alt="Kristen Tomlan"/></h3>
+          	
+            <div class="followUs_instagram">
+              <div class="instagram_icon">
+              	<i class="fab fa-instagram"></i>
+              </div>
+              
+              <div class="followUs">
+                <h4>Follow us on Instagram!</h4>
+                <div class="clearfix"></div>
+                <ul>
+                  <li>
+                    <a target="_blank" href="https://www.instagram.com/kristentomlan/">@kristentomlan</a>
+                  </li>
+                  <li>//</li>
+                  <li class="last">
+                    <a target="_blank" href="https://www.instagram.com/cookiedonyc/">@cookiedonyc</a>
+                  </li>
+                   <li>//</li>
+                  <li>#hellocookiedough</li>
+                </ul>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+         <div class="column-padding w-col w-col-6">
+            <img class="large-image" src="{{ 'kristi.png' | asset_img_url: '714x886' }}" alt="cookbook">
+          </div>
+         </div>
+      </div>
+      <div id="form-wrapper-2"></div>
+      <div class="clearfix" style="height:15px;"></div>
+      
+      {% section "cookbook-events-book" %}
+      {% comment %}
+      <div class="page_header">
+        <div class="inner_header">
+          <div class="clearfix" style="height:15px;"></div> <div class="pre-order-wrapper"></div>
+          <div class="pre-order-wrapper" id="form-wrapper">
+            
+          		<div class="spatula-ready" id="pre-order">Pre-order a copy of <em>Hello, Cookie Dough</em> and submit your receipt to receive a FREE cookie scoop below.</div>
+          		<div style="margin:0 auto;" class="pxFormGenerator" id="OQgPvZUyKUmlXCl6GnU4YA"></div>  
+            
+          </div>
+          
+          
+         
+        </div>
+      </div>
+       {% endcomment %}
+     
+      
+    </div>
+  </div>
+
+

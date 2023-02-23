@@ -1,0 +1,319 @@
+<style>
+.cart-icon-topbar{
+   position:relative;
+}
+.cart-icon-topbar .submenu{
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 10px 0 0 0;
+    right: 0;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    -webkit-transform: translateY(15px);
+    -ms-transform: translateY(15px);
+    -o-transform: translateY(15px);
+    transform: translateY(15px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9999;
+  	width:324px;
+  	
+}
+  #mini-cart > li{
+  	background:#fff;
+  }
+ .cart-icon-topbar:hover .submenu{
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+  .cart-icon-topbar:hover .submenu li{
+  	display:block;
+  }
+
+  .container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+  .minicart.hasItem .mini-cartContent {
+    display: block !important;
+}
+  .minicart .mini-products-list {
+    overflow-y: auto;
+    max-height: 50vh;
+    border-bottom: 1px solid #ddd;
+
+margin-bottom: 10px;
+}
+  .whishlist > li, .cart-list > li {
+    position: relative;
+}
+  .whishlist-item, .cart-item {
+    zoom: 1;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+  .whishlist .product-image {
+    width: 70px;
+    margin-right: 15px;
+}
+  .whishlist-item .product-image, .cart-item .product-image {
+    float: left;
+    margin-right: 30px;
+}
+  .mini-products-list .product-details {
+    overflow: hidden;
+    position: relative;
+    padding-left: 0;
+}
+  .product-name {
+    font-size: 14px;
+    font-weight: 400;
+}
+  .product-name a{display: block;
+
+line-height: 16px;}
+  .whishlist .whishlist-quantity, .whishlist .whishlist-price {
+    color: #898989;
+    font-size: 12px;
+}
+  .whishlist .whishlist-quantity, .whishlist .whishlist-price {
+    color: #898989;
+    font-size: 12px;
+}
+  .menu-cart-total > .price_total {
+    color: #000;
+    float: right;
+}#mini-cart .mini-cart-empty {
+    display: none;
+}
+  
+ @media screen and (min-width: 768px){
+  .button-link{
+  	position:relative;
+    top:-1px;
+  }
+ }
+</style>
+
+<div id="Team" class="content-section" style="padding-bottom:0px;">
+ <div class="div-container">
+{% case section.settings.grid %}
+  {% when '2' %}
+    {%- assign max_height = 530 -%}
+  {% when '3' %}
+    {%- assign max_height = 345 -%}
+  {% when '4' %}
+    {%- assign max_height = 250 -%}
+  {% when '5' %}
+    {%- assign max_height = 195 -%}
+{% endcase %}
+
+{% if section.settings.layout == 'grid' %}
+  {%- assign limit = section.settings.grid | times: section.settings.rows -%}
+{% else %}
+  {%- assign limit = 16 -%}
+{% endif %}
+
+{% paginate collection.products by limit %}
+
+<div data-section-id="{{ section.id }}" data-section-type="collection-template">
+  <header class="collection-header">
+
+    {% if section.settings.show_collection_image and collection.image %}
+      <div class="collection-hero">
+        <div class="collection-hero__image ratio-container lazyload js"
+             data-bgset="{% include 'bgset', image: collection.image %}"
+             data-sizes="auto"
+             data-parent-fit="cover"
+             style="background-image: url('{{ collection.image | img_url: '300x300' }});"></div>
+        <noscript>
+          <div class="collection-hero__image" style="background-image: url({{ collection.image | img_url: '2048x600', crop: 'top' }});"></div>
+        </noscript>
+        <div class="collection-hero__title-wrapper">
+          <h1 class="collection-hero__title page-width">{{ collection.title }}</h1>
+        </div>
+      </div>
+
+      {% if collection.description != blank %}
+        <div class="rte collection-description page-width">
+          {{ collection.description }}
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="page-width">
+        <div class="section-header text-center">
+          <!-- <h1>{{ collection.title }}</h1> -->
+          {% if collection.description != blank %}
+            <div class="rte">
+              
+              <div class="banner2 w-clearfix">
+                <h3 class="heading on-lines">{{ collection.description }}</h3>
+                <div class="lines"></div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    
+  </header>
+
+  <div class="page-width" id="Collection">
+    
+   {% for block in section.blocks %}
+    
+   <div class="column-no-padding w-col w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-quarter">
+            		<div class="outer-div">
+                      <a href="{{block.settings.button_link}}" data-w-id="4408ceaf-a581-1d23-9d78-9ac1f5b7eaa6" class="team-member-box w-inline-block">
+                        <div class="out-div">
+                          
+                          <div class="cta-image move" style="background-image:url('{{ block.settings.image | img_url: '300x300' }}');">
+                            <div class="price">
+                              
+                              	<div>{{block.settings.price}}</div>
+                              
+                            </div>
+                          </div>
+            
+                        </div>
+                        <div class="center-div move">
+                          
+                          <div class="title tiny white-bg">{{ block.settings.title }}</div>
+                          
+                        </div>
+                      </a>
+                      <div class="team-member-text _10">
+                        <div class="div-mobile w-hidden-main">
+                          <a href="{{block.settings.button_link}}" class="button-link-mobie w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                          <a href="{{block.settings.button_link}}" class="button-link-mobie w-inline-block">
+                            <div class="button small">
+                              <div>add to cart</div>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="_2-buttons w-hidden-medium w-hidden-small w-hidden-tiny">
+                          <a href="{{block.settings.button_link}}" class="button-link w-inline-block">
+                            <div class="button small reverse">
+                              <div>details</div>
+                            </div>
+                          </a>
+                     
+                          <a href="{{block.settings.button_link}}" class="button-link-mobie w-inline-block">
+                            <div class="button small">
+                              <div>add to cart</div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+          </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+</div>
+{% endpaginate %}
+
+ <style>
+        #Footer .w-container{
+        	max-width: 1030px;
+        }
+   #shopify-section-gift-card{padding-bottom:0px !important; max-width: 1215px;
+display: block;
+margin: 0px auto;}
+      </style>
+
+{% schema %}
+  {
+    "name": "Collection pages",
+    "settings": [
+
+      {
+        "type": "checkbox",
+        "id": "show_collection_image",
+        "label": "Show collection image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "sort_enable",
+        "label": "Enable sorting",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "tags_enable",
+        "label": "Enable tag filtering",
+        "default": true
+      }
+    ],
+	"blocks": [
+      {
+        "type": "text_block",
+        "name": "Product",
+        "settings": [
+          
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "text",
+            "id": "price",
+            "label": "Price",
+            "default": "$0.00"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection pages",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

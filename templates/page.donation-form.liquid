@@ -1,0 +1,159 @@
+{% section 'header-featured-banner' %}
+
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+      <div class="form-block left-0 w-form plan-event-form-block">
+        <div id="email-form-3" class="w-clearfix">
+      <div class="contact-form form-vertical">
+        {% form 'contact' %}
+        
+        
+
+          {% if form.posted_successfully? %}
+        	<div style="padding-top:50px; display:block; clear:both;"></div>
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+        <h2>donation request form</h2>
+        
+        <input type="hidden" name="contact[subject]" value="Donation Request" />
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="Donation">What would you like us to donate?*</label>
+              <input type="text" id="Donation" name="contact[What would you like us to donate?]" value="" class="field w-input" required autocomplete="off">
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="eventDate" class="">Event Date*</label>
+              <input type="text" id="eventDate" name="contact[event date]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="deadline">Notification Deadline*</label>
+              <input type="text" id="deadline" name="contact[deadline]" value="" class="field w-input" required autocomplete="off">
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="event" class="">Event*</label>
+              <input type="text" id="event" name="contact[event]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required autocomplete="off">
+            </div>
+          </div>
+
+          <div class="grid grid--full-gutters column-9 w-col w-col-12">
+            <div class="grid__item">
+                <label for="eventLocation" class="">Event Location*</label>
+                <input type="text" id="eventLocation" name="contact[event location]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+              </div> <br>
+            
+            <div class="grid__item">
+                <label for="eventDescription" class="">Event Description*</label>
+                <input type="text" id="eventDescription" name="contact[event description]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+              </div>
+          </div>
+        
+         <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="numberOfParticipants">Expected number of participants?*</label>
+              <input type="text" id="numberOfParticipants" name="contact[number of participants]" value="" class="field w-input" required autocomplete="off">
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="promotion" class="">How do you plan on promoting this event? *</label>
+              <input type="text" id="promotion" name="contact[promotion]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+            </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="whyDonation" class="">Tell us why you would like a DŌnation:*</label>
+                <input type="text" id="whyDonation" name="contact[why donation]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+              </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="otherOrganizations">What other organizations are you seeking donations from?*</label>
+              <input type="text" id="otherOrganizations" name="contact[other organizations]" value="" class="field w-input" required autocomplete="off">
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="whatIsYourOrganization" class="">What is your organization?*</label>
+              <input type="text" id="whatIsYourOrganization" name="contact[what is your organization]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="website">Organization's Website*</label>
+              <input type="text" id="website" name="contact[website]" value="" class="field w-input" required autocomplete="off">
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="cause" class="">What is your organization's cause?*</label>
+              <input type="text" id="cause" name="contact[cause]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+            </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="taxID" class="">What is your organization's tax ID?*</label>
+                <input type="text" id="taxID" name="contact[tax ID]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input" required autocomplete="off">
+              </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="firstName">First Name*</label>
+              <input type="text" id="firstName" name="contact[first_name]" value="" class="field w-input" required autocomplete="off">
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="lastName" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Last Name?*</label>
+              <input type="text" id="lastName" name="contact[last_name]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="role">Your role within your organization?*</label>
+              <input type="text" id="role" name="contact[role]" value="" class="field w-input" required autocomplete="off">
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="email" class="">Email*</label>
+              <input type="email" id="email" name="contact[email]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+            </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="phone" class="">Phone*</label>
+                <input type="text" id="phone" name="contact[phone]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required autocomplete="off">
+              </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="anythingElse" class="">Anything else we should know?</label>
+                <input type="text" id="anythingElse" name="contact[anything else]" autocorrect="off" autocapitalize="off" value="" class="field w-input" autocomplete="off">
+              </div>
+          </div>
+
+          
+     <div class="btn-content-block">
+          <input type="submit" class="btn button submit w-button" value="Submit">
+     </div> 
+        {% endform %}
+      </div>
+          </div
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+

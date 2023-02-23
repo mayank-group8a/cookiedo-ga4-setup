@@ -1,0 +1,88 @@
+    <div class="row w-row press-logs-row">
+    {% for block in section.blocks %}
+      <div class="w-col w-col-3 w-col-medium-6 w-col-tiny-6">
+      <a href="{% if block.settings.button_link != blank %} {{ block.settings.button_link }} {% else %} javascript:void('0') {% endif %}" target="_blank" class="link-block-3 w-inline-block"><img src="{{ block.settings.image | img_url: 'medium' }}" alt="{{ block.settings.image.alt | escape }}" data-w-id="521351c2-5f68-3a12-956a-43f77e1d1d9c" style="-webkit-transform:translateX(0) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(0) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(0) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(0) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)"></a>
+
+      </div>
+       {% if forloop.index == 4 or forloop.index == 8 or forloop.index == 12 or forloop.index == 16 or forloop.index == 20 or forloop.index == 24 or forloop.index == 28 or forloop.index == 32 or forloop.index == 36 or forloop.index == 40 or forloop.index == 44 or forloop.index == 48 or forloop.index == 52 or forloop.index == 56 or forloop.index == 60 %}
+        {% if forloop.last != true %}
+		</div><div class="row w-row">
+		{% endif %}
+      {% endif %}
+     
+    {% endfor %}
+    </div>
+
+
+
+{% schema %}
+  {
+    "name": "Our Partners",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Our Partners"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Our Partners",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

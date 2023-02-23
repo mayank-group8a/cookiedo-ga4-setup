@@ -1,0 +1,164 @@
+<style>
+  .store-menu-items .w-col{width:auto;}
+  .store-menu-items{justify-content: center;}
+  
+  
+  .corrporate-btn {
+    display: inline-block;
+    font-size: 25px;
+    font-family: Replica, sans-serif;
+    font-weight: 700;
+    text-align: center;
+    clear: both;
+    padding: 20px 50px;
+    background: #ff007b;
+    color: #fff;
+    margin: 10px 0px;
+}
+
+</style>
+<div class="w-container store-menu-items">
+  		{% if section.settings.leftContent != blank %}
+  			<div class="column-center w-col w-col-4">
+              {% if section.settings.leftContentURL != blank %}
+              	<a href="{{ section.settings.leftContentURL }}" {% if section.settings.leftContentURL contains "pdf"%}target="_blank"{% endif%}>
+              {% endif %}
+                <div class="corrporate-btn">
+        		{{ section.settings.leftContent }}
+                </div>
+              {% if section.settings.leftContentURL != blank %}
+              	</a>
+              {% endif %}
+ 			</div>
+  		{% endif %}
+        {% if section.settings.rightContent != blank %}
+  			<div class="column-center w-col {% if template != 'page.catering-menu' %}w-col-4{% else %} w-col-4-catering{% endif %}">
+              {% if section.settings.rightContentURL != blank %}
+              	<a href="{{ section.settings.rightContentURL }}" style="text-decoration:none;" {% if section.settings.rightContentURL contains "pdf"%}target="_blank"{% endif%}>
+              {% endif %}
+        		 <div class="corrporate-btn">
+        		{{ section.settings.rightContent }}
+                </div>
+               {% if section.settings.rightContentURL != blank %}
+              	</a>
+              {% endif %}
+            </div>
+  		{% endif %}
+  		{% if section.settings.rightContent2 != blank %}
+  			<div class="column-center w-col w-col-4">
+              {% if section.settings.rightContentURL2 != blank %}
+              	<a href="{{ section.settings.rightContentURL2 }}" style="text-decoration:none;" {% if section.settings.rightContentURL2 contains "pdf"%}target="_blank"{% endif%}>
+              {% endif %}
+        		 <div class="corrporate-btn">
+        		{{ section.settings.rightContent2 }}
+                </div>
+               {% if section.settings.rightContentURL2 != blank %}
+              	</a>
+              {% endif %}
+            </div>
+  		{% endif %}
+      </div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Additional Content",
+    "class": "inspiration-section",
+    "settings": [
+      {
+        "type": "html",
+        "id": "leftContent",
+        "label": "Donation",
+        "default": "Plan Event link content"
+      },
+		{
+        "type": "url",
+        "id": "leftContentURL",
+        "label": "URL"
+      },
+	 {
+        "type": "html",
+        "id": "rightContent",
+        "label": "Line & Closing",
+        "default": "Download our creating"
+      },
+	  {
+        "type": "url",
+        "id": "rightContentURL",
+        "label": "URL"
+      },
+	 {
+        "type": "html",
+        "id": "rightContent2",
+        "label": "Media",
+        "default": "Download our creating"
+      },
+	  {
+        "type": "url",
+        "id": "rightContentURL2",
+        "label": "URL"
+      },
+	  {
+        "type": "image_picker",
+        "id": "section_logo",
+        "label": "DO Logo"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_bg",
+            "label": "Image"
+          },
+          {
+            "type": "html",
+            "id": "image_text",
+            "label": "Heading",
+            "default": "Add a title or tagline"
+          },
+          {
+            "type": "number",
+            "id": "box_height",
+            "label": "Image box height",
+			"default": 275
+          },
+          {
+            "type": "color",
+            "id": "color_picker",
+            "label": "Hover color"
+          },
+          {
+            "type": "checkbox",
+            "id": "column_break",
+            "label": "Collumn break"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+

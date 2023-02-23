@@ -1,0 +1,521 @@
+<script src="{{ 'mac-built-a-box12-custom.js' | asset_url }}"></script>
+
+<style>
+  	.team-member-box:hover .cookie-image {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+    }
+   .team-member-box {
+  	cursor:pointer;
+    vertical-align: top;
+    
+  }
+  .buildbox-section-main-block .team-member-box.side-border.last {
+    padding-top: 65px;
+}
+  .title.tiny{
+  	line-height:17px;
+  }
+  
+  .mobile_description{
+  	padding:25px;
+    text-align:left;
+    display:block;
+  }
+  .desktop_description{
+  	padding:50px;
+    text-align:left;
+    display:none;
+  }
+  .mobile_description ul,
+  .desktop_description ul{
+  	padding-left:15px;
+  }
+  
+  
+  @media screen and (min-width: 992px){
+  	.team-member-box {
+        overflow: visible;
+        width: 32%;
+        height: 120px;
+        border: 1px solid #000;
+        text-align: center;
+      	margin-top:80px;
+      	margin-bottom:25px;
+          vertical-align: top;
+    }
+    .team-member-box.side-border.last {
+        position: relative;
+        top: 0px;
+        width: auto;
+        height: 120px;
+        margin-bottom: 0px;
+        padding-top: 100px;
+        border-right-style: none;
+        text-align: center;
+        z-index: 1;
+      	margin-top:0px;
+    }
+    
+    .hidden-ingredients.oatmeal{
+    	position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        bottom: 15px;
+     }	
+    .team-member-box.hover_link_image:hover .team-member-text{
+    	display:block !important;
+      	opacity:0;
+    }
+    
+    .cookie {
+        position: absolute;
+        left: 0px;
+        top: -80px;
+        right: 0px;
+    }
+    
+    .msgpopup{
+    	display:none !important;
+    }
+  }
+  
+  @media screen and (min-width: 768px){
+    .desktop_description{
+    	display:none;
+    }
+  }
+  
+  @media screen and (min-width: 580px){
+    .buildbox-container ul li{
+		width: 29%;
+    	padding-top: 29%;
+    }
+    .buildbox-container ul.cart-thumbnail li{
+		width: 29%;
+    	padding-top: 29%;
+    }
+  }
+  
+  @media screen and (max-width: 768px){
+  	.mobile_description{
+    	display:block;
+    }
+  }
+  
+  .msgpopup {
+    position: fixed;
+    top: 50% !important;
+    left: 50%;
+    background: #fff;
+    z-index: 999;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 100%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+}
+  
+  
+</style>
+
+
+{% for product in collection.products %}
+  {% if product.price > 0 %}
+  {% else %}
+	{% assign buildbox_product = product.variants.first.id %}
+	{% assign buildbox_sku = product.variants.first.sku %} 
+  {% endif %}
+{% endfor %}
+
+<div class="msgpopup" style="display: none;">
+  
+</div>
+<div id="Team" class="content-section buildbox-section-main-block">
+  <div class="div-container">
+    <div class="w-col-6" style="float:right;">
+      <div class="buildbox-container">
+        <ul class="placeholder">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul class="cart-thumbnail">
+        	
+        </ul>
+      </div>
+      
+      <div class="cart-footer-container">
+        <div id="build-a-box-summary">
+            <p class="counter"><span class="count">0</span> of 6 selected</p>
+        </div>
+        
+        <form id="macarons_form" name="macarons_form">
+        </form>
+        
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-productid="{{buildbox_product}}">
+          <div class="product-actions-wrapper">
+              <div class="product-signle-options clearfix">
+                <div class="selector-wrapper" style="display: none;">
+                  <select class="single-option-selector" data-option="option1" id="productSelect-option-0" style="display: none;"><option value="Default Title">Default Title</option></select></div><select name="id" id="productSelect" class="form-control" data-productid="{{buildbox_product}}" style="display: none;">
+                   <option selected="selected" data-sku="{{buildbox_sku}}" value="{{buildbox_product}}">Default Title </option>
+                </select>
+             		<!--
+                	<div id="infiniteoptions-container" style="display:none">
+                      <div class="custom_box_field">
+                        <label class="spb-productdescfont spb-productdesctextcolor">Set of 12 macarons</label>
+                        <span>
+                          <input name="properties[Box Items]" class="spb-productdescfont spb-productoptiontextcolor spb-productoptionbackground" required="" type="text">
+                  		</span>
+                      </div>
+                	</div>
+					-->
+
+                <div class="product-single-quantity is-hidden">
+                  <label for="Quantity">Qty :</label>
+                  <input id="Quantity" name="quantity" value="1" min="1" class="quantity-selector form-control" type="number">
+                </div>
+                <div class="product-list-actions"> 
+
+
+                  <div class="product-single-prices custom_product-price">
+                    <label id="ProductPrice" class="price" itemprop="price">$<span>0.00</span></label>
+                  </div>
+                <a onclick="bundleProduct()" class="bundlePro btn btn-lg btn-primary " style="cursor:pointer;">
+                  <span id="AddToCartText">Add to Cart</span>
+                </a>
+             </div><!-- /.product-list-actions -->
+            </div>
+          </div>
+          
+    <input type="hidden" name="properties[Box Items]" id="charity" value="">
+  
+ 
+      </form>
+      </div>
+      
+      <div class="clearfix"></div>
+      <div class="desktop_description">
+      	{{ collection.description }}
+      </div>
+    </div>
+      <div id="build-a-box" class="w-col-6">
+        
+        {% comment %}
+         <ul class="flavers-list">
+          <li><img src="{{ 'gluten2.png' | asset_url }}" alt="icon"/> Gluten Free Option Available</li>
+          <li><img src="{{ 'vegan3.png' | asset_url }}" alt="icon"/> Vegan Option Available</li>
+        </ul>
+        {% endcomment %}
+        
+      {% for product in collection.products %}
+        {% for variant in product.variants %}
+        {% if variant.price > 0 %}
+          {% include 'product-card-grid-buildbox', max_height: max_height %}
+          
+        {% else %}
+        	<input type="hidden" value="{{product.id}}" id="buildbox_product" />
+        {% endif %}
+        {% endfor %}
+      {% endfor %}
+        
+        <div class="clearfix"></div>
+        <div class="mobile_description">
+          {{ collection.description }}
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+
+
+<script>
+  function create_buildbox($this){
+    var image_src = jQuery($this).attr('data-image');
+    var product_price = jQuery($this).attr('data-price');
+    if(product_price > 0){
+   	    product_price =	product_price.slice(0, -2);
+    }
+    var product_id = jQuery($this).attr('data-id');
+    var product_title = jQuery($this).attr('data-title');
+    
+    if(jQuery('.cart-thumbnail li').length < 6){
+    	var cart_image = jQuery('.cart-thumbnail').append('<li data-price="'+product_price+'" data-id="'+product_id+'" style="background:url('+image_src+') no-repeat center center #fff; background-size:cover;"><a href="javascript:void(\'0\')" onclick="remove_item(this)" data-price="'+product_price+'"><i class="fa fa-times" aria-hidden="true"></i></a><input type="hidden" name="id" value="'+product_id+'" /></li>');
+    	 
+    	var sub_price = jQuery('#ProductPrice span').html();
+      	var total_price = parseFloat(sub_price) + parseFloat(product_price);
+      	jQuery('#ProductPrice span').html(total_price.toFixed(2));
+      
+      	jQuery('#build-a-box-summary .counter span').html(jQuery('.cart-thumbnail li').length);
+    
+      
+       var cart_count = jQuery('.cart-thumbnail li').length;
+      
+      jQuery('body .msgpopup').show();
+  	  jQuery('body .msgpopup').html('<span> <b class="pro_name">'+product_title+'</b> has been added to cart, <b class="pro_count">'+cart_count+'</b><b>/6</b></span>');
+   		
+       setTimeout(function(){
+       	jQuery('body .msgpopup').fadeOut();
+       }, 1500);
+    
+    }
+    jQuery('#macarons_form').html('');
+    jQuery('.cart-thumbnail li').each(function(){
+      	var product_ID = jQuery(this).attr('data-id');
+    	jQuery('#macarons_form').append('<input name="id[]" class="form-control" value="'+product_ID+'" type="hidden"><input id="Quantity" name="quantity[]" class="quantity-selector form-control" value="1" type="hidden">');
+     
+    });
+    
+    console.log(sub_price+' '+ product_price);
+  }
+  
+  function remove_item($this){
+    
+    var product_price = jQuery($this).attr('data-price');
+    var sub_price = jQuery('#ProductPrice span').html();
+    var total_price = parseFloat(sub_price) - parseFloat(product_price);
+    jQuery('#ProductPrice span').html(total_price.toFixed(2));
+    
+  	jQuery($this).parent().remove();
+    
+    jQuery('#build-a-box-summary .counter span').html(jQuery('.cart-thumbnail li').length);
+    
+  }
+  
+  function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 15; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+console.log(makeid());
+  
+  var random_key = makeid();
+  jQuery('#charity').val(random_key);
+  
+  
+  jQuery(document).ready(function(){
+  	
+  });
+</script>
+<script>
+function bundleProduct(array){
+  
+  jQuery('#AddToCartText').html('Wait...');
+    
+  Shopify.queue = [];
+    //var quantity = 27 ;
+    var itemCount = jQuery('.count').html()
+      var babQty = jQuery('#AddToCartForm input[name="quantity"]').val();
+        var idval=[];
+        var quantity=[];
+        jQuery('#macarons_form input[name="id[]"]').each(function() {
+           idval.push($(this).val());
+        });
+        jQuery('#macarons_form input[name="quantity[]"]').each(function() {
+           quantity.push(($(this).val()*babQty));
+        });
+    //var newArray = array.split(',');
+    for (var i = 0; i < quantity.length; i++) {
+      var product = idval[i];
+        var quantityval=quantity[i];
+      Shopify.queue.push({
+        variantId: product,
+          quantity: quantityval,
+      });
+      }
+    Shopify.moveAlong = function() {
+        // If we still have requests in the queue, let's process the next one.
+        if (Shopify.queue.length) {
+          var request = Shopify.queue.shift();
+          var charity = jQuery('#charity').val();
+          console.log(request);
+          var data = 'id='+ request.variantId + '&quantity='+ request.quantity +'&properties[Box Items]='+charity;
+          jQuery.ajax({
+            type: 'POST',
+            url: '/cart/add.js',
+            dataType: 'json',
+            data: data,
+            success: function(res){
+              Shopify.moveAlong();
+            },
+            error: function(){
+              
+              jQuery('#AddToCartText').html('Add to Cart');
+              // if it's not last one Move Along else update the cart number with the current quantity
+              if (Shopify.queue.length){
+                Shopify.moveAlong()
+              } else { window.location.href = "/cart";
+                jQuery('#cart-number').replaceWith("<a href='/cart' id='cart-number'>View cart ('" + quantity + "')</a>")
+              }
+            }
+            });
+          }
+          // If the queue is empty, we add 1 to cart
+          else {
+            quantity += 1;
+            addToCartOk(quantity);
+           }
+       };
+    if(itemCount > 5 ){
+   
+      jQuery.ajax({
+        type: "POST",
+        url: '/cart/add.js',
+        dataType: 'json',
+        data: jQuery('#AddToCartForm').serialize(),
+        async: false,
+        success: function(){
+           //$('#macarons_form').html('123');
+           
+         },
+        error: function(){
+        	alert('error');
+          return false;
+        }
+    });
+     
+    Shopify.moveAlong();
+      
+    }else{
+      jQuery('#AddToCartText').html('Add to Cart');
+      alert('Please select 6 cookieDO');
+          return false
+    }
+  };
+ 
+  function addToCartOk(quantity){  
+  jQuery('#cart-number').replaceWith("<a href='/cart' id='cart-number'>View cart ('" + quantity + "')</a>");
+    window.location.href = "/cart";
+  }
+ 
+</script>
+
+ <style>
+        #Footer .w-container{
+        	max-width: 1030px;
+        }
+   #shopify-section-gift-card{padding-bottom:0px !important; max-width: 1215px;
+display: block;
+margin: 0px auto;}
+      </style>
+
+{% schema %}
+  {
+    "name": "Collection pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "grid",
+        "options": [
+          {
+            "value": "grid",
+            "label": "Grid"
+          },
+          {
+            "value": "list",
+            "label": "List"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "grid",
+        "label": "Products per row (grid only)",
+        "default": "4",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "rows",
+        "label": "Rows per page (grid only)",
+        "default": "2",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "7",
+            "label": "7"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "show_collection_image",
+        "label": "Show collection image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "sort_enable",
+        "label": "Enable sorting",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "tags_enable",
+        "label": "Enable tag filtering",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

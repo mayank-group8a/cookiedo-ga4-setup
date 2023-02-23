@@ -1,0 +1,233 @@
+<div class="content-section content-pages flavor-page-content">
+<div class="w-container">
+      <div class="flavor-row less-padding w-row page-row" style="margin-bottom:0px;">
+        <div class="w-col w-col-6 page-content column-align-center">
+          <div style="width:100%; text-align:center;">
+          {{ page.content }}
+          </div>
+        </div>
+        
+        <div class="column-align-right w-clearfix w-col w-col-5" style="display:none;">
+          {% if section.settings.cookiedo_image != blank %}
+          <img src="{{ section.settings.cookiedo_image | img_url: '500x' }}" data-w-id="22d677ed-fd67-3957-9cef-f3911b613354" class="image right w-hidden-small w-hidden-tiny">
+          {% endif %}  
+        </div>
+         
+        </div>
+  
+  		<div class="clearfix"></div>
+        <div class="flavors-images">
+          {% if section.settings.cookiedo_image != blank %}
+          	<div class="flavor-image" style="background:url({{ section.settings.cookiedo_image | img_url: '500x' }}) no-repeat center center; background-size:cover;"></div>
+          {% endif %}
+          
+          {% if section.settings.image_1 != blank %}
+          	<div class="flavor-image" style="background:url({{ section.settings.image_1 | img_url: '635x' }}) no-repeat center center; background-size:cover;"></div>
+          {% endif %}
+          
+          {% if section.settings.image_2 != blank %}
+          	<div class="flavor-image" style="background:url({{ section.settings.image_2 | img_url: '635x' }}) no-repeat center center; background-size:cover;"></div>
+          {% endif %}
+        </div>
+        <div class="clearfix" style="margin-top: 35px;"></div>
+  		
+  		 <div class="contact-div"></div>
+         {% if section.settings.heading != blank %}
+          <div class="banner">
+            <div class="pink-line"></div>
+            {{section.settings.heading}}
+          </div>
+          {% endif %}
+  
+  <div class="clearfix" {% if section.settings.cookiedo_image == blank %} style="padding-top:30px;"{% endif %} ></div>
+      <div class="contact-row flavor-page w-row">
+        <div class="column-center w-col w-col-4">
+          <a href="/collections/nationwide-shipping/" class="link-block-stripe w-inline-block">
+                <div class="link-box more-padding larger">
+                    <h2 class="box-heading-bold third">order this flavor</h2>
+                    <h2 class="box-heading-bold bottom-padding">for nationwide</h2>
+                    <h2 class="box-heading-bold curly">shipping</h2>
+                </div>
+              </a>
+        </div>
+        <div class="column-center w-col w-col-4">
+          <a href="/pages/nyc-delivery/" class="link-block-stripe w-inline-block">
+                <div class="link-box more-padding larger">
+                  <h2 class="box-heading-bold third">order this for</h2>
+                  <h2 class="box-heading-bold bottom-padding">nyc</h2>
+                  <h2 class="box-heading-bold curly">delivery</h2>
+                </div>
+              </a>
+        </div>
+        <div class="column-center w-col w-col-4">
+          <a href="/pages/flavors/" class="link-block-stripe w-inline-block">
+                <div class="link-box more-padding larger">
+                  <h2 class="box-heading-bold third">view all</h2>
+                  <h2 class="box-heading-bold bottom-padding">of the</h2>
+                  <h2 class="box-heading-bold curly">flavors</h2>
+                </div>
+              </a>
+        </div>
+ 
+      </div>
+     
+    </div>
+    	<div class="clearfix"></div>
+  <div class="w-container" style="max-width:1200px;">
+        <div class="flavor-detail-content">
+          	<div class="column-center w-col w-col-4">
+        	{% for block in section.blocks %}
+          		
+          		
+                 
+            	{% if block.type == 'text_block' %}
+                    {% if block.settings.title != blank %}
+                      <h3>{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                        {{ block.settings.text }}
+                    {% endif %}
+                 {% endif %}
+                  
+                  {% if forloop.index == 2 or forloop.index == 3 %}
+                  	</div>
+          			<div class="column-center w-col w-col-4">
+                  {% endif %}
+            {% endfor %}
+              </div>
+        </div>
+
+  </div>
+  <div class="w-container" style="max-width:1200px;padding-left:9px;">
+   <div class="clearfix"></div>
+  <div style="position:relative;height: 20px;margin-top:  35px;margin-bottom: 35px;">
+    <div class="lines"></div>
+  </div>
+  <div class="clearfix"></div>
+  <div style="position:relativemargin-top:  35px;margin-bottom: 35px; text-align:center;">
+    <h2 style="font-family: 'Conv_Replica-Light';">for more info, please visit our <strong><a href="/pages/faqs" style="font-size: 36px;">FAQ</a></strong> page</h2>
+  </div>
+  <div class="clearfix"></div>
+  
+  			{% for block in section.blocks %}
+              {% if block.type == 'text_block_2' %}
+                  {% if block.settings.title != blank %}
+                    <h5>{{ block.settings.title }}</h5>
+                  {% endif %}
+                  {% if block.settings.text != blank %}
+                      {{ block.settings.text }}
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+</div>
+</div>
+
+
+
+
+{%- assign section_name = page.title -%}
+
+{% schema %}
+  {
+    "name": "Chocolate Dream",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "cookiedo_image",
+        "label": "CookieDO Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Left Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Left Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_3",
+        "label": "Right Image"
+      },
+      {
+        "type": "html",
+        "id": "heading",
+        "label": "Section Heading"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Left content title"
+      },
+      {
+        "type": "text",
+        "id": "title_2",
+        "label": "Right content title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Right content",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Description"
+          }
+        ]
+      },
+      {
+        "type": "text_block_2",
+        "name": "Left content",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Chocolate Dream",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block_2"
+          },
+          {
+            "type": "text_block_2"
+          },
+          {
+            "type": "text_block_2"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+

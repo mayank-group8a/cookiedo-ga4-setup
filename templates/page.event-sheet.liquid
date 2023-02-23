@@ -1,0 +1,136 @@
+<style>
+  .right_content_party p 
+  {
+    font-family: 'Poppins' !important;
+  }
+</style>
+{% section 'banner-faq' %}
+{% section 'plan-a-party' %}
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+      
+      
+      <div class="contact-form form-vertical">
+        {% form 'contact' %}
+        
+        
+
+          {% if form.posted_successfully? %}
+        	<div style="padding-top:50px; display:block; clear:both;"></div>
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+		  
+         <input type="hidden" name="contact[subject]" value="Planning an Event" />
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="ContactFormName">First Name*</label>
+              <input type="text" id="ContactFormName" name="contact[first_name]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="ContactFormLastName" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Last Name*</label>
+              <input type="text" id="ContactFormLastName" name="contact[last_name]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input" required>
+            </div>
+          </div>
+
+          <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormEmail" class="{% if form.errors contains 'email' %}label--error{% endif %}">Email Address*</label>
+                <input type="email" id="ContactFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input" required>
+              </div>
+          </div>
+
+		  <div class="grid grid--full-gutters column-9 w-col w-col-12">
+            <div class="grid__item">
+                  <label for="ContactFormPhone">Phone Number*</label>
+                  <input type="tel" id="ContactFormPhone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" class="field w-input" required>
+                </div>
+        </div>
+        
+           <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormPartyChoice">Party Choice*</label>
+                <select id="ContactFormPartyChoice" name="contact[event_type]" class="field w-input" required>
+                  <option value="">Select a choice</option>
+                  <option value="Baking & DŌ Making">Baking & DŌ Making</option>
+                  <option value="The Sugar Rush">The Sugar Rush</option>
+                  <option value="DŌ to Go">DŌ to Go</option>
+                  <option value="The Ult-DŌ-Mate Bash">The Ult-DŌ-Mate Bash</option>
+                </select>
+              </div>
+          </div>
+
+           <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormPeople">Number of People*</label>
+                <input type="text" id="ContactFormPeople" name="contact[number_of_people]" value="" class="field w-input" required>
+              </div>
+          </div>
+
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="ContactFormFirstDate">Preffered Date*</label>
+              <input type="text" id="ContactFormFirstDate" name="contact[first_date]" value="" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="ContactFormSecondDate" class="">Second Preffered Date*</label>
+              <input type="text" id="ContactFormSecondDate" name="contact[second_date]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="ContactFormTime">Proposed Time*</label>
+              <input type="text" id="ContactFormTime" name="contact[first_time]" value="" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="ContactFormSecondTime" class="">Second Proposed Time*</label>
+              <input type="text" id="ContactFormSecondTime" name="contact[second_time]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormOuting">Is this a company outing?*</label>
+                <select id="ContactFormOuting" name="contact[company_outing?]" class="field w-input" required>
+                  <option value="">Select a choice</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+          </div>
+
+          <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormBudget">Budget (optional)</label>
+                <input type="text" id="ContactFormBudget" name="contact[budget]" value="" class="field w-input">
+              </div>
+          </div>
+        
+        <div class="grid grid--full-gutters w-col w-col-12">
+              <div class="grid__item">
+                <label for="ContactFormNotes">Additional Notes</label>
+                <input type="text-area" id="ContactFormNotes" name="contact[additional notes]" value="{% if form[event_location] %}{{ form[event_location] }}{% elsif customer %}{{ customer.event_location }}{% endif %}" class="field w-input">
+              </div>
+          </div>
+
+     <div class="btn-content-block">
+          <input type="submit" class="btn button submit w-button" value="Submit">
+     </div> 
+        {% endform %}
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+

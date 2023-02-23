@@ -1,0 +1,139 @@
+<div class="clearfix"></div>
+<div id="TOP" data-w-id="ee819a90-b7cb-97b5-09ae-f6a9a63a4eb6" {% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); opacity:1;-webkit-transform:translateX(0) translateY(0PX) translateZ(0) scaleX(1.3) scaleY(1.3) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(0) translateY(0PX) translateZ(0) scaleX(1.3) scaleY(1.3) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(0) translateY(0PX) translateZ(0) scaleX(1.3) scaleY(1.3) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(0) translateY(0PX) translateZ(0) scaleX(1.3) scaleY(1.3) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);display:block" {% endif %} class="hero-section fixed">
+
+
+	<a href="javascript:void('0')" class="image-15 w-inline-block">
+	<img src="https://cdn.shopify.com/s/files/1/2509/8354/files/logo_300x300.gif?v=1521545922" data-w-id="2f5bde14-0c33-0efa-9440-3f3f1b19be0f" style="-webkit-transform:translateX(0) translateY(-222PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(0) translateY(-222PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(0) translateY(-222PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(0) translateY(-222PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)" class="image-15">
+	</a>
+
+	
+	
+    <div class="circles w-clearfix"><img src="https://cdn.shopify.com/s/files/1/2509/8354/files/oatmeal-m-and-m-edible-cookie-dough-flavor_2048x.png?v=1522073368" data-w-id="ea14ea59-676a-f2df-b031-6c38c6b1da70" style="-webkit-transform:translateX(0) translateY(83PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(0) translateY(83PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(0) translateY(83PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(0) translateY(83PX) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)" class="image"></div>
+	
+    <div class="border-div">
+      <div class="w-clearfix">
+        <div class="div-block-9 line"></div>
+        <div class="div-block-9 _65">
+          {% if section.settings.title != blank %}
+          <h1 class="hero-h1 _7">{{ section.settings.title | escape }}</h1>
+         {% endif %}
+        </div>
+      </div>
+      <div class="neon-sign w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">
+      {% if section.settings.text != blank %}
+        <h1 class="neon">{{ section.settings.text }}</h1>
+      {% endif %}
+      </div>
+    </div>
+	
+  </div>
+<div class="clearfix"></div>
+<noscript>
+  <div class="hero hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
+</noscript>
+
+{% schema %}
+  {
+    "name": "Image with text overlay",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Image alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Middle"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text overlay"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
+      },
+      {
+        "type": "select",
+        "id": "hero_size",
+        "label": "Section height",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "x-small"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Extra Large",
+            "value": "x-large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_size",
+        "label": "Text size",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with text overlay",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

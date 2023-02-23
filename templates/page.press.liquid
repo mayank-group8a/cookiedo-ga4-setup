@@ -1,0 +1,138 @@
+{% section 'banner-press' %}
+<style>
+ 
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+    .w-col-3{width:24%;}
+}
+  .press-row{
+  	display: flex;
+	flex-wrap: wrap;
+    margin-top:100px;
+    justify-content: center;
+  }
+  .press-box{
+  	display:block;
+    height:100%;
+    width:100%;
+    border:4px solid #000000;
+    position:relative;
+  }
+  .innner-press-box{
+  	display:block;
+    height:100%;
+    width:100%;
+    padding:0px 10px 15px 10px;
+    position:relative;
+    box-sizing: border-box;
+  }
+  .press-description{
+  	display:block;
+    padding-top: 75px;
+  }
+  .press-logo {
+    /*text-align: center;
+    min-height: 160px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+	top: -47%;
+    left: 15px;
+	right: 15px;*/
+    height: 4px;
+    margin-top: -4px;
+    width: 100%;
+    position: relative;
+}
+  .press-logo a {
+
+    display: table;
+    text-align:center;
+   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height:auto;
+
+}
+  .press-logo a span{
+  	background: #fff;
+     padding: 10px;
+  }
+  .press-logo img{
+  	max-height: 110px;
+    max-width: 94%;
+    background: #fff;
+  }
+.press-description p{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #000;
+    min-height: 100px;
+}
+.press-description .btn{
+    background: #ff007b;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 100;
+  	padding:0px 17px;
+    line-height: 40px;
+    display: block;
+    margin: 10px auto;
+  	display:inline-block;
+}
+  .press-logo a:after{
+  	content:"";
+    display:table;
+    clear:both;
+  }
+  .press-logs-row{
+  	display:flex;
+    align-items:center;
+    width:100%;
+    flex-wrap: wrap;
+  }
+  
+   @media screen and (min-width: 768px){
+    .press-row > div{
+    	margin-top:100px;
+    }
+    .press-row{
+    	margin-top: 0px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .press-row > div{
+    	margin-top:80px;
+    }
+    .press-row{
+    	margin-top: 0px;
+    }
+  }
+</style>   
+
+
+<div id="Team" class="content-section _150 press-logos">
+    <div class="circles flavor-page w-hidden-tiny"></div>
+  <div class="content-wrapper _100 div-container">
+{{ page.content }}
+{% section 'press-section' %}
+    
+    
+    
+ </div>
+   <!-- <div class="content-wrapper div-container">
+ { section 'press-logos' %} 
+  
+</div>
+  <div class="content-wrapper div-container">
+{ section 'press-section-2' %}
+  
+</div> -->
+</div>
+
+

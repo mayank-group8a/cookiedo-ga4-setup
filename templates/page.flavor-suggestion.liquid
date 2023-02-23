@@ -1,0 +1,75 @@
+{% section 'banner-plan-your-event' %}
+
+<div id="Team" class="content-section sprinkles less-padding plan-event-content-sec more-space">
+    <div class="content-wrapper w-container" style="text-align:left;">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth boxes-block-sec">
+     
+      <!-- <div class="section-header text-center">
+        <h1><!{{ page.title }}</h1>
+      </div> -->
+
+      {% if page.content.size > 0 %}
+        <div class="rte">
+          {{ page.content }}
+        </div>
+      {% endif %}
+
+      
+      <div class="form-block left-0 w-form plan-event-form-block">
+        <div id="email-form-3" class="w-clearfix">
+      <div class="contact-form form-vertical">
+        {% form 'contact' %}
+        
+        
+
+          {% if form.posted_successfully? %}
+        	<div style="padding-top:50px; display:block; clear:both;"></div>
+        	<p class="note form-success"> Thanks for flavor suggestion. We'll get back to you as soon as possible. </p>
+           <!-- <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p> -->
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+        
+        	<input type="hidden" name="contact[subject]" value="CookieDO Flavor Suggestion" />
+			
+
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormName">First Name*</label>
+              <input type="text" id="FlavorSuggestionFormName" name="contact[first_name]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormLastName" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Last Name*</label>
+              <input type="text" id="FlavorSuggestionFormLastName" name="contact[last_name]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input" required>
+            </div>
+          </div>
+
+          <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="FlavorSuggestionFormEmail" class="{% if form.errors contains 'email' %}label--error{% endif %}">Email Address*</label>
+                <input type="email" id="FlavorSuggestionFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %} field w-input" required>
+              </div>
+          </div>
+        
+         <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="FlavorSuggestionFormSuggestion" class="{% if form.errors contains 'Suggestion' %}label--error{% endif %}">Flavor Suggestion*</label>
+                <input type="text" id="FlavorSuggestionFormSuggestion" name="contact[Suggestion]" autocorrect="off" autocapitalize="off" value="{% if form.Suggestion %}{{ form.Suggestion }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'Suggestion' %}input--error{% endif %} field w-input" required>
+              </div>
+          </div>
+
+          
+     <div class="btn-content-block">
+          <input type="submit" class="btn button submit w-button" value="Submit">
+     </div> 
+        {% endform %}
+      </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,37 @@
+<div class="hero-image" {% if section.settings.image != blank %} style="background-image:url('{{section.settings.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+        {% if section.settings.title != blank or current_tags != blank %}
+        	{{ section.settings.title }}{{ current_tags.first }}
+        {% else %}
+         	<img src="{{ 'Blog-02.png' | asset_img_url: 'original'}}" style="width: 200px;" />
+        {% endif %}
+       
+      </h1>
+    </div>
+  </div>
+
+{% schema %}
+  {
+    "name": "Roght Content",
+    "class": "featured-image-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+	   {
+        "type": "html",
+        "id": "text",
+        "label": "Right Content"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Image",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

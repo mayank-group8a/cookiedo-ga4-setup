@@ -1,0 +1,129 @@
+{% section 'banner-seasonal-flavors' %}
+
+<style>
+	.cookie {
+        position: relative;
+        left: 0px;
+        top: 0;
+        right: 0px;
+        margin-bottom: 25px;
+    }
+  .cookie-image{
+  	max-width:100%;
+    width:100%;
+    border-radius:0px;
+  }
+  .team-member-box.side-border.last{height:inherit; padding:0px; min-height:472px; border:0px;}
+  .title.tiny{
+  	font-family: 'Better together demo', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 33px;
+margin-bottom: 15px;
+  }
+  .team-member-box._25 {
+    position: relative;
+    width: 31%;
+    height: 375px;
+    margin: 0% 1% 25px;
+
+  }
+  .team-member-text > p{
+  	font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    font-family: 'Conv_Replica-Regular';
+  }
+  .team-member-text p:empty{
+  	display:none;
+  }
+  .team-member-text > .retired{
+  	font-family: 'Conv_Replica-Light';
+    font-size: 14px;
+  }
+  .cookie{overflow:hidden;}
+  .team-member-box._25:hover .cookie-image{
+  	transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  .cookie-image{
+  	-webkit-transition: all 1s;
+	transition: all 1s;
+  }
+  @media screen and (max-width:993px){
+    .team-member-box.side-border.last{
+    	min-height: 460px;
+    }
+    .team-member-box._25 {
+        width: 48%;
+      	max-width: 280px;
+    }
+  }
+  @media screen and (max-width:766px){
+    .team-member-box.side-border.last{
+    	min-height: inherit;
+    }
+  }
+  
+  @media screen and (max-width:766px){
+    .team-member-box.side-border.last{
+    	min-height: inherit;
+    }
+    .team-member-box._25 {
+        max-width:280px;
+    }
+  }
+  @media screen and (max-width:580px){
+    .team-member-box._25 {
+        width: 98%;
+      	display:block;
+        max-width:280px;
+    }
+  }
+  
+</style>
+
+<div id="Team" class="content-section more-padding">
+    <!--<div class="content-wrapper w-container">
+		{% section 'seasonal-current-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-past-flavor' %}
+  </div> -->
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-jan-flavor' %}
+  </div>
+  <!--<div class="content-wrapper w-container">
+		{% section 'seasonal-feb-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-mar-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-may-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-jun-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-jul-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-aug-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-sep-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-oct-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-nov-flavor' %}
+  </div>
+  <div class="content-wrapper w-container">
+		{% section 'seasonal-dec-flavor' %}
+  </div> -->
+  <div class="content-wrapper w-container">
+		{{ page.content }}
+  </div>
+

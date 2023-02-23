@@ -1,0 +1,163 @@
+{% if section.settings.control %}
+ <div id="events-wrapper"></div>
+<div class="page_header" >
+ 
+  <div class="inner_header" style="display:block;">
+    {% if section.settings.title != blank %}
+    <h2>{{section.settings.title}}</h2>
+    <div class="seprator">
+      <img src="{{ 'headingSeprator.png' | asset_img_url: '300x' }}" width="170" alt="seprator">
+    </div>
+    {% endif %}
+    <div class="clearfix" style="height:25px;"></div>
+     {% if section.settings.subtitle != blank %}
+    	<p>{{section.settings.subtitle }}</p>
+     {% endif %}
+    
+    <div class="events-grid-wrapper" >
+      {% for block in section.blocks %}
+      
+      {% if block.settings.label != blank or block.settings.label-2 != blank %}
+      	{% assign btn_class = "large-btn" %}
+       {% endif %}
+      {% if block.settings.label != blank and block.settings.label-2 != blank %}
+      	{% assign btn_class = "false" %}
+      {% endif %}
+      
+          <div class="events-grid-row" >
+            <div class="event-grid first-grid">
+              <div class="days">
+                <span>{{block.settings.title }}</span>
+                <span style="font-weight:600;">{{block.settings.subtitle }}</span>
+              </div>
+            </div>
+            <div class="event-grid second-grid">
+            	<div class="location">
+                  <span>{{block.settings.location }}</span>
+                  {{block.settings.organizer }}
+                </div>
+            </div>
+            <div class="event-grid last-grid">
+              <div class="events-button">
+                {%if block.settings.label != blank %}
+                
+                {%if block.settings.tag-url != blank %}
+                  	<a href="{{block.settings.tag-url}}" target="_blank">
+                  {%else%}
+                  	<a href="javascript:void(0)">
+                 {%endif%}
+                  <span class="btn {{btn_class}} {% if btn_class == 'false' %}left-btn{%endif%}">{{block.settings.label }}</span>
+                  	</a>
+                {%endif%}
+                {%if block.settings.label-2 != blank %}
+                  {%if block.settings.tag-url-2 != blank %}
+                      <a href="{{block.settings.tag-url-2}}" target="_blank">
+                    {%else%}
+                      <a href="javascript:void(0)">
+                   {%endif%}
+                <span class="btn {{btn_class}} {% if btn_class == 'false' %}right-btn{%endif%}">{{block.settings.label-2 }}</span>
+                        </a>
+                {%endif%}
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{%endif%}
+    
+{% schema %}
+  {
+    "name": "Events & Book Tour",
+    "class": "events-book-section",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "control",
+        "label": "Enable",
+    	"default": false
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle"
+      }
+	],
+	"blocks": [
+      {
+        "type": "text_block",
+        "name": "Add Events",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+          },
+          {
+            "type": "text",
+            "id": "location",
+            "label": "Location"
+          },
+          {
+            "type": "text",
+            "id": "organizer",
+            "label": "Organizer"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Tag"
+          },
+          {
+            "type": "url",
+            "id": "tag-url",
+            "label": "URL"
+          },
+          {
+            "type": "text",
+            "id": "label-2",
+            "label": "Tag"
+          },
+          {
+            "type": "url",
+            "id": "tag-url-2",
+            "label": "URL"
+          }
+        ]
+      }],
+	 "presets": [
+      {
+        "name": "Events & Book Tour",
+        "category": "Add Events",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

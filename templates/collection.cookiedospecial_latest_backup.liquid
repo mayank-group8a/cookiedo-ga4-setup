@@ -1,0 +1,428 @@
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+{% section "cookiedospecial-offer" %}
+
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+      <li><a href="#{{ 'safe-to-eat cookie dough' | handleize }}">safe-to-eat cookie dough</a></li>
+     <li><a href="#{{ 'cookie cakes' | handleize }}">cookie cakes</a></li>
+      <li><a href="#{{ 'cookies' | handleize }}">cookies</a></li>
+      <li><a href="#{{ 'the cookbook shop' | handleize }}">the cookbook shop</a></li>
+      <li><a href="#{{ 'baking mixes' | handleize }}">baking mixes</a></li>
+      <li><a href="#{{ 'merch' | handleize }}">merch</a></li>
+      <li><a href="#{{ 'gift cards' | handleize }}">gift cards</a></li>
+  	</ul>
+  </div>
+</div>
+{% comment %}
+  The contents of the collection.liquid template can be found in /sections/collection-template.liquid
+{% endcomment %}
+
+<!-- {% section 'collection-templates' %} -->
+
+<style>
+  .collections-tabs{display:block; margin-top:50px; }
+  .tabs{
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+          align-items: center;
+    justify-content: center;
+    }
+  .tabs li a{
+      display: block;
+          padding: 9px 15px;
+      font-size: 16px !important;
+      font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+      border: 1px solid #faecf3;
+      text-decoration: none;
+      margin: 5px;
+  }
+  .tabs li a:hover{
+  	background:#faecf3;
+  }
+  .cta-image{
+  	background-size: cover;
+  }
+  .center-div.move{
+    bottom: -64px;
+    left: 8px;
+	right: 8px;
+  }
+  .team-member-text._10{padding-top:20px;}
+  .whole-wrapper{ float:left; margin:0px; padding:0px; position:relative; padding-top:25px; margin-bottom: 25px; }
+  .whole-wrapper .w-col{width:286px; }
+  .highlight-top{
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    top: 0px;
+    right:10px;
+    left: 10px;
+}
+  .highlight-top:after{
+  	content:"";
+    height:2px;
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    left:0;
+    width:100%;
+    z-index:1;
+  }
+  .highlight-top h3{
+
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: #fff;
+    padding: 0px 10px;
+    position: relative;
+    z-index: 9;
+    display: inline-block;
+    margin: 0px;
+
+}
+  
+  .offPrice{
+    display:inline-block; 
+    position:relative;
+  }
+  
+  .offPrice:after{
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: #ff007b;
+    width: 100%;
+    left: 0;
+    bottom: 40%;
+    transform: rotate(-10deg);
+}
+  .title.tiny.white-bg{
+  	top:2px;
+    padding-top:0px;
+  }
+  
+ .discount_badge{ 
+
+    position: absolute;
+    right: 5%;
+    top: 0;
+    width: 75px;
+   background: url({{ 'bageBg.png' | asset_img_url: }}) no-repeat center bottom;
+   background-size:cover;
+    height: 120px;
+    z-index: 9;
+    font-size: 23px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+
+}
+  .bage_box{
+  	    line-height: 30px;
+    padding-top: 16px;
+    display:block;
+    height:100%;
+    position:relative;
+  }
+  .bage_box:after{
+  	content:"";
+  }
+  .divider{
+
+    background: #13a1cb;
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+  
+  ._2-buttons{
+  	padding-top:25px;
+  }
+ 
+  .cta-image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .out-div{
+  	margin: 6px;
+    height: 235px;
+  }
+  .title.tiny{
+  word-spacing: -1.4px;
+  }
+  
+  .title.tiny.white-bg br{
+  	display:none;
+  }
+  
+  .title.tiny.white-bg span{
+  	display:block;
+    font-weight:300;
+  }
+  
+  .discount-price .title.tiny.white-bg br{display: inherit;}
+  
+  .discount-price .title.tiny.white-bg span{
+  	display:inline-block;
+  }
+  .title.tiny.white-bg{
+  	top: 10px;
+    z-index:1;
+  }
+  
+  .title-wrapper h3{
+    font-weight: 900;
+    font-size: 36px;
+    color: #ff007b;
+        margin: 35px 0px;
+  }
+ 
+  @media screen and (min-width: 992px){
+    .div-container{
+    	display:flex;
+       justify-content: center;
+    }
+  }
+  @media screen and (min-width: 1024px){
+    .div-container{
+      max-width:1200px;
+    }
+     .tabs li a{
+        font-size: 18px;
+    }
+  }
+   @media screen and (max-width: 1024px){
+     .tabs li a{
+        font-size: 17px;
+    }
+  }
+  
+   @media screen and (max-width: 768px){
+    .whole-wrapper .grid__item,
+    .whole-wrapper{width:100% !important;}
+    
+    .center-div.move{bottom: -32px;}
+     .tabs li a{font-size:14.5px;}
+  }
+  
+  @media screen and (max-width: 700px){
+    .tabs{display:block;    margin-bottom: 50px;    padding: 0px 15px; }
+    .tabs li a{
+      text-align:center;
+      display:block;
+      font-size:18px;
+    }
+  }
+  
+  @media screen and (max-width: 480px){
+  	.center-div.move {
+        bottom: -44px;
+    }
+  }
+  
+</style>
+
+<div id="wrapper-container" class="content-section">
+{% assign collection_list = "nationwide-shipping, cookie-cakes, cookie, cookbook-merch, baking-mixes, merch, gift-cards" | split: ", " %}
+	
+{% for collection_cat in collection_list  %}	
+	
+{% assign collection = collections[collection_cat] %}
+
+{% assign tagCount = 0 %}
+{% assign col_title = '' %}	
+ {% assign collection_list = "nationwide-shipping, cookie-cakes, cookbook-merch, baking-mixes, merch, gift-cards" | split: ", " %}
+  {% if collection.handle contains 'nationwide-shipping' %}
+  	{% assign product_tags = "Pick your own flavors, The best sellers, Taster Packs, Happy birthday, Seasonals, Gluten free, The bridesmaid pack, The party pack, Donate to a hospital team, The best gift!, Gift cards" | split: ", " %}
+    {% assign col_title = 'safe-to-eat cookie dough' %}	
+  {% elsif collection.handle contains 'valentines' %}
+  	 {% assign product_tags = "valentine's tasters, valentine's day treats" | split: ", " %}
+     {% assign col_title = "valentine's day" %}	
+  {% elsif collection.handle == 'cookie' %}
+  	 {% assign product_tags = "FOR ALL THE COOKIE MONSTERS!" | split: ", " %}
+     {% assign col_title = 'cookies' %}	
+   {% elsif collection.handle == 'cookie-cakes' %}
+  	 {% assign product_tags = "For Every Occasion" | split: ", " %}
+     {% assign col_title = 'cookie cakes' %}	
+  {% elsif collection.handle contains 'cookbook-merch' %}
+  	{% assign product_tags = "Cookbook, sprinkles, Heat-Treated Flour, Cookbook Bundles, More Bundles!, Cookbook Swag" | split: ", " %}
+    {% assign col_title = 'the cookbook shop' %}	
+  {% elsif collection.handle contains 'baking-mixes' %}
+  	{% assign product_tags = "Mix it up!, The 3-pack, The Bundle Pack" | split: ", " %}
+    {% assign col_title = 'baking mixes' %}	
+  {% elsif collection.handle contains 'merch' %}
+  	{% assign product_tags = "Gotta get that swag, The DŌ tote, Kitchen must haves, Add-Ons" | split: ", " %}
+    {% assign col_title = 'merch' %}	
+  {% elsif collection.handle contains 'gift-cards' %}
+    {% assign product_tags = "card" | split: ", " %}
+    {% assign col_title = 'gift cards' %}	
+  {% endif %}
+	
+
+
+<div class="title-wrapper" id="{{ col_title | handleize }}">
+  <div class="div-container" style="display:block;">
+  <div class="section-title" style="text-align:left; display:block; margin:0px auto; padding:0px 5px; max-width:1140px; position:relative;     padding-top: 30px; ">
+    <div class="lines white-footer"></div>
+  <h3>{{col_title}}</h3>
+  </div>
+  </div>
+</div>
+
+<div class="div-container">
+
+  
+{% for tag in product_tags %}
+  {% capture current_tag %}/{{ tag }}/{% endcapture %}
+  
+  {% if tag == "Don't forget all this sweet stuff!" or tag == 'Kitchen Essentials' %}
+  	{% assign color_code = '#13a1cb' %}
+  {% elsif tag == 'Gluten free' or tag == 'FOR ALL THE COOKIE MONSTERS!' or tag == 'Kitchen must haves' or tag == 'To Get You in the Spirit' %}
+  	{% assign color_code = '#9cdcf9' %}
+  {% elsif tag == 'Happy birthday' %}
+  	{% assign color_code = '#9cd0f0' %}
+  {% elsif tag == 'Pick your own flavors' %}
+  	{% assign color_code = '#d80016' %}
+  {% elsif tag == 'Seasonals' or tag == 'Best Sellers' or tag == 'sprinkles' or tag == 'The Bundle Pack' or tag == 'Gotta get that swag' %}
+  	{% assign color_code = '#d7e259' %}
+  {% elsif tag == 'Party pack' %}
+  	{% assign color_code = '#eb2176' %}
+  {% elsif tag == 'The best sellers' %}
+  	{% assign color_code = '#ed3381' %}
+   {% elsif tag == "valentine's day treats" %}
+  	{% assign color_code = '#d0e355' %}
+  {% elsif tag == 'The bridesmaid pack' or tag == 'Heat-Treated Flour' or tag == 'Mix it up!' %}
+  	{% assign color_code = '#f9d500' %}
+  {% elsif tag == 'The best gift!' %}
+  	{% assign color_code = '#a1def9' %}
+  {% elsif tag == 'Cookbook' %}
+  	{% assign color_code = '#f772aa' %}
+  {% elsif tag == 'Cookbook Swag' %}
+  	{% assign color_code = '#9cdcf9' %}
+  {% else %}
+  	{% assign color_code = '#ed3381' %}
+  {% endif %}
+  
+  <div class="whole-wrapper">
+  <div class="highlight-top" style="{% if col_title == "gift cards" or tag == "Don't forget all this sweet stuff!" %} display:none; {% endif %}">
+    
+  <h3 style="color:{{color_code}}">{{ tag }}</h3>
+    <span class="divider" style="background:{{color_code}}"></span>
+  </div>
+    
+  {% for product in collection.products %}
+    
+    
+    
+    {% for product_tag in product.tags %}
+    
+    
+      {% capture current_tag2 %}/{{ product_tag }}/{% endcapture %}
+    
+      {% if current_tag contains current_tag2 %}
+		{% assign tagCount = tagCount | plus: 1 %}
+    
+    	{% if collection.handle contains 'baking-mixes'  %}
+    		{% assign product_grid = 3 %} 
+    {% elsif collection.handle contains 'holiday'  %}
+    {% assign product_grid = 3 %}
+    	{% else %}
+            {% assign product_grid = 4 %}
+    	{% endif %}
+    
+    
+  		<div class="column-no-padding w-col  w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third" style="min-height:320px;">
+
+          {% include 'cookiedoSpecial' with collection.handle %}
+          
+  		</div>
+    
+    	 {% if tagCount == product_grid %}
+            </div>
+            </div>
+            <div class="div-container">
+            <div class="whole-wrapper">
+               {% assign tagCount = tagCount | minus: product_grid %}
+          {% endif %}
+    	
+      {% endif %}
+    
+    {% endfor %}
+    
+  {% endfor %}
+    
+  </div>
+{% endfor %}
+ </div>
+
+{% endfor %}
+ </div>
+<script>
+  jQuery(document).ready(function(){
+    jQuery("#wrapper-container .div-container").each(function(){
+      
+      jQuery(this).find('.whole-wrapper').each(function(){
+        var grid_counts = jQuery(this).find('.grid__item').length;
+      	if(grid_counts == 0){
+        	jQuery(this).remove();
+        }else if(grid_counts == 1){
+        	jQuery(this).css({'width':'25%'});	
+        }else if(grid_counts == 2){
+        	jQuery(this).css({'width':'50%'});	
+        }else if(grid_counts == 3){
+        	jQuery(this).css({'width':'75%'});	
+        }else if(grid_counts == 4){
+        	jQuery(this).css({'width':'100%'});	
+        }
+      });
+      
+      //var sec_count = jQuery(this).find('.whole-wrapper').length;
+     
+      
+      jQuery(this).find('.whole-wrapper').each(function(){
+      	var grid_count = jQuery(this).find('.grid__item').length;
+        if(grid_count == 0){
+        	jQuery(this).hide();
+        }else{
+          if(grid_count == 1){
+            jQuery(this).find('.grid__item').css({'width':'100%'});
+          }else if(grid_count == 2){
+            jQuery(this).find('.grid__item').css({'width':'50%'});
+          }else if(grid_count == 3){
+            jQuery(this).find('.grid__item').css({'width':'33.33%'});
+          }else if(grid_count == 4){
+            jQuery(this).find('.grid__item').css({'width':'25%'});
+          }
+        	console.log(grid_count);
+        }
+        
+        
+      });
+      
+      
+    });
+  });
+</script>
+<!--{ section 'gift-card' }-->

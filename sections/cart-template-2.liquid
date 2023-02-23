@@ -1,0 +1,764 @@
+{{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+{{ 'moment-with-locales.min.js' | asset_url | script_tag }}
+{{ 'moment-timezone-with-data.min.js' | asset_url | script_tag }}
+{{ 'jquery.datetimepicker.full.js' | asset_url | script_tag }}
+<link href="{{ 'cart.css' | asset_url }}" rel="stylesheet" type="text/css">
+
+<script> 
+  /*(function() {
+
+	moment.locale('en');
+  	var date_cur = moment().tz('America/New_York').format("MMM DD, YYYY HH:MM");
+    var new_date = new Date(date_cur);
+    //alert(new_date.getHours());
+       })();  */   
+</script>
+
+<style>
+  input#dcodeInput{
+    width: calc(100% - 70px);
+  }
+  
+  button#dcodeSubmit{
+    margin: 0;
+    height: 41px;
+  }
+  
+  .ui_date_picker {
+    display: none;
+  }
+  
+  .ui_date_options {
+    display: none;
+    background-color: #ff007b;
+    padding: 20px;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.85em;
+  }
+  
+  .ui_date_options_button {
+    background-color: white;
+    color: #ff007b;
+    margin: 20px 0px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    padding: 10px;
+  }
+  
+  .ui_date_options_button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.5s;
+  }
+</style>
+
+{% if section.settings.notification_enable %}
+	<div class="cart-notification-wrapper">
+      	<div class="cart-notification-title">{{ section.settings.notification_title }}</div>
+      	<div class="cart-notification-text">{{ section.settings.notification_text }}</div>
+    </div>
+{% endif %}
+
+<script>
+
+ function createCookie(name,value,expires) {
+  var now = new Date();
+  now.setFullYear(now.getFullYear()+1);
+  var expiresStr = expires ? expires : now.toUTCString();
+  document.cookie = name+"="+value+";expires="+expiresStr+"; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
+
+  // this script manages the state of the checkout options plugin as well as the Route plugin such that selecting a pickup option removes any present Route protection product
+  window.addEventListener('load', (event) => {
+    const pickup = document.querySelectorAll('.checkoutMethod')
+    const container = document.querySelector('.checkoutMethodsContainer')
+    const cookie = readCookie('pickupClick')
+
+    for(const div of pickup){
+      const innerText = div.querySelector('.checkoutMethodName').innerHTML
+      // cookie catches the correct state on reload, which is triggered by removing the route product
+      if(innerText === 'Store Pickup' && cookie === "true"){
+        eraseCookie('pickupClick')
+        div.click()
+      } 
+      div.addEventListener("click", function() {
+        if(innerText === 'Store Pickup'){
+          const routeSwitch = document.querySelector('.pw-switch')
+          const  cookieCheck = readCookie('pickupClick')
+          if(cookieCheck === null) {
+            if(routeSwitch.querySelector('.pw-toggle').innerHTML.toLowerCase() === 'remove'){            
+              createCookie('pickupClick', true)
+              // removing product triggers refresh
+              routeSwitch.click()
+            }
+          }
+        }
+      });
+    }
+  });
+
+</script>
+<div class="page-width" data-section-id="{{ section.id }}" data-section-type="cart-template">
+
+  <!-- End ReCharge code -->
+<script data-cfasync="false" type="text/javascript">if (typeof Shopify === "undefined") var Shopify = {}; Shopify.cart = {{ cart | json }}; </script> 
+<div id="sca-fg-owl-carousel">
+  <div id="freegift_cart_container" name="sca.fg.cart" class="sca-fg-cart-container" style="display: none;">
+    <div id="freegift_message" class="owl-carousel"></div>
+  </div> 
+  <div id="sca-fg-slider-cart" style="display: none;">
+    <div class="sca-fg-cart-title">
+      <strong>Select your free gift (s)</strong>
+    </div>
+    <div id="sca_freegift_list" class="owl-carousel"></div>
+  </div>
+</div>
+<div id="sca_fg_cart"></div>
+  
+
+  
+  {% if cart.item_count > 0 %}
+    <!-- <div class="section-header text-center">
+      <h1>&nbsp; <!-- {{ 'cart.general.title' | t }} </h1>
+    </div> !-->
+
+  
+  
+  
+    <form action="/cart" method="post" novalidate class="cart" id="cart_form_submit" onsubmit="return validateForm()">
+      
+      <div class="cart-left-content">
+      <table>
+        <thead class="cart__row cart__header">
+          <th colspan="2">{{ 'cart.label.product' | t }}</th>
+          <th>{{ 'cart.label.price' | t }}</th>
+          <th class="text-center">{{ 'cart.label.quantity' | t }}</th>
+          <th class="text-right">{{ 'cart.label.total' | t }}</th>
+        </thead>
+        <tbody>
+          
+          {% assign pickup_access = 'disable' %}
+          {% assign delivery_access = 'disable' %}
+          {% assign product_digital = 'disable' %}
+          {% assign product_counter = '0' %}
+          {% assign delivery_access_both = 'disable' %}
+          {% for item in cart.items %}
+          
+          
+          	  {% if item.vendor != 'NO-SD' %}
+                {% assign vendor_tag = 'Shipping' %}
+          	  {% endif %}
+				
+          
+          {% for collection in item.product.collections %}
+          	
+          	{% if collection.handle == 'best-seller-4-pack' %}
+          		{% assign category_handle = 'new' %}
+          		{% assign category_url = '/collections/best-seller-4-pack/' %}
+         	 {% elsif  collection.handle == 'build-a-box-6-pack' %}
+          		{% assign category_handle = 'new' %}
+          		{% assign category_url = '/collections/build-a-box-6-pack/' %}
+             {% elsif  collection.handle == 'cookie-do-6-pack' %}
+          		{% assign category_handle = 'new' %}
+          		{% assign category_url = '/collections/cookie-do-6-pack/' %}
+			 {% else %}
+				{% assign category_handle = 'new' %}	
+          	{% endif %}
+
+          		
+          {% endfor %}
+          
+		  
+		  
+          
+          {% for p in item.properties %}
+			  {% unless p.last == blank or p.first == "subscription_id" or p.first == "shipping_interval_frequency" or p.first == "shipping_interval_unit_type" %}
+			  
+				{% if p.first == 'Box Items' %}
+					{% assign class_name = p.last %}
+				{% endif %}
+				
+			  {% endunless %}
+			{% endfor %}
+			
+		  {% if category_handle != 'buildbox' %}
+			{% assign class_name = '' %}
+		  {% endif %}
+        
+          
+            {% if item.product.type == 'Cannot shipped' %}
+          		{% assign pickup_access = 'enable' %}
+          		{% assign product_counter = '1' %}
+            {% elsif item.product.type == 'Cannot pickup' %}
+          		{% assign delivery_access = 'enable' %}
+          		{% assign product_counter = '1' %}
+            {% elsif item.product.type == 'Digital' %}
+          		{% assign product_digital = 'enable' %}
+           {% elsif item.product.type == 'Insurance' %}
+          		{% assign product_digital = 'enable' %}
+          	{% elsif item.product.type == 'Gift Card' %}
+          		{% assign product_digital = 'enable' %}
+          	{% else %}
+          		{% assign product_counter = '1' %}
+            {% endif %}
+          	
+          
+          	{% if pickup_access == 'enable' and delivery_access ==  'enable' %}
+          		{% assign delivery_access_both = 'enable' %}
+          	{% endif %}
+          	
+          	{% assign calendar_delay = item.product.tags | downcase %}
+          	{% assign calendar_bost = false %}
+          	{% if calendar_delay contains "calendar-delay" %}
+          		{% assign calendar_bost = true  %}
+          	{% endif %}
+          
+          	{% assign one_day = item.product.tags | downcase %}
+          	{% assign calendar_one = false %}
+          	{% if one_day contains "one-day" %}
+          		{% assign calendar_one = true  %}
+          	{% endif %}
+		 
+            <tr class="line{{ forloop.rindex }} {% if calendar_bost == true %}calendar-delay{% endif %}{% if calendar_one == true %}one-day{% endif %} cart__row line_{{ class_name }} product_type_{{item.product.type}} border-bottom  cart-flex{% if forloop.first %} border-top{% endif %} gs__line {% if customer.tax_exempt %}gs__exempt{% endif %}" data-line="{{ forloop.rindex }}" data-variantid="{{ item.variant_id }}" {% if item.requires_shipping == true %} data-shipping-item="true"{%endif%}>
+              <td class="cart__image-wrapper">
+                <div>
+                  <img class="cart__image" src="{{ item | img_url: '95x95', scale: 2 }}" alt="{{ item.title | handleize }}" data-item-url="{{ item.url }}">
+                </div>
+              </td>
+              <td class="cart__meta small--text-left cart-flex-item">
+                  <div class="list-view-item__title">
+                  <a href="{{ item.url }}">
+                    {{ item.product.title }}
+                    {% if item.quantity > 1 %}
+                      <span class="medium-up--hide"><span class="visually-hidden">{{ 'cart.label.quantity' | t }}</span>(x{{ item.quantity }})</span>
+                    {% endif %}
+                  </a>
+                </div>
+                {% unless item.variant.title contains 'Default' %}
+                  <div class="cart__meta-text">
+                    {% for option in item.product.options %}
+                      {{ option }}: {{ item.variant.options[forloop.index0] }}<br/>
+                    {% endfor %}
+                  </div>
+                {% endunless %}
+
+                {% comment %}
+                  Optional, loop through custom product line items if available
+
+                  Line item properties come in as having two parts. The first part will be passed with the default form,
+                  but p.last is the actual custom property and may be blank. If it is, don't show it.
+
+                  For more info on line item properties, visit:
+                    - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+                
+                {%- assign property_size = item.properties | size -%}
+                {% if property_size > 0 %}
+                  <div class="cart__meta-text">
+                    {% for p in item.properties %}
+                      {% unless p.last == blank or p.first == "subscription_id" or p.first == "shipping_interval_frequency" or p.first == "shipping_interval_unit_type" %}
+                    
+                    {% if p.first != '_ZapietId' %}
+                        {{ p.first }}:
+
+                        {% comment %}
+                          Check if there was an uploaded file associated
+                        {% endcomment %}
+                        {% if p.last contains '/uploads/' %}
+                          <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                        {% else %}
+                          {{ p.last }}
+                        {% endif %}
+                    		<br />
+                    	{% endif %}
+                      {% endunless %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+				{% endcomment %}
+                
+                <span style="font-family: Arial,Helvetica,sans-serif;"><span style="font-family: Arial,Helvetica,sans-serif;">
+                  {%- assign property_size = item.properties | size -%}
+                  {% if property_size > 0 %}
+                  <div class="cart__meta-text">
+                    {% for p in item.properties %}
+                    {% unless p.last == blank or p.first == "subscription_id" or p.first == "shipping_interval_frequency" or p.first == "shipping_interval_unit_type" or  p.first == "_io_order_group" or  p.first == "_io_parent_order_group" or  p.first == "_io_field_name" %}
+                    {% if p.first != '_ZapietId' %}
+                    <div class="cart-property">
+                      <span class="hulkapps_option_name">{{ p.first }}:
+                      </span>
+                      {% comment %}
+                      Check if there was an uploaded file associated
+                      {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}
+                      </a> 
+                      <br/>
+                      {% else %}
+                      {{ p.last }} 
+                      <br/>
+                      {% endif %}
+                      {% endcomment %}
+                      {% if p.last contains '/uploads/' or p.last contains '.jpg' or p.last contains '.png' or p.last contains '.jpeg' or p.last contains '.svg' %}
+                      {% if p.last contains '_|_' %}
+                      {% assign propertyVal = p.last | split: '_|_' %}
+                      {% assign swatchVal = propertyVal | first | remove: 'http://' | replace: '&amp;amp;amp;', '&amp;amp;' | replace: '&amp;amp;lt;', '<' | replace: '&amp;amp;gt;', '>'  %}
+                      {% assign swatchImage = propertyVal | last %}
+                      <span class="hulkapps_option_value " style="cursor: pointer;" >
+                        <div style="width:35px;height:35px;background-image:url({{swatchImage}});background-size:cover;background-position: center center;" title="" data-placement="top" data-original-title="<div style='padding:5px 0px; text-align:center;width:170px;'><div class='swatch_tooltip_title'>{{ swatchVal }}</div><div class='swatch_tooltip_data' style='width:100%;height:150px;background-image:url({{swatchImage}});background-size:cover;background-position: center center;'></div></div>" data-html="true" data-toggle="tooltip">
+                        </div>
+                      </span>
+                      <br/>
+                      {% else %}
+                      <span class="hulkapps_option_value" >
+                        <a class="lightbox" href="{{ p.last }}">Uploaded File
+                        </a>
+                      </span>
+                      <br/>	
+                      {% endif %}
+                      {% else %}
+                      <span class="hulkapps_option_value" >{{ p.last | replace: '&amp;amp;amp;', '&amp;amp;' | replace: '&amp;amp;lt;', '<' | replace: '&amp;amp;gt;', '>'  }}
+                      </span>
+                      <br/>
+                      {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endunless %}
+                    {% endfor %}
+                  </div>
+                  {% endif %}</span></span>
+                
+               
+                {% if item.product.type == 'Cannot pickup' %}
+                <p style="color: #ff007b;">This is not available for in-store pickup</p>
+                {% endif %}
+                {% if item.product.type == 'Cannot shipped' %}
+                <p style="color: #ff007b;">This is not available for nationwide shipping.</p>
+                {% endif %}
+                
+                <p class="small--hide" style="margin-top:0px;">
+                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--small btn--tertiary cart__remove" aria-label="{{ 'cart.general.remove' | t }} {{ item.product.title }}">{{ 'cart.general.remove' | t }}</a>
+                </p>
+                
+              </td>
+              <td class="cart__price-wrapper cart-flex-item">
+                <span class="hulkapps-cart-item-price" data-key="{{item.key}}">
+                  {{ item.price | money }}
+                </span>
+
+                {% for discount in item.discounts %}
+                  <div class="cart-item__discount medium-up--hide">{{ discount.title }}</div>
+                {% endfor %}
+
+                <div class="cart__edit medium-up--hide">
+                  <button type="button" class="btn btn--secondary btn--small js-edit-toggle cart__edit--active" data-target="line{{ forloop.rindex }}">
+                    <span class="cart__edit-text--edit">{{ 'cart.general.edit' | t }}</span>
+                    <span class="cart__edit-text--cancel">{{ 'cart.general.cancel' | t }}</span>
+                  </button>
+                </div>
+              </td>
+              <td class="cart__update-wrapper cart-flex-item text-right">
+                
+               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--small btn--secondary cart__remove medium-up--hide" aria-label="{{ 'cart.general.remove' | t }} {{ item.product.title }}">{{ 'cart.general.remove' | t }}</a>
+                
+             
+                <div class="cart__qty">
+                  {% if category_handle == 'buildbox' %}
+                   x{{ item.quantity }}
+                  	<label for="updates_{{ item.key }}" class="cart__qty-label">{{ 'cart.label.quantity' | t }}</label>
+                  	<input class="cart__qty-input" type="hidden" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" pattern="[0-9]*">
+                  {% else %}
+                  	<label for="updates_{{ item.key }}" class="cart__qty-label">{{ 'cart.label.quantity' | t }}</label>
+                  	<input class="cart__qty-input" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" pattern="[0-9]*">
+                  {% endif %}
+                
+                </div>
+                <input type="submit" name="update" class="cart_updatemob btn btn--small cart__update medium-up--hide" value="{{ 'cart.general.update' | t }}">
+              </td>
+              <td class="text-right small--hide">
+                {% if item.original_line_price != item.line_price %}
+                  <div class="cart-item__original-price"><s>{{ item.original_line_price | money }}</s></div>
+                {% endif %}
+
+                <div>
+                  <span class="hulkapps-cart-item-line-price" data-key="{{item.key}}">
+                    {{ item.line_price | money }}
+                  </span>
+                </div>
+
+                {% for discount in item.discounts %}
+                  <div class="cart-item__discount">{{ discount.title }}</div>
+                {% endfor %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        
+      </table>
+        {% include "upsell" %}
+      </div>
+      <div class="cart-right-content">
+      
+        
+      <footer class="cart__footer">
+	 
+      <h3>Checkout Details</h3>
+       {% if product_counter != '0' %}
+      <div id="storePickupApp"></div>
+
+        <!--
+        <ul class="delivery_type_tabs">
+         
+              <li><a class="active" onclick="product_deliveryType('shipping_devlivery_container',this)" href="javascript:void('0')">Shipping</a></li>
+              <li><a onclick="product_deliveryType('pickup_container',this)" href="javascript:void('0')">Pickup</a></li>
+             Please enter your delivery date
+        </ul> 
+		-->
+        <div class="clearfix"></div>
+	  	<div id="shipping_devlivery_container" class="product_deliveryType">
+                <p>
+                  <label for="date" style="font-size:15px;">Enter your Delivery Zip Code:</label>
+                   <input id="validate" placeholder="Shippment Date" maxlength="5" type="hidden"  value="" />
+                   
+                  <!--  name="attributes[DestZip]" -->
+                   <input id="date_zipcode" data-type="{{pickup_access}}" placeholder="Zip Code" maxlength="5" type="text" name="attributes[DestZip]" pattern="\d*" style="float:left; height:38px; margin-right: 6px; width: calc(100% - 127px);" value="{{ cart.attributes["DestZip"] }}" required class="required"/>
+				 
+                  <input id="shippingType" placeholder="Shippment Type" maxlength="5" type="hidden" name="attributes[Z]"  value="{{ cart.attributes["Z"] }}" />
+                   <input id="pickupDate" placeholder="Shippment Date" maxlength="5" type="hidden" name="attributes[SD]"  value="{{ cart.attributes["SD"] }}" />
+				   
+				   <input id="date" placeholder="Pick a Delivery Date" maxlength="5" type="text" name="attributes[DD]" style="float:left; height:38px;  width: 100%; margin-top: 10px;" value="" required class="required ui_date_picker" readonly/>
+                                    
+				   <input id="shippingState" placeholder="Shippment State" maxlength="5" type="hidden" name="attributes[State]"  value="{{ cart.attributes["State"] }}" />
+				   
+                  <button type="button" style="height:38px; line-height:1;" onclick="delivery_datepick()" class="btn">ENTER</button>
+                  <!--<span style="position:  absolute;left:  0px; bottom: 0px; font-weight: 100 !important;font-size: 13px;" class="instructions"> We do not deliver during the weekend.</span> -->
+                </p>
+          
+				
+          		<div class="clearfix"></div>
+          
+                <div id="ui-date-options" class="ui_date_options">
+                  <div class="ui_date_options_title">When would you like your order?</div>
+                  <div id="ui-date-options-asap" class="ui_date_options_button">Please deliver ASAP</div>
+                  <div id="ui-date-options-pick" class="ui_date_options_button">Let me choose my date</div>
+                </div> 
+          
+          		<div id="ui-datepicker-div" class="ui_date_picker"></div>          		
+			</div>
+          <div id="pickup_container" class="product_deliveryType" style="display:none;">
+            <p class="line-item-property__field" style="width:100%;">
+              <label for="pick-up-time" style="font-size:15px;">Pick Up Time</label>
+              <input id="pick-up-time" data-type="{{delivery_access}}" type="text" autocomplete="off" name="attributes[PD]" placeholder="Pick a Product Pickup Time" style="width: 100%; max-width: 352px;" readonly>
+            </p>
+          </div>
+
+        {% endif %}
+        
+        
+           {% if vendor_tag != blank %}
+            	<input type="hidden" id="shipping-method-field" name="attributes[ShippingType]" value="{{vendor_tag}}">
+            	<input type="hidden" name="attributes[perishable]" value="true">
+            {% else %}
+            	<input type="hidden" id="shipping-method-field" name="attributes[ShippingType]" value="Pickup">
+            	<input type="hidden" name="attributes[perishable]" value="false">
+            {% endif %}
+		<div class="grid__item medium-up--one-half cart-note" style="width:100%;margin-bottom: 15px;">
+              <label style="margin-bottom: 15px; margin-top: 10px; font-size: 12px; line-height: 1em;">We will try our best to get it to you on your requested date, however we are unable to guarantee exact delivery dates.</label>
+            </div>
+        
+
+        <div class="grid">
+          {% if section.settings.cart_notes_enable %}
+            <div class="grid__item medium-up--one-half cart-note" style="width:100%;margin-bottom: 15px;">
+              <label style="margin-bottom: 0px; font-size: 15px;" for="CartSpecialInstructions" class="cart-note__label small--text-center">Add a gift note to your order</label>
+              <textarea name="note" id="CartSpecialInstructions" class="cart-note__input">{{ cart.note }}</textarea>
+            </div>
+          <!--
+          	<div class="grid__item medium-up--one-half cart-note" style="width:100%;margin-bottom: 15px;">
+              
+              <label style="margin-bottom: 0px; font-size: 15px;" for="orderInstructions" class="cart-note__label small--text-center">Want your order on a specific day? </label>
+              <textarea name="attributes[Special Instructions]" id="orderInstructions" class="cart-note__input" placeholder="Let our team know!">{{ cart.attributes["Order Instructions"] }}</textarea>
+              <label style="margin-bottom: 15px; margin-top: 10px; font-size: 12px; line-height: 1em;">We will try our best to get it to you on your requested date, however we are unable to guarantee exact delivery dates. If you do not receive an email confirming your date, please email info@cookiedonyc.com.</label>
+            </div>
+-->
+          {% endif %}
+          <div style="width:100%;" class="grid__item text-right small--text-center{% if section.settings.cart_notes_enable %} medium-up--one-half{% endif %}">
+            <div class="sub_total">
+              <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
+              <span class="cart__subtotal"><span class="hulkapps-cart-original-total">
+                {{ cart.total_price | money }}
+                </span></span>
+            </div>
+            {% if cart.total_discounts > 0 %}
+              <div class="cart__savings">
+                {{ 'cart.general.savings' | t }}
+                <span class="cart__savings-amount">{{ cart.total_discounts | money }}</span>
+              </div>
+            {% endif %}
+            <div class="cart__shipping">{{ 'cart.general.shipping_at_checkout' | t }}</div>
+            
+            <!-- Route Code Edited 02/03/2022 -->
+            <div class="route-div" style="margin-top: -20px;"></div>
+            <style>
+              
+              .pw-route-protection .pw-toggle-wrapper .pw-switch {
+                   margin-right: 23px !important; 
+              }
+              .pw-price {
+               	    background-color: #fbfafa !important;
+                	padding: 4px 5px 2px 2px !important;
+              }
+
+            @media (max-width: 767px){
+              .pw-price {
+               	    background-color: white !important;
+              }
+
+            </style>
+            <!-- Route Code End -->
+             
+            <a href="/" class="btn btn--secondary btn--small-wide cart__update cart__continue--large reverse" >{{ 'cart.general.continue_shopping' | t }}</a>
+            
+            <div id="alert-error"></div>
+            <input type="submit" id="cart_update"  name="update" class="btn btn--secondary cart__update cart__update--large small--hide" value="{{ 'cart.general.update' | t }}">
+            {% if product_counter != '0' %}
+           	 <input type="submit" id="cart_checkout" name="checkout" class="btn btn--small-wide checkout-btn" value="{{ 'cart.general.checkout' | t }}">
+			{% else %}
+            	<input type="submit" id="cart_checkout" name="checkout" class="btn btn--small-wide checkout-btn" value="{{ 'cart.general.checkout' | t }}">
+            {% endif %}
+			<div class="clearfix"></div>
+            
+            {% comment %} 
+
+            {% if additional_checkout_buttons %}
+              <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+            {% endif %}
+            {% endcomment %}
+         
+
+          </div>
+         
+        </div>
+      </footer>
+      </div>
+    </form>
+  {% else %}
+    <div class="empty-page-content text-center">
+      <h1>{{ 'cart.general.title' | t }}</h1>
+      <p class="cart--empty-message">{{ 'cart.general.empty' | t }}</p>
+      <div class="cookie-message">
+        <p>{{ 'cart.general.cookies_required' | t }}</p>
+      </div>
+      <a href="/" class="btn btn--has-icon-after btn--small-wide cart__continue-btn reverse">{{ 'general.404.link' | t }}{% include 'icon-arrow-right' %}</a>
+    </div>
+  {% endif %}
+</div>
+
+<p id="demo"></p>
+
+{% schema %}
+  {
+    "name": "Cart page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "notification_enable",
+        "label": "Enable Notification",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "notification_title",
+        "label": "Notification Title"
+      },
+      {
+        "type": "richtext",
+        "id": "notification_text",
+        "label": "Notification Text"
+      }
+    ]
+  }
+{% endschema %}
+
+
+<script>
+  /*
+  jQuery('#cart_update, .cart_updatemob').click(function(){
+  	document.getElementById('validate').value ='';
+  });
+  
+  
+ var shipping_items = jQuery('table tr[data-shipping-item=true]').length;
+
+  if(shipping_items > 0){
+    jQuery('body').find('#validate').val('1');
+  	//jQuery('#shipping_devlivery_container').show();
+  }else{
+    jQuery('body').find('#validate').val('');
+  	//jQuery('#shipping_devlivery_container').hide();
+  }
+  
+  
+  $('body').on("click",'.picker__box' ,function() {
+      //var work = $(this).val();
+      console.log('ok');
+  });
+  
+  $(".pickadate").on("click",function(e){
+    e.stopPropagation();
+    alert('ok');
+  });
+ */
+ function remove_product($this,$this_btn){
+    
+    jQuery($this_btn).html('Please wait ...');
+    jQuery($this_btn).attr('disabled', true);
+    
+    //var size_li = jQuery('.'+$this).size();
+    //console.log(size_li);
+  
+    var products = {};
+    
+    jQuery('.'+$this).each(function(){
+      
+
+      var product_id = jQuery(this).find('.product_id').val();
+      products[product_id] = 0;
+      
+    });
+
+    jQuery.post('/cart/update.js', {updates: products})
+    //jQuery.post('/cart/update.js', {updates: {ids}});
+    jQuery('.'+$this).hide();
+    
+    setTimeout(function(){
+      window.location.href = "/cart";
+    }, 2000);
+    
+  }
+  /*
+  function product_deliveryType(container, $this){
+  	jQuery('#'+container).show().siblings('.product_deliveryType').hide();
+    jQuery('.delivery_type_tabs li a').removeClass('active');
+    jQuery($this).addClass('active');
+  }
+  */
+</script>
+
+{% if product_counter != '0' %}
+<script>
+  
+ function validateForm() {
+   
+  	var shipping_method = jQuery('#storePickupApp').find('.checkoutMethod.active').find('.checkoutMethodName').text();
+   if(shipping_method == 'Store Pickup'){
+   	return true;
+   }
+   	 
+   var date_zipcode = document.getElementById('date_zipcode').value;
+    var delivery_date = document.getElementById('date').value;
+   
+    var data_type_2 = $('#date_zipcode').attr('data-type');
+    var data_type = $('#pick-up-time').attr('data-type');
+    
+   if(jQuery('#storePickupApp .checkoutMethod:first-child').hasClass('active')){
+      if(data_type_2 == 'disable'){
+          if (date_zipcode == "" ) {
+              alert("Please enter your zip code");
+              return false;
+          }else if(delivery_date == ""){
+              alert("Please select your delivery date");
+              return false;
+          }else{
+            return true;
+        	jQuery('#cart_form_submit').submit();
+          }
+      }else{
+      	 alert("There is an item in your cart that is not available for shipped. Please remove if you wish to pick up your order in-store.");
+         return false;
+      }
+    }else if(jQuery('#storePickupApp .checkoutMethod:last-child').hasClass('active')){
+      var pickup_time = jQuery('body').find('#get_date_value').val();
+      if( data_type == 'disable' ){
+        if(pickup_time == ''){
+        	alert("Please select pick up time.");
+            return false;
+        }else{
+        	jQuery('#cart_form_submit').submit();
+        }
+              
+      }else{
+      	alert("There is an item in your cart that is not available for in-store pickup. Please remove if you wish to pick up your order in-store.");
+      	return false;
+      }
+    }
+
+}
+
+  jQuery(document).ready(function(){
+    $("#ui-date-options-pick").on('click',function() {      	
+      	$(".ui_date_options").hide();
+      	$(".ui_date_picker").show();
+    });
+	$("#ui-date-options-asap").on('click',function() {
+		$(".ui_date_picker a.ui-state-active").trigger('click');
+      	$(".ui_date_options").hide();
+      	$(".ui_date_picker").show();
+    });                                  
+    jQuery(document).on('click', '.checkoutMethod', function(e){
+      e.preventDefault();
+      setTimeout(function(){
+      var shipping_method = jQuery('#storePickupApp').find('.checkoutMethod.active').find('.checkoutMethodName').text();
+      if(shipping_method == 'Store Pickup'){
+        jQuery('#shipping-method-field').val('Pickup');
+        jQuery('#shipping_devlivery_container').hide();
+      }else{
+        jQuery('#shipping-method-field').val('Shipping');
+        jQuery('#shipping_devlivery_container').show();
+      }
+	}, 1000);
+    });
+  });
+</script>
+{% else %}
+<script>
+  	function validateForm()
+  	{
+       window.location = "/checkout?note=" + encodeURIComponent(jQuery('#CartSpecialInstructions').val());       
+       return false;
+  	}
+</script>
+{% endif %}
+
+{% if delivery_access_both == 'enable' %}
+	<script>
+      jQuery(document).ready(function(){
+        jQuery(document).on('click', '#cart_checkout', function(e){
+          	jQuery('#alert-error').html('<span style="display: block; text-align: left; background: rgb(58, 188, 219); color: #fff; padding: 13px; font-size: 12px; margin-bottom: 10px;">Oops! Looks like your order contains both items that are meant for shipping only and pickup only! Please remove one type to move forward to checkout.</span>');
+           e.preventDefault(); 
+          return false;
+        });
+      });
+    </script>
+{% endif %}

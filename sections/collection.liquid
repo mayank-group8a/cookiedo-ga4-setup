@@ -1,0 +1,89 @@
+<script src="{{ 'flickity.pkgd.min.js' | asset_url }}"></script>
+<link href="{{ 'flickity.css' | asset_url }}" rel="stylesheet" type="text/css">
+
+<div class="div-container top-padding">
+      <div class="content-wrapper w-container">
+        {% if section.settings.title != blank %}
+            <h2 class="h2-center">{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        <p class="subtitle center w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">we offer nationwide shipping</p>
+      </div>
+      <div data-animation="slide" data-duration="1000" data-infinite="1" class="slider-testimonials w-slider">
+        <div class="w-slider-mask">
+          <div class="w-slide">
+            <div class="main-carousel row-5 w-row">
+              {% for product in collections.nationwide-shipping.products %}
+                  <div class="carousel-cell column-no-padding w-col w-col-3">
+                   {% include 'product-card-grid' %}
+                  </div>
+              
+                {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+  $('.main-carousel').flickity({
+  cellAlign: 'left',
+  contain: true
+});
+</script>
+{% schema %}
+  {
+    "name": "Featured collection",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "grid",
+        "label": "Products per row",
+        "min": 2,
+        "max": 50,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "type": "range",
+        "id": "rows",
+        "label": "Rows",
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "label": "Show 'View all' button",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+

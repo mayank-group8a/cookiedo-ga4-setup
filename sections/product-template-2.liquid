@@ -1,0 +1,641 @@
+
+<script src="{{ 'mac-built-a-box12-custom.js' | asset_url }}"></script>
+
+<style>
+  .page-width{
+  	padding:0px;
+  }
+  	.team-member-box:hover .cookie-image {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+    }
+   .team-member-box {
+  	cursor:pointer;
+    vertical-align: top;
+    
+  }
+  .buildbox-section-main-block .team-member-box.side-border.last {
+    padding-top: 65px;
+}
+  .title.tiny{
+  	line-height:17px;
+  }
+  
+  .mobile_description{
+  	padding:25px;
+    text-align:left;
+    display:block;
+  }
+  .desktop_description{
+  	padding:50px;
+    text-align:left;
+    display:none;
+  }
+  .mobile_description ul,
+  .desktop_description ul{
+  	padding-left:15px;
+  }
+  
+  .buildbox-container .box-half li{
+  	width: 46%;
+	padding-top: 46%;
+  }
+  
+  .team-member-box {
+        overflow: visible;
+        height: 120px;
+        border: 1px solid #000;
+        text-align: center;
+      	margin-top:80px;
+      	margin-bottom:25px;
+          vertical-align: top;
+    }
+    .team-member-box.side-border.last {
+        position: relative;
+        top: 0px;
+        width: auto;
+        height: 120px;
+        margin-bottom: 0px;
+        padding-top: 100px;
+        border-right-style: none;
+        text-align: center;
+        z-index: 1;
+      	margin-top:0px;
+    }
+    
+    .hidden-ingredients.oatmeal{
+    	position: absolute;
+        left: 48%;
+        transform: translateX(-48%);
+        width: 100%;
+        bottom: 15px;
+       transition: all 0.7s;
+     }	
+    .team-member-box.hover_link_image:hover .team-member-text{
+    	display:block !important;
+      	opacity:0;
+    }
+    
+    .cookie {
+        position: absolute;
+        left: 0px;
+        top: -80px;
+        right: 0px;
+    }
+  
+  .backtop{
+  	    position: relative;
+    top: 2px;
+        font-size: 26px;
+    margin-left: 10px;
+  }
+    
+
+  @media screen and (min-width: 992px){
+  	.team-member-box {
+        width: 32%;
+    }
+    .msgpopup{
+    	display:none !important;
+    }
+  }
+  
+  @media screen and (max-width: 992px){
+  	.team-member-box {
+        width: 48%;
+    }
+  }
+  
+  @media screen and (min-width: 768px){
+    .desktop_description{
+    	display:none;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .desktop_description{
+    	display:none;
+    }
+    .mobile_description{
+    	display:block;
+    }
+    .build-a-box{
+    	width:100%;
+    }
+    
+    .team-member-box {
+        width: 32%;
+    }
+  }
+  
+  @media screen and (min-width: 580px){
+    .buildbox-container ul li{
+		width: 29%;
+    	padding-top: 29%;
+    }
+    .buildbox-container ul.cart-thumbnail li{
+		width: 29%;
+    	padding-top: 29%;
+    }
+    .buildbox-container .box-half li{
+      width: 46% !important;
+      padding-top: 46% !important;
+    }
+  }
+  
+  @media screen and (max-width: 580px){
+  	.team-member-box {
+        width: 48%;
+    }
+  }
+  
+
+  .msgpopup {
+    position: fixed;
+    top: 50% !important;
+    left: 50%;
+    background: #fff;
+    z-index: 999;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 100%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+}
+  
+@media screen and (max-width: 667px){
+  	.buildbox-container ul.cart-thumbnail li,
+    .buildbox-container ul li{
+    	width: 31%;
+        padding-top: 31%;
+        margin: 1%;
+    }
+  .buildbox-container{
+    	display:block;
+    	margin-top:25px;
+    } 
+   
+  .buildbox-container.four_box_container ul.cart-thumbnail li,
+  .buildbox-container.four_box_container li{
+      width: 23%;
+      padding-top: 23%;
+      margin: 1%;
+  }
+  .buildbox-container ul.cart-thumbnail li a{
+  	line-height: 26px;
+    width: 25px;
+    height: 25px;
+  }
+  .buildbox-section-main-block .flavers-list{
+  	padding-bottom: 0px; 
+  }
+} 
+  
+  
+</style>
+
+{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}
+<div class="product-template__container single-product page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+  <meta itemprop="name" content="{{ product.title }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
+
+  {% comment %}
+    Get first variant, or deep linked one
+  {% endcomment %}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign product_image_zoom_size = '1024x1024' -%}
+  {%- assign product_image_scale = '2' -%}
+  {%- assign enable_zoom = section.settings.enable_zoom -%}
+
+  {% case section.settings.image_size %}
+    {% when 'small' %}
+      {%- assign product_image_width = 'medium-up--one-third' -%}
+      {%- assign product_description_width = 'medium-up--two-thirds' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-third' -%}
+      {%- assign height = 345 -%}
+    {% when 'medium' %}
+      {%- assign product_image_width = 'medium-up--one-half' -%}
+      {%- assign product_description_width = 'medium-up--one-half' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-quarter' -%}
+      {%- assign height = 530 -%}
+    {% when 'large' %}
+      {%- assign product_image_width = 'medium-up--two-thirds' -%}
+      {%- assign product_description_width = 'medium-up--one-third' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-fifth' -%}
+      {%- assign height = 720 -%}
+    {% when 'full' %}
+      {%- assign product_image_width = '' -%}
+      {%- assign product_description_width = '' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-eighth' -%}
+      {%- assign height = 1090 -%}
+      {%- assign enable_zoom = false -%}
+  {% endcase %}
+  
+ {% assign delivery_option = product.metafields.buildbox %}
+ {% assign key = 'buildbox' %}
+ 
+{% assign buildbox_count = delivery_option['buildbox'] %}
+  {% assign buildbox_count = buildbox_count | plus: 0 %}
+  <div class="buildbox-container {% if buildbox_count < 5 %}four_box_container{% endif %}">
+        <ul class="placeholder {% if buildbox_count < 5 %}box-half{% endif %}">
+         {% for i in (1..buildbox_count) %}
+           <li></li>
+         {% endfor %}
+        </ul>
+        <ul id="cart-thumbnail" class="cart-thumbnail {% if buildbox_count < 5 %}box-half{% endif %}">
+        	
+        </ul>
+      </div>
+  
+  
+   <form id="buildbox_form" action="/cart/add" data-productid="{{ product.id }}" method="post" enctype="multipart/form-data" class="product-form HELLO2 product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="{{ section.id }}">
+
+
+
+
+            {% unless product.has_only_default_variant %}
+              {% for option in product.options_with_values %}
+                <div class="selector-wrapper js product-form__item">
+                  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+                    {{ option.name }}
+                  </label>
+                  <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                    {% for value in option.values %}
+                      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            {% endunless %}
+			
+     		<label for="ProductSelect-{{ section.id }}"><span style="display:none;">Varaint select</span></label>
+            <select style="visibility:hidden; overflow:hidden; height:0px;" name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants no-js">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                    {{ variant.title }}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+            <div class="clearfix"></div>
+     		
+            <div id="line_items" style="visibility:hidden; overflow:hidden; height:0px;">
+             
+    		 </div>
+     
+     	<div class="cart-footer-container">
+                  <div id="build-a-box-summary">
+                      <p class="counter"><span class="count">0</span> of {{buildbox_count}} selected</p>
+               </div>
+            </div>
+     
+         <div class="cart-footer-container" id="AddToCartForm">
+            
+           <div class="product-actions-wrapper">
+            <div class="product-signle-options clearfix">
+              {% if section.settings.show_quantity_selector %}
+                <div class="product-single-quantity is-hidden">
+                  <label for="Quantity">Qty :</label>
+                  <input id="Quantity" name="quantity" value="1" min="1" class="product-form__input quantity-selector form-control" type="number" pattern="[0-9]*">
+                </div>
+              {% endif %}
+			
+              <div class="product-list-actions"> 
+                    <div class="product-single-prices custom_product-price">
+                      <label id="ProductPrice" class="price" itemprop="price"><span>{{ product.price | money }}</span></label>
+                    </div>
+                <button type="button" class="button w-button bundlePro btn btn-lg btn-primary disabled-btn">
+                	<span id="AddToCartText-{{ section.id }}">
+                    {% unless current_variant.available %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% else %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% endunless %}
+                  </span>
+                </button>
+                 <button type="submit" style="display:none;" class="enabled-btn button w-button bundlePro btn btn-lg btn-primary" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+                  <span id="AddToCartText-{{ section.id }}">
+                    {% unless current_variant.available %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% else %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% endunless %}
+                  </span>
+                </button>
+               </div>
+              </div>
+            </div>
+         </div>
+
+       </form>
+  
+</div>
+
+{% if collection %}
+  <div class="text-center return-link-wrapper">
+    <a href="{{ collection.url }}" class="btn btn--secondary btn--has-icon-before return-link">
+      {% include 'icon-arrow-left' %}
+      {{ 'products.product.back_to_collection' | t: title: collection.title }}
+    </a>
+  </div>
+{% endif %}
+ 
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+
+<div class="clearfix"></div>
+
+{% if section.settings.show_share_buttons %}
+  <div class="article-sharing-social">
+   {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+  </div>
+
+{% endif %}
+
+{% endunless %}
+
+
+<script>
+  
+  function scroll_for_top(){
+  	jQuery('html, body').animate({scrollTop:$('#cart-thumbnail').position().top}, 'slow');
+  }
+  
+  function count() {
+    array_elements = ["a", "b", "c", "d", "e", "a", "b", "c", "f", "g", "h", "h", "h", "e", "a"];
+
+    array_elements.sort();
+
+    var current = null;
+    var cnt = 0;
+    for (var i = 0; i < array_elements.length; i++) {
+        if (array_elements[i] != current) {
+            if (cnt > 0) {
+               // document.write(current + ' comes --> ' + cnt + ' times<br>');
+            }
+            current = array_elements[i];
+            cnt = 1;
+        } else {
+            cnt++;
+        }
+    }
+    if (cnt > 0) {
+        //document.write(current + ' comes --> ' + cnt + ' times');
+    }
+
+}
+  function create_buildbox($this){
+    var image_src = jQuery($this).attr('data-image');
+    var product_price = jQuery($this).attr('data-price');
+    if(product_price > 0){
+   	    product_price =	product_price.slice(0, -2);
+    }
+    var product_id = jQuery($this).attr('data-id');
+    var product_title = jQuery($this).attr('data-title');
+      
+   var line_item = 1; 
+    var counter = {{buildbox_count}};
+    if(jQuery('.cart-thumbnail li').length < counter){
+    	var cart_image = jQuery('.cart-thumbnail').append('<li data-title="'+product_title+'" data-price="'+product_price+'" data-id="'+product_id+'" style="background:url('+image_src+') no-repeat center center #fff; background-size:cover;"><a href="javascript:void(\'0\')" onclick="remove_item(this)" data-price="'+product_price+'" data-line_item="item_'+line_item+'"><i class="fa fa-times" aria-hidden="true"></i></a><input type="hidden" name="id" data-productid="{{ product.id }}" value="'+product_id+'" /></li>');
+    	 
+    	var sub_price = jQuery('#ProductPrice span').html();
+      	var total_price = parseFloat(sub_price) + parseFloat(product_price);
+      	//jQuery('#ProductPrice span').html(total_price.toFixed(2));
+      
+      	jQuery('#build-a-box-summary .counter span').html(jQuery('.cart-thumbnail li').length);
+      	var cart_count = jQuery('#cart-thumbnail li').length;
+      
+      jQuery('body .msgpopup').show();
+  	  jQuery('body .msgpopup').html('<span> <b class="pro_name">'+product_title+'</b> has been added, <b class="pro_count">'+cart_count+'</b><b>/'+counter+'</b></span><a onclick="scroll_for_top()" class="backtop" href="javascript:void(\'0\')"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></a>');
+   		
+       setTimeout(function(){
+       	jQuery('body .msgpopup').fadeOut();
+       }, 1500);
+    
+    }
+    jQuery('#macarons_form').html('');
+    jQuery('#line_items').html('');
+    var products = [];
+    jQuery('.cart-thumbnail li').each(function(){
+      	var product_ID = jQuery(this).attr('data-id');
+        var product_name = jQuery(this).attr('data-title');
+        products.push(product_name);
+      	jQuery('#line_items').append('<input id="item_'+line_item+'" type="text" name="properties[Item '+line_item+']" value="'+product_name+'">');
+      	jQuery('#macarons_form').append('<input name="id[]" class="form-control" value="'+product_ID+'" type="hidden"><input id="Quantity" name="quantity[]" class="quantity-selector form-control" value="1" type="hidden">');
+     line_item++;
+    });
+    
+     var cart_count = jQuery('.cart-thumbnail li').length;
+    var counter = {{buildbox_count}};
+    if(cart_count < counter){
+    	jQuery('.enabled-btn').hide();
+      	jQuery('.disabled-btn').show();
+    }else{
+      jQuery('.enabled-btn').show();
+      jQuery('.disabled-btn').hide();
+    }
+    
+    
+  }
+  
+  function remove_item($this){
+    
+    var product_price = jQuery($this).attr('data-price');
+    var sub_price = jQuery('#ProductPrice span').html();
+    var total_price = parseFloat(sub_price) - parseFloat(product_price);
+    var line_item = jQuery($this).attr('data-line_item');
+    //jQuery('#ProductPrice span').html(total_price.toFixed(2));
+    
+  	jQuery($this).parent().remove();
+    jQuery('#line_items #'+line_item).remove();
+    
+    jQuery('#build-a-box-summary .counter span').html(jQuery('.cart-thumbnail li').length);
+    
+     var cart_count = jQuery('.cart-thumbnail li').length;
+    var counter = {{buildbox_count}};
+    if(cart_count < counter){
+    	jQuery('.enabled-btn').hide();
+      	jQuery('.disabled-btn').show();
+    }else{
+      jQuery('.enabled-btn').show();
+      jQuery('.disabled-btn').hide();
+    }
+    
+    jQuery('#line_items').html('');
+    var line_item = 1;
+    var products = [];
+    jQuery('.cart-thumbnail li').each(function(){
+      	var product_ID = jQuery(this).attr('data-id');
+        var product_name = jQuery(this).attr('data-title');
+        products.push(product_name);
+      	jQuery('#line_items').append('<input id="item_'+line_item+'" type="text" name="properties[Item '+line_item+']" value="'+product_name+'">');
+      	line_item++;
+    });
+    
+    var add_cart_count = jQuery('.cart-thumbnail li').length;
+    
+  }
+  
+  function buildbox_check(){
+  	/*var cart_count = jQuery('.cart-thumbnail li').length;
+    var counter = {{buildbox_count}};
+    if(cart_count < counter){
+    	alert('Please select '+counter+' cookieDO Items');
+        return false;
+    }else{
+    	document.getElementById("buildbox_form").submit();
+    }
+    */
+  }
+  
+  jQuery('.bundlePro.disabled-btn').on('click', function(){
+    var cart_count = jQuery('.cart-thumbnail li').length;
+    var counter = {{buildbox_count}};
+    if(cart_count < counter){
+    	alert('Please select '+counter+' cookieDO Items');
+    }else{
+    	//document.getElementById("buildbox_form").submit();
+    }
+    
+  });
+</script>	
+
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          },
+          {
+            "value": "full",
+            "label": "Full-width"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quantity_selector",
+        "label": "Show quantity selector",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_variant_labels",
+        "label": "Show variant labels",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show vendor",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_zoom",
+        "label": "Enable image zoom",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "header_title",
+        "label": "Header Title",
+        "default": "CookieDo Buildbux"
+      }
+    ],
+	"blocks": [
+            {
+              "type": "product-detail-section",
+              "name": "Additional content",
+              "settings": [
+                  {
+                  "type": "text",
+                  "id": "setion_heading",
+                  "label": "Title"
+                },
+				{
+                  "type": "html",
+                  "id": "setion_description",
+                  "label": "Description"
+                }
+              ]
+            }
+          ]
+  }
+{% endschema %}
+
+<script>
+  function accourdian($this){
+    
+    var currentTime = new Date()
+    var day = currentTime.getDate() + 4;
+    
+    if(jQuery($this).find(".hidden-text").css('display') == 'block'){
+    	jQuery($this).find(".hidden-text").slideUp();
+      	jQuery($this).find("#plus").show();
+      	jQuery($this).find("#minus").hide();
+      
+    }else{
+      	jQuery(".div-store #minus").hide();
+      	jQuery(".div-store #plus").show();
+    	jQuery('.div-store .hidden-text').slideUp();
+      	jQuery($this).find("#minus").show();
+      	jQuery($this).find("#plus").hide();
+  		jQuery($this).find(".hidden-text").slideToggle();
+    
+    }
+    
+  }
+  
+</script>
+
+<script>
+  var fromDate = Date.today().addDays(2);
+  if (fromDate.is().saturday() || fromDate.is().sunday() || fromDate.is().monday()) { 
+    fromDate = fromDate.next().tuesday();
+  }
+ 
+  document.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');
+  
+</script>
+
+<script>
+  var pickDate = Date.today().addDays(1);
+  if (pickDate.is().monday()) { 
+    pickDate = pickDate.next().tuesday();
+  }
+ 
+  document.getElementById('pickDate').innerHTML = pickDate.toString('dddd MMMM dS');
+  
+</script>

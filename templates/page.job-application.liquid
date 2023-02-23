@@ -1,0 +1,407 @@
+{% section 'header-featured-banner' %}
+
+
+{% if page.handle == "operations-job-application" %}
+
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+      <div class="form-block left-0 w-form plan-event-form-block">
+        <div id="email-form-3" class="w-clearfix">
+      <div class="contact-form form-vertical">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+        	<div style="padding-top:50px; display:block; clear:both;"></div>
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+        <h2>job application</h2>
+        
+        <input type="hidden" name="contact[subject]" value="Job Application" />
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormName">First Name*</label>
+              <input type="text" id="FlavorSuggestionFormName" name="contact[first_name]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormLastName" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Last Name*</label>
+              <input type="text" id="FlavorSuggestionFormLastName" name="contact[last_name]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormEmail">Email Address*</label>
+              <input type="email" id="FlavorSuggestionFormEmail" name="contact[email]" value="" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="JobApplicationPhone" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Phone*</label>
+              <input type="text" id="JobApplicationPhone" name="contact[phone]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+
+          <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="FlavorSuggestionFormFavorite">Favorite Cookie?*</label>
+                <input type="text" id="FlavorSuggestionFormFavorite" name="contact[favorite cookie]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required>
+              </div>
+          </div>
+        
+         <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormPosition">Desired Position*</label>
+              <input type="text" id="FlavorSuggestionFormPosition" name="contact[desired position]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormWeek" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Are you available Monday - Thursday?*</label>
+              <input type="text" id="FlavorSuggestionFormWeek" name="contact[Are you available Mon - Thurs?]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        
+          <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+              <label for="FlavorSuggestionFormWhereStart">When can you start?*</label>
+              <input type="text" id="FlavorSuggestionFormWhereStart" name="contact[when can you start]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+          <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+              <label for="FlavorSuggestionFormHoliday" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Are you available Nov 15 - Dec 30?
+*</label>
+              <input type="text" id="FlavorSuggestionFormHoliday" name="contact[Are you available Nov 15 - Dec 30?]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+            <div class="grid__item">
+              <label for="FlavorSuggestionFormVactions" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Are you planning on taking any vacations in the upcoming months?* <span style="font-size:.7em;">If so, when?</span></label>
+              <input type="text" id="FlavorSuggestionFormVactions" name="contact[vacations]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>  
+          </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+          
+          
+            <div class="grid__item">
+              <label for="FlavorSuggestionFormDesired">Desired Wage / Salary? *</label>
+              <input type="text" id="FlavorSuggestionFormDesired" name="contact[desired wage]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="negotiable">Desired Wage / Salary? </label>
+       	<input type="radio" id="negotiable" name="contact[negotiable]" value="yes"> Negotiable<br>
+<!--   	   	<input type="radio" name="contact[negotiable]" value="looking for experience"> Just Looking For Experience<br> -->
+              <div style="display:blok; visibility:hidden; height:1px; overflow:hidden;">
+                <label for="food-1" style="display:none;"><span>food-1</span></label>
+                <label for="food-2" style="display:none;"><span>food-2</span></label>
+                <label for="food-3" style="display:none;"><span>food-3</span></label>
+                <label for="food-4" style="display:none;"><span>food-3</span></label>
+                <label for="food-5" style="display:none;"><span>food-3</span></label>
+              </div>
+        <label>Do you have your NY Food Handler License?*</label>
+       	<input id="food-1" type="radio" name="contact[food handler]" value="Yes"> Yes<br>
+  	   	<input id="food-2" type="radio" name="contact[food handler]" value="No, what's that?"> No, what's that?<br>
+        <input id="food-3" type="radio" name="contact[food handler]" value="No, but I'm willing to get it"> No, but I'm willing to get it<br>
+		<input id="food-4" type="radio" name="contact[food handler]" value="No, and I'm not willing to get it"> No, and I'm not willing to get it<br>
+		<input id="food-5" type="radio" name="contact[food handler]" value="Don't Know"> Don't know<br>
+          
+          </div>
+          
+        
+        
+ <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+          	<label for="FlavorSuggestionFormWhywant">Why do you want to work at DŌ?*</label>
+              <input type="text" id="FlavorSuggestionFormWhywant" name="contact[why do you want to work]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+              <div style="margin-top:20px;"></div>
+              <label for="FlavorSuggestionFormWordyour" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">What's one word you think best describes you?*</label>
+              <input type="text" id="FlavorSuggestionFormWordyour" name="contact[word to describe you]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+              
+          </div>
+          </div>
+       
+        
+       <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormFreetime">What do you like to do in your free time?*</label>
+              <input type="text" id="FlavorSuggestionFormFreetime" name="contact[free time]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+         </div>
+        </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormCustomer" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">What is your definition of great customer service?*</label>
+              <input type="text" id="FlavorSuggestionFormCustomer" name="contact[customer service]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            
+           </div>
+        </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormGreat">Why do you think you will be a great addition to the DŌ team?*</label>
+           <input type="text"id="FlavorSuggestionFormGreat" name="contact[great addition]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+         
+           </div>
+        </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormAnythingElse">Anything else you'd like us to know?</label>
+              <input type="text" id="FlavorSuggestionFormAnythingElse" name="contact[anything else you'd like us to know?]" autocorrect="off" autocapitalize="off" value="" class="field w-input">
+         
+           </div>
+        </div>
+        
+   
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="FlavorSuggestionFormReference" class="">Please provide 2 references.*<br><span style="font-size:.7em;"> Please provide Name, Relationship, Phone number and email address.</span></label>
+                <textarea type="textarea" id="FlavorSuggestionFormReference" name="contact[2 references]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required
+                  ></textarea></div>
+         
+          
+     </div>
+        <p>Please send your resume to <a href="mailto:info@cookiedonyc.com" style="color: #ff007b;">info@cookiedonyc.com.</a></p>
+          
+     <div class="btn-content-block">
+       
+          <input type="submit" class="btn button submit w-button" value="Submit">
+     </div> 
+        {% endform %}
+      </div>
+        </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div></div>
+
+  {% else %}
+            
+
+   
+  
+  <!-- ================ new page job ================ -->
+  
+  
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {{ page.content }}
+      <div class="form-block left-0 w-form plan-event-form-block">
+        <div id="email-form-3" class="w-clearfix">
+      <div class="contact-form form-vertical">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+        	<div style="padding-top:50px; display:block; clear:both;"></div>
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+        <h2>job application</h2>
+        
+        <input type="hidden" name="contact[subject]" value="Job Application" />
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormName">First Name*</label>
+              <input type="text" id="FlavorSuggestionFormName" name="contact[first_name]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormLastName" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Last Name*</label>
+              <input type="text" id="FlavorSuggestionFormLastName" name="contact[last_name]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormEmail">Email Address*</label>
+              <input type="email" id="FlavorSuggestionFormEmail" name="contact[email]" value="" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="JobApplicationPhone" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Phone*</label>
+              <input type="text" id="JobApplicationPhone" name="contact[phone]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+
+          <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="FlavorSuggestionFormFavorite">Favorite Cookie?*</label>
+                <input type="text" id="FlavorSuggestionFormFavorite" name="contact[favorite cookie]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required>
+              </div>
+          </div>
+        
+         <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormPosition">Desired Position*</label>
+              <input type="text" id="FlavorSuggestionFormPosition" name="contact[desired position]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormWeek" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Week Availability*</label>
+              <input type="text" id="FlavorSuggestionFormWeek" name="contact[week availability]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="FlavorSuggestionFormweekend" class="">Are you available on the weekends?*</label>
+                <input type="text" id="FlavorSuggestionFormweekend" name="contact[available on weekends]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required>
+              </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormWhereStart">When can you start?*</label>
+              <input type="text" id="FlavorSuggestionFormWhereStart" name="contact[when can you start]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="FlavorSuggestionFormHoliday" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Are you available to work over holidays?*</label>
+              <input type="text" id="FlavorSuggestionFormHoliday" name="contact[available to work over holidays]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+            <div class="grid__item">
+              <label for="FlavorSuggestionFormVactions" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">Are you planning on taking any vacations in the upcoming months?* <span style="font-size:.7em;">If so, when?</span></label>
+              <input type="text" id="FlavorSuggestionFormVactions" name="contact[vacations]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>  
+          </div>
+          </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+          
+          
+            <div class="grid__item">
+              <label for="FlavorSuggestionFormDesired">Desired Wage / Salary? *</label>
+              <input type="text" id="FlavorSuggestionFormDesired" name="contact[desired wage]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+            </div>
+          </div>
+        
+        <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+              <label for="negotiable">Desired Wage / Salary? </label>
+       	<input type="radio" id="negotiable" name="contact[negotiable]" value="yes"> Negotiable<br>
+<!--   	   	<input type="radio" name="contact[negotiable]" value="looking for experience"> Just Looking For Experience<br> -->
+              <div style="display:blok; visibility:hidden; height:1px; overflow:hidden;">
+                <label for="food-1" style="display:none;"><span>food-1</span></label>
+                <label for="food-2" style="display:none;"><span>food-2</span></label>
+                <label for="food-3" style="display:none;"><span>food-3</span></label>
+                <label for="food-4" style="display:none;"><span>food-3</span></label>
+                <label for="food-5" style="display:none;"><span>food-3</span></label>
+              </div>
+       	<label>Do you have your NY Food Handler License?*</label>
+       	<input id="food-1" type="radio" name="contact[food handler]" value="Yes"> Yes<br>
+  	   	<input id="food-2" type="radio" name="contact[food handler]" value="No, what's that?"> No, what's that?<br>
+        <input id="food-3" type="radio" name="contact[food handler]" value="No, but I'm willing to get it"> No, but I'm willing to get it<br>
+		<input id="food-4" type="radio" name="contact[food handler]" value="No, and I'm not willing to get it"> No, and I'm not willing to get it<br>
+		<input id="food-5" type="radio" name="contact[food handler]" value="Don't Know"> Don't know<br>
+          
+          </div>
+          
+        
+        
+            <div class="grid__item medium-up--one-half column-9 w-col w-col-6">
+          	<label for="FlavorSuggestionFormWhywant">Why do you want to work at DŌ?*</label>
+              <input type="text" id="FlavorSuggestionFormWhywant" name="contact[why do you want to work]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+              <div style="margin-top:20px;"></div>
+              <label for="FlavorSuggestionFormWordyour" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">What's one word you think best describes you?*</label>
+              <input type="text" id="FlavorSuggestionFormWordyour" name="contact[word to describe you]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+              
+          </div>
+          </div>
+       
+        
+       <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormFreetime">What do you like to do in your free time?*</label>
+              <input type="text" id="FlavorSuggestionFormFreetime" name="contact[free time]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+         </div>
+        </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormCustomer" class="{% if form.errors contains 'lastName' %}label--error{% endif %}">What is your definition of great customer service?*</label>
+              <input type="text" id="FlavorSuggestionFormCustomer" name="contact[customer service]" autocorrect="off" autocapitalize="off" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" class="field w-input" required>
+            
+           </div>
+        </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormGreat">Why do you think you will be a great addition to the DŌ team?*</label>
+           <input type="text"id="FlavorSuggestionFormGreat" name="contact[great addition]" value="{% if form[first_name] %}{{ form[first_name] }}{% elsif customer %}{{ customer.first_name }}{% endif %}" class="field w-input" required>
+         
+           </div>
+        </div>
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+         <div class="grid__item">
+           <label for="FlavorSuggestionFormAnythingElse">Anything else you'd like us to know?</label>
+              <input type="text" id="FlavorSuggestionFormAnythingElse" name="contact[anything else you'd like us to know?]" autocorrect="off" autocapitalize="off" value="" class="field w-input">
+         
+           </div>
+        </div>
+        
+   
+        
+        <div class="grid grid--full-gutters column-9 w-col w-col-12">
+              <div class="grid__item">
+                <label for="FlavorSuggestionFormReference" class="">Please provide 2 references.*<br><span style="font-size:.7em;"> Please provide Name, Relationship, Phone number and email address.</span></label>
+                <textarea type="textarea" id="FlavorSuggestionFormReference" name="contact[2 references]" autocorrect="off" autocapitalize="off" value="" class="field w-input" required
+                  ></textarea></div>
+          </div>
+        <p>Please send your resume to <a href="mailto:info@cookiedonyc.com" style="color: #ff007b;">info@cookiedonyc.com.</a></p>
+          
+     <div class="btn-content-block">
+       
+          <input type="submit" class="btn button submit w-button" value="Submit">
+     </div> 
+        {% endform %}
+      </div>
+        </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+
+  
+  {% endif %}
+  
+  <style>
+    h5 {
+      font-size:16px;
+    }
+    
+    label {
+      font-size: 16px;
+    }
+  
+  li, li a, .product-single__title, .hidden-text, .hidden-text p, .product-single__description p, h5, label, h2 {
+    font-family: 'Poppins';
+  }
+  
+  li a {
+    font-weight: 400 !important;
+  }
+  </style>
+  
+
+
+

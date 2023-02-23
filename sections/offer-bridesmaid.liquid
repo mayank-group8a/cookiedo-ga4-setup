@@ -1,0 +1,44 @@
+{% if section.settings.visibility_control %}
+  <div class="speicial-offer-box">
+    <div class="div-container">
+      <div class="specialoffer-text">
+        <div class="textbox">
+          {% if section.settings.title %}
+          <div class="offer-title">{{section.settings.title}}</div>
+          {% endif %}
+          {{section.settings.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Promotional Text",
+    "settings": [
+		{
+          "type": "checkbox",
+          "id": "visibility_control",
+          "label": "Show / Hide",
+          "default": false
+        },
+		{
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+		{
+          "type": "html",
+          "id": "description",
+          "label": "Description"
+        }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

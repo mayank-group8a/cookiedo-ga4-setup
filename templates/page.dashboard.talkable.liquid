@@ -1,0 +1,45 @@
+{% comment %}
+  DO NOT MODIFY MANUALLY
+  This asset is generated automatically by Talkable Integration at 7/9/21 1:25PM
+{% endcomment %}
+<style>
+  
+  li, li a, .product-single__title, .hidden-text, .hidden-text p, .product-single__description p, h5 {
+    font-family: 'Poppins';
+  }
+  
+  li a {
+    font-weight: 400 !important;
+  }
+  
+</style>
+
+{% section 'header-featured-banner' %}
+
+{% if page.handle == "corporate-gifting" %}
+
+
+{% section "page-template-corporate-gifting" %}
+
+{% else %}
+{% include 'hypervisual' %}
+
+<div id="Team" class="{{ page.handle }} content-section content-pages">
+  <div class="content-wrapper w-container">
+    <!-- <div class="section-header text-center">
+<h1>{{ page.title }}</h1>
+</div> -->
+
+    <div class="rte">
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          <div id="talkable-offer"></div>
+        {% else %}
+          {{ 'Log in' | customer_login_link }}
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endif %}

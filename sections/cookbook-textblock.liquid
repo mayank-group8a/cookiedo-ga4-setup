@@ -1,0 +1,203 @@
+{% if section.settings.control %}
+	
+	{% if section.settings.title != blank or section.settings.subtitle != blank %}
+	<div class="cookbook_content">
+        <div class="column-padding w-col w-col-12">
+          <div class="cookbook-inner-container">
+            {% if section.settings.title != blank %}
+              <h2 class="text-center">{{section.settings.title}}</h2>
+            {% endif %}
+            {% if section.settings.subtitle != blank %}
+            <h2 class="text-center">{{section.settings.subtitle}}</h2>
+            {% endif %}
+            </div>
+          </div>
+       </div>
+	  {% endif %}
+      
+      <div style="margin-bottom: 25px;" class="clearfix"></div>
+
+	{% for block in section.blocks %}
+	 {% assign border_type = block.settings.seprator %}
+	<div class="cookbook_content {% if border_type == 'border' %}cookbook-divider-line{% elsif border_type == 'none' %}master-empty-spacer{% endif %}">
+         <div class="krist_content_wrapper cookbook_textblock">
+           
+           {% if block.settings.title != blank %}
+           	<div class="text-center" style="width: 100%;">
+             <h2 class="text-center">{{block.settings.title}}</h2>
+           </div>
+		     <div class="clearfix" style="height:15px;"></div>
+           {% endif %}
+           
+           {% if block.settings.image_align == 'top' %}
+             {% if block.settings.image != blank %}
+              <div class="column-padding w-col w-col-12">
+                <img class="large-image" src="{{block.settings.image | img_url: '1200x' }}" alt="{{block.settings.title}}">
+              </div>
+             {% endif %}
+           {% endif %}
+           
+         {% if block.settings.image_align == 'left' %}
+             {% if block.settings.image != blank %}
+              <div class="column-padding w-col w-col-6">
+                <img class="large-image" src="{{block.settings.image | img_url: '800x' }}" alt="{{block.settings.title}}">
+              </div>
+             {% endif %}
+           {% endif %}
+           
+        <div class="column-padding w-col {% if block.settings.image_align == 'top' %} w-col-12 {%else%} w-col-6 {%endif%}"> 
+          <div clas="krist-bio">
+            {% if block.settings.subtitle != blank %}
+              <h3>{{block.settings.subtitle }}</h3>
+            {% endif %}
+            <div style="margin-bottom: 25px;" class="clearfix"></div>
+            {% if block.settings.text != blank %}
+              {{block.settings.text }}
+            {% endif %}
+            
+            <div class="text-center">
+          	{% if block.settings.btn_text != blank %}
+              <div style="margin-top: 25px;" class="clearfix"></div>
+              <a href="{{block.settings.btn_url}}" class="btn block-btn button">{{block.settings.btn_text}}</a>
+            {% endif %}
+            </div>
+            
+          </div>
+        </div>
+           {% if block.settings.image_align == 'right' %}
+             {% if block.settings.image != blank %}
+              <div class="column-padding w-col w-col-6">
+                <img class="large-image" src="{{block.settings.image | img_url: '800x' }}" alt="{{block.settings.title}}">
+              </div>
+             {% endif %}
+           {% endif %}
+         </div>
+      </div>
+
+	{% endfor %}
+{% endif %}
+    
+{% schema %}
+  {
+    "name": "Text Block",
+    "class": "textblock-section",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "control",
+        "label": "Enable",
+    	"default": false
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle"
+      }
+	],
+	"blocks": [
+      {
+        "type": "text_block",
+        "name": "Add Text Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+          },
+          {
+            "type": "html",
+            "id": "text",
+            "label": "Description"
+          },
+          {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text"
+          },
+          {
+            "type": "url",
+            "id": "btn_url",
+            "label": "Button URL"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+             "type":      "select",
+             "id":        "image_align",
+             "label":     "Image Position",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               },
+               {
+                 "value": "top",
+                 "label": "Top Center"
+               }
+             ],
+             "default":   "left"
+          },
+          {
+             "type":      "select",
+             "id":        "seprator",
+             "label":     "separator",
+             "options": [
+               {
+                 "value": "hash",
+                 "label": "slashs separator"
+               },
+               {
+                 "value": "border",
+                 "label": "devider line"
+               },
+               {
+                 "value": "none",
+                 "label": "none"
+               }
+             ],
+             "default":   "hash"
+          }
+        ]
+      }],
+	 "presets": [
+      {
+        "name": "Text Block",
+        "category": "Add Text Block",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

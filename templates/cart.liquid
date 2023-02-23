@@ -1,0 +1,270 @@
+<script data-cfasync="false" type="text/javascript">if (typeof Shopify === "undefined") var Shopify = {}; Shopify.cart = {{ cart | json }};</script> 
+<div id="sca-fg-owl-carousel">
+  <div id="freegift_cart_container" class="sca-fg-cart-container" style="display: none;">
+    <div id="freegift_message" class="owl-carousel"></div>
+  </div> 
+  <div id="sca-fg-slider-cart" style="display: none;">
+    <div class="sca-fg-cart-title">
+      <strong>Select your free gift (s)</strong>
+    </div>
+    <div id="sca_freegift_list" class="owl-carousel"></div>
+  </div>
+</div>
+<div id="sca_fg_cart">
+
+
+
+{% section 'banner-cart' %}
+{% comment %}
+  The contents of the cart.liquid template can be found in /sections/cart-template.liquid
+{% endcomment %}
+{{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+{% section 'cart-template-2' %}
+
+<!--{ section 'cart-template' %} -->
+
+
+{{ 'localization.js' | asset_url | script_tag }}
+ 
+  {% comment %}
+<script>
+  
+ 
+/***************************************************
+
+	
+  
+	function get_zip_location(zipcode){
+     
+		var arr = [];
+      
+      	var params = {
+          type: 'POST',
+          url: 'http://staging.software/cookiedo/class.php?zipcode=0',
+          success: function(data) {
+            console.log(data);
+          },
+          error: function(XMLHttpRequest) {
+            
+          }
+        };
+        $.ajax(params);
+      
+	}
+get_zip_location('47351');
+
+/***************************************************
+
+  function get_pickup_date(m_d_y){
+    
+      var xhReq = new XMLHttpRequest();
+     xhReq.open("GET", "//cookiedo.myshopify.com/admin/orders.json?created_at_min=2018-03-01&status=any", false);
+     xhReq.send(null);
+     var serverResponse = xhReq.responseText;
+      var obj = JSON.parse(serverResponse);
+
+      //console.log(obj.orders.length);
+
+      var data  = obj.orders;
+      var counter = 0;
+      var disabled_date = [];
+
+      for(i=0;i<data.length;i++){
+           var shipping_name = data[i]['note_attributes'][0]['name'];
+           var shipping_date = data[i]['note_attributes'][0]['value'];
+
+          if(shipping_name == 'pickupDate' && shipping_date == m_d_y){
+             console.log(shipping_date);
+             counter++;
+             date['date'] = shipping_date;
+          }
+
+          if(counter == 100){
+            disabled_date.push(date); 
+          }
+       }
+    
+    return disabled_date;
+ }   
+ 
+//var result = get_pickup_date('07/25/2018');
+   
+//console.log(result);
+
+
+  
+/**********************************************************************************
+
+
+
+function delivery_datepick(){
+  
+  $("#date").datepicker("destroy");
+
+	
+	var zipcode = jQuery('#date').val();
+  
+	
+	if(zipcode == ''){
+		return false;
+	}
+  
+  	return false;
+	//var result  = get_zip_location(zipcode);
+
+	var delivery_val = '';
+  
+
+	
+	if(delivery_val == '' || delivery_val == 'undefined' || delivery_val == undefined){
+      
+      alert('Sorry, sugar! We\'re not shipping in your area yet.');
+     
+    }else{
+      
+      var currentDate = new Date();
+      var get_hour = currentDate.getHours();
+      currentDate = currentDate.getDay();
+      
+      //alert(currentDate+' '+get_hour);
+      
+	  if(currentDate == '5' && delivery_val == '1'){
+		  delivery_val = delivery_val + 3;
+      }else if(currentDate == '5' && delivery_val == '2'){
+          delivery_val = delivery_val + 4;
+      }else if(currentDate == '6' &&  delivery_val == '1'){
+          delivery_val = delivery_val + 2;
+      }else if(currentDate == '6' &&  delivery_val == '2'){
+          delivery_val = delivery_val + 3;
+      }else if(currentDate == '7'){
+          delivery_val = delivery_val + 1;
+      }else if(currentDate == '2' && get_hour > 12){
+		  delivery_val = delivery_val + 1;
+	  }else if(currentDate == '3' && delivery_val == '2' && get_hour > 12){
+		  delivery_val = delivery_val + 4;
+      }else if(currentDate == '4' && delivery_val == '2'){
+		  delivery_val = delivery_val + 4;
+      }else if(currentDate == '4' && delivery_val == '1' && get_hour > 12){
+      	 delivery_val = delivery_val + 3;
+      }else if(currentDate == '3' && delivery_val == '1' && get_hour > 12){
+      	 delivery_val = delivery_val + 1;
+      }
+      
+     //alert(delivery_val);
+      
+      var month = '';
+      var day = '';
+      
+      $("#date").on("change",function(){
+            var selected = $(this).val();
+			
+        
+        
+        	selected = get_pickup_date(selected);
+        
+            	var date_new = new Date(selected);
+                date_new = date_new.getDate();
+
+            if(date_new > 0){
+                var conditions_var = true; 
+              	day = date_new.getDate();
+                month = date_new.getMonth();
+            }else{
+               // var conditions_var = false; 
+            }
+
+
+            if(conditions_var == true){
+
+                alert(selected);
+            }
+
+    });
+      
+		
+	  $("#date").datepicker( {
+        showOn: "click",
+		minDate: +delivery_val,
+		maxDate: '+12M',
+		beforeShowDay: function (date) {
+		//getDate() returns the day (0-31)
+		if (date.getDay() == 2 || date.getDay() == 3 || date.getDay() == 4 || date.getDay() == 5 || (date.getMonth() == month && date.getDay() == day)){      
+			return [true, ''];
+		}
+		return [false, ''];
+		}
+	  });
+      
+      $("#date").datepicker( "show" );
+      
+	}	
+	
+}
+
+/******************************************************************************
+
+
+$(function(){
+  //$( "#date" ).datepicker({ dateFormat: "yy-mm-dd" });
+
+  /*$("#date").on("change",function(){
+    var selected = $(this).val();
+    
+    var date_new = new Date(selected);
+    	date_new = date_new.getDate();
+    
+    if(date_new > 0){
+    	var conditions_var = true; 
+    }else{
+    	var conditions_var = false; 
+    }
+    
+   
+    if(conditions_var == true){
+      
+    	alert(selected);
+    }
+   
+  }); 
+});
+
+
+
+*/
+
+/* 
+$(function(){
+    $("input").datepicker(
+        {
+        beforeShowDay: function (date) {
+        //getDate() returns the day (0-31)
+        if (date.getDay() == 2 || date.getDay() == 3 || date.getDay() == 4 || date.getDay() == 5) {
+            return [true, ''];
+        }
+        return [false, ''];
+        }
+        }
+    
+    );
+}); */
+
+//onlyTheseWeekDays([2, 3, 4, 5])
+/* 
+$(document).ready( function() {
+    $(function() {
+      $("#date").datepicker( {
+        minDate: +1,
+        //maxDate: '+2M',
+		beforeShowDay: function(date) {
+			var weekend = $.datepicker.noWeekends(date);
+			return [(weekend[2] || date.getDay() == 2)];
+		  } 
+      } );
+    });
+  });
+ */
+
+</script>
+  {% endcomment %}
+
+</div>

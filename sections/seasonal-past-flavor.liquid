@@ -1,0 +1,42 @@
+{% if section.settings.flavors_section_showhide == 'yes' %} 
+{% if section.settings.section_title != blank %}
+   	  <div class="div-bottom-padding_no" style="margin-bottom: 50px;">
+        <div class="banner">
+          <div class="pink-line"></div>
+          <h2 class="box-heading-bold curly small">past seasonal</h2>
+          <h2 class="box-heading-bold caps">{{ section.settings.section_title | escape }}</h2>
+        </div>
+      </div>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Past flavors",
+    "class": "past-flavors-section",
+	"settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Heading",
+        "default": "Flavor archive"
+      },
+	  {
+        "type": "select",
+        "id": "flavors_section_showhide",
+        "label": "Section Show/Hide",
+        "default": "yes",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

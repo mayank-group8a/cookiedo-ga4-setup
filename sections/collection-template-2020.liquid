@@ -1,0 +1,946 @@
+ {% if collection.handle == 'shop-pride' %}
+{% if collection.description != blank %}
+        <div class="rte collection-description page-width" style="max-width:800px;margin-top:30px;margin-bottom:30px;font-size:14px;font-family:Poppins;display:block;margin-left:auto;margin-right:auto;padding:15px;">
+          {{ collection.description }}
+        </div>
+      {% endif %}  {% endif %}
+
+{% if collection.handle == 'subscriptions' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+{% endif %}
+
+{% if collection.handle == 'shop-free-shipping' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+{% endif %}
+
+{% if collection.handle == 'shop-christmas' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+{% endif %}
+
+{% if collection.handle == 'shop-hanukkah' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+{% endif %}
+
+{% if collection.handle == 'easter-treats' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div> 
+    {% assign product_tags = ", " | split: ", " %}
+
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+        <li><a href="#{{ 'COOKIE DOUGH' | handleize }}">COOKIE DOUGH</a></li>
+        <li><a href="#{{ 'COOKIES & COOKIE CAKE' | handleize }}">COOKIES & COOKIE CAKE</a></li>
+        
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+           <li><a href="#{{ 'COOKIE DOUGH' | handleize }}">COOKIE DOUGH</a></li>
+           <li><a href="#{{ 'COOKIES & COOKIE CAKE' | handleize }}">COOKIES & COOKIE CAKE</a></li>
+     
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+
+{% endif %}
+{% if collection.handle == 'mothers-day-treats' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div> 
+    {% assign product_tags = ", " | split: ", " %}
+
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+        <li><a href="#{{ 'Sweet treats' | handleize }}">SWEET TREATS</a></li>
+        <li><a href="#{{ 'Baking essentials' | handleize }}">BAKING ESSENTIALS</a></li>
+        
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+           <li><a href="#{{ 'SWEET TREATS' | handleize }}">SWEET TREATS</a></li>
+           <li><a href="#{{ 'BAKING ESSENTIALS' | handleize }}">BAKING ESSENTIALS</a></li>
+     
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+
+{% endif %}
+{% if collection.handle == 'valentines' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div> 
+    {% assign product_tags = ", " | split: ", " %}
+
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+      <li><a href="#{{ 'LOVE IS SWEET' | handleize }}">LOVE IS SWEET</a></li>
+      <li><a href="#{{ 'CUPID IS STUPID' | handleize }}">CUPID IS STUPID</a></li>
+      <li><a href="#{{ 'GALENTINES ESSENTIALS' | handleize }}">GALENTINES ESSENTIALS</a></li>
+      
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+       <li><a href="#{{ 'LOVE IS SWEET' | handleize }}">LOVE IS SWEET</a></li>
+      <li><a href="#{{ 'CUPID IS STUPID' | handleize }}">CUPID IS STUPID</a></li>
+      <li><a href="#{{ 'GALENTINES ESSENTIALS' | handleize }}">GALENTINES ESSENTIALS</a></li>
+ 
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+
+{% endif %}
+{% if collection.handle == 'shop-holiday' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div> 
+    {% assign product_tags = ", , " | split: ", " %}
+
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+      <li><a href="#{{ 'holiday cookie dough' | handleize }}">COOKIE DOUGH</a></li>
+      <li><a href="#{{ 'holiday baked' | handleize }}">BAKED GOODS</a></li>
+      <li><a href="#{{ 'holiday merch' | handleize }}">HOLIDAY MERCH</a></li>
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+       <li><a href="#{{ 'holiday cookie dough' | handleize }}">COOKIE DOUGH</a></li>
+      <li><a href="#{{ 'holiday baked' | handleize }}">BAKED GOODS</a></li>
+      <li><a href="#{{ 'holiday merch' | handleize }}">HOLIDAY MERCH</a></li>
+></li>
+
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+
+{% endif %}
+
+{% if collection.handle == 'shop-by-price' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div> 
+    {% assign product_tags = ", , " | split: ", " %}
+
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+      <li><a href="#{{ 'under 30' | handleize }}">UNDER 30</a></li>
+      <li><a href="#{{ 'under 60' | handleize }}">UNDER 60</a></li>
+      <li><a href="#{{ 'under 90' | handleize }}">UNDER 90</a></li>
+     <li><a href="#{{ 'under 120' | handleize }}">UNDER 120</a></li>
+      <li><a href="#{{ 'over 200' | handleize }}">OVER 200</a></li>
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+      <li><a href="#{{ 'under 30' | handleize }}">UNDER 30</a></li>
+      <li><a href="#{{ 'under 60' | handleize }}">UNDER 60</a></li>
+      <li><a href="#{{ 'under 90' | handleize }}">UNDER 90</a></li>
+      <li><a href="#{{ 'under 120' | handleize }}">UNDER 120</a></li>
+      <li><a href="#{{ 'over 200' | handleize }}">OVER 200</a></li>
+></li>
+
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+
+{% endif %}
+
+
+
+{% if collection.handle == "cookie-dough" %}
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+      <li><a href="#{{ 'PICK YOUR OWN FLAVORS' | handleize }}">PICK YOUR OWN FLAVORS</a></li>
+      <li><a href="#{{ 'THE BEST SELLERS' | handleize }}">THE BEST SELLERS</a></li>
+      <li><a href="#{{ 'SEASONAL SPECIALS' | handleize }}">SEASONAL SPECIALS</a></li>
+      <li><a href="#{{ 'TASTER PACKS' | handleize }}">TASTER PACKS</a></li>
+      <li><a href="#{{ 'BITE BOXES' | handleize }}">BITE BOXES</a></li>
+      <li><a href="#{{ 'GLUTEN FREE & VEGAN OPTIONS' | handleize }}">GLUTEN FREE & VEGAN OPTIONS</a></li>
+      <li><a href="#{{ 'CELEBRATION PACKS' | handleize }}">CELEBRATION PACKS</a></li>
+      <li><a href="#{{ 'FOR YOUR PARTY' | handleize }}">FOR YOUR PARTY</a></li>
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+      <li><a href="#{{ 'PICK YOUR OWN FLAVORS' | handleize }}">PICK YOUR OWN FLAVORS</a></li>
+      <li><a href="#{{ 'THE BEST SELLERS' | handleize }}">THE BEST SELLERS</a></li>
+      <li><a href="#{{ 'SEASONAL SPECIALS' | handleize }}">SEASONAL SPECIALS</a></li>
+      <li><a href="#{{ 'TASTER PACKS' | handleize }}">TASTER PACKS</a></li>
+      <li><a href="#{{ 'BITE BOXES' | handleize }}">BITE BOXES</a></li>
+      <li><a href="#{{ 'GLUTEN FREE & VEGAN OPTIONS' | handleize }}">GLUTEN FREE & VEGAN OPTIONS</a></li>
+      <li><a href="#{{ 'CELEBRATION PACKS' | handleize }}">CELEBRATION PACKS</a></li>
+      <li><a href="#{{ 'FOR YOUR PARTY' | handleize }}">FOR YOUR PARTY</a></li>
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+{% endif %}
+
+
+{% if collection.handle == "pick-up" %}
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+      <li><a href="#{{ 'PICK YOUR OWN FLAVORS' | handleize }}">PICK YOUR OWN FLAVORS</a></li>
+      <li><a href="#{{ 'THE BEST SELLERS' | handleize }}">THE BEST SELLERS</a></li>
+      <li><a href="#{{ 'CELEBRATION PACKS' | handleize }}">CELEBRATION PACKS</a></li>
+      <li><a href="#{{ 'GLUTEN FREE' | handleize }}">GLUTEN FREE</a></li>
+      <li><a href="#{{ 'SEASONAL' | handleize }}">SEASONAL</a></li>
+      <li><a href="#{{ 'JUST A TASTE' | handleize }}">JUST A TASTE</a></li>
+      <li><a href="#{{ 'BITE BOXES' | handleize }}">BITE BOXES</a></li>
+      <li><a href="#{{ 'Cookie Cakes' | handleize }}">COOKIE CAKES</a></li>
+      <li><a href="#{{ 'FOR ALL THE COOKIE MONSTERS!' | handleize }}">FOR ALL THE COOKIE MONSTERS!</a></li>
+      <li><a href="#{{ 'FOR YOUR PARTY' | handleize }}">FOR YOUR PARTY</a></li>
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+      <li><a href="#{{ 'PICK YOUR OWN FLAVORS' | handleize }}">PICK YOUR OWN FLAVORS</a></li>
+      <li><a href="#{{ 'THE BEST SELLERS' | handleize }}">THE BEST SELLERS</a></li>
+      <li><a href="#{{ 'CELEBRATION PACKS' | handleize }}">CELEBRATION PACKS</a></li>
+      <li><a href="#{{ 'GLUTEN FREE' | handleize }}">GLUTEN FREE</a></li>
+      <li><a href="#{{ 'SEASONAL' | handleize }}">SEASONAL</a></li>
+      <li><a href="#{{ 'JUST A TASTE' | handleize }}">JUST A TASTE</a></li>
+      <li><a href="#{{ 'BITE BOXES' | handleize }}">BITE BOXES</a></li>   
+      <li><a href="#{{ 'COOKIE CAKES' | handleize }}">COOKIE CAKES</a></li>
+      <li><a href="#{{ 'FOR ALL THE COOKIE MONSTERS!' | handleize }}">FOR ALL THE COOKIE MONSTERS!</a></li>
+      <li><a href="#{{ 'FOR YOUR PARTY' | handleize }}">FOR YOUR PARTY</a></li>
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+{% endif %}
+
+
+{% if collection.handle == 'last-minute-gifts' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+{% endif %}
+
+{% if collection.handle == 'nationwide-shipping' %}
+<div class="hero-image" {% if collection.image %} style="background-image:url('{{ collection.image | img_url: '2000x' }}');" {% endif %}>
+    <div class="div-block-12">
+      <h1 class="fancy-hero">
+           {{ collection.title }}
+      </h1>
+    </div>
+  </div>
+
+
+<div class="collections-tabs">
+  <div class="div-container">
+	<ul class="tabs">
+      <li><a href="#{{ 'cookie dough' | handleize }}">cookie dough</a></li>
+      <li><a href="#{{ 'cookies' | handleize }}">cookies</a></li>
+      <li><a href="#{{ 'cookie cakes' | handleize }}">cookie cakes</a></li>
+      <li><a href="#{{ 'the cookbook' | handleize }}">the cookbook</a></li>
+      <li><a href="#{{ 'kits' | handleize }}">kits</a></li>
+      <li><a href="#{{ 'baking mixes & flour' | handleize }}">baking mixes & flour</a></li>
+      <li><a href="#{{ 'Gifts' | handleize }}">gifts</a></li>
+      <li><a href="#{{ 'merch' | handleize }}">merch</a></li>
+      <li><a href="#{{ 'gift cards' | handleize }}">gift cards</a></li>
+  	</ul>
+  </div>
+</div>
+<div class="content-section" style="padding-top:0; padding-bottom:0px; position: relative; z-index: 9999;">
+<div class="collections-tabs-mobile" style="display:none">
+  <div class="div-container">
+    
+   <ul class="mobile-tabs">
+     <li><a href="javascript:void(0)" id="browse-category">Browse by Category 
+       <span>
+       	<i class="fa fa-bars" aria-hidden="true"></i>
+         <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+       </span>
+       </a>
+       <ul class="dropdown-list-menu">
+      <li><a href="#{{ 'cookie dough' | handleize }}">cookie dough</a></li>
+      <li><a href="#{{ 'cookies' | handleize }}">cookies</a></li>
+      <li><a href="#{{ 'cookie cakes' | handleize }}">cookie cakes</a></li>
+      <li><a href="#{{ 'kits' | handleize }}">kits</a></li>
+      <li><a href="#{{ 'the cookbook' | handleize }}">the cookbook</a></li>
+      <li><a href="#{{ 'baking mixes & flour' | handleize }}">baking mixes & flour</a></li>
+      <li><a href="#{{ 'Gifts' | handleize }}">gifts</a></li>  
+      <li><a href="#{{ 'merch' | handleize }}">merch</a></li>
+      <li><a href="#{{ 'gift cards' | handleize }}">gift cards</a></li>
+       </ul>
+  	</ul>
+  </div>
+</div>
+</div>
+
+{% endif %}
+{% comment %}
+  The contents of the collection.liquid template can be found in /sections/collection-template.liquid
+{% endcomment %}
+
+<!-- { section 'collection-templates' } -->
+
+<style>
+  #shopify-section-header{
+    position: relative;
+    z-index: 99999999999;
+}
+  
+   {% if collection.handle != 'nationwide-shipping' %}
+  .section-title{display: none !important; }
+  {% endif %}
+  .banner2:after{
+  	display: table;
+    clear:both;
+    content:"";
+  }
+  .mobile-tabs{
+  	position: relative;
+    display:block;
+    margin:0;
+    padding:0;
+    list-style:none;
+     z-index: 1;
+    background:#fff;
+  }
+  body .uwy.userway_p6 {
+    z-index: 1 !important;
+}
+  .mobile-tabs li{
+  	position: relative;
+    display:block;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .mobile-tabs .dropdown-list-menu{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    background: url(https://cdn.shopify.com/s/files/1/2509/8354/t/36/assets/black-lines-border.png) repeat-x left bottom #fff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-size: 34px;
+    padding-bottom: 25px;
+      display:none;
+}
+ 
+  
+.mobile-tabs li a{
+    display: block;
+    height: auto;
+    padding: 10px;
+    color: #000;
+    transition: color 300ms ease;
+    font-family: 'Conv_Replica-Light';
+    color: #1f1f1f;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+}
+   .mobile-tabs > li > a{
+  border: 1px solid #eee;
+    display:flex;
+    align-items: center;
+  }
+  .mobile-tabs > li > a span{display:inline-block;
+  	margin-left: auto;
+        font-size: 20px;
+  }
+  .mobile-tabs .dropdown-list-menu li:last-child a{border-bottom:0px; }
+  .collections-tabs{display:block; margin-top:50px; }
+  .tabs{
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+          align-items: center;
+        flex-wrap: wrap;
+    justify-content: center;
+    }
+  .tabs li a{
+      display: block;
+          padding: 9px 15px;
+      font-size: 16px !important;
+      font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+      border: 1px solid #faecf3;
+      text-decoration: none;
+      margin: 5px 3px;
+        text-transform: lowercase;
+  }
+  .tabs li a:hover{
+  	background:#faecf3;
+  }
+  .cta-image{
+  	background-size: cover;
+  }
+  .center-div.move{
+    bottom: -64px;
+    left: 8px;
+	right: 8px;
+  }
+  .team-member-text._10{padding-top:20px;}
+  .whole-wrapper{ display:block; min-width: 100%; width:100%; padding:0px; position:relative; }
+  .banner2{margin-bottom:25px;}
+  .heading.on-lines{padding-right: 25px;}
+  
+  .highlight-top{
+    display: block;
+    position: relative;
+}
+  .highlight-top h3{
+
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: #fff;
+    padding: 0px 10px;
+    position: relative;
+    z-index: 9;
+    display: inline-block;
+    margin: 0px;
+
+}
+  
+  .offPrice{
+    display:inline-block; 
+    position:relative;
+  }
+  
+  .offPrice:after{
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: #ff007b;
+    width: 100%;
+    left: 0;
+    bottom: 40%;
+    transform: rotate(-10deg);
+}
+  .title.tiny.white-bg{
+  	top:2px;
+    padding-top:0px;
+  }
+  
+ .discount_badge{ 
+
+    position: absolute;
+    right: 5%;
+    top: 0;
+    width: 75px;
+   background: url({{ 'bageBg.png' | asset_img_url }}) no-repeat center bottom;
+   background-size:cover;
+    height: 120px;
+    z-index: 9;
+    font-size: 23px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+
+}
+  .bage_box{
+  	    line-height: 30px;
+    padding-top: 16px;
+    display:block;
+    height:100%;
+    position:relative;
+  }
+  .bage_box:after{
+  	content:"";
+  }
+  .divider{
+
+    background: #13a1cb;
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+  
+  ._2-buttons{
+  	padding-top:25px;
+  }
+ 
+  .cta-image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .out-div{
+  	margin: 6px;
+    height: 235px;
+  }
+  .title.tiny{
+  word-spacing: -1.4px;
+  }
+  
+  .title.tiny.white-bg br{
+  	display:none;
+  }
+  
+  .title.tiny.white-bg span{
+  	display:block;
+    font-weight:300;
+  }
+  
+  .discount-price .title.tiny.white-bg br{display: inherit;}
+  
+  .discount-price .title.tiny.white-bg span{
+  	display:inline-block;
+  }
+  .title.tiny.white-bg{
+  	top: 10px;
+    z-index:1;
+  }
+  
+  .title-wrapper h3{
+    font-weight: 900;
+    font-size: 36px;
+    color: #ff007b;
+        margin: 15px 0px;
+    outline:0;
+    border:0;
+  }
+ 
+  @media screen and (min-width: 992px){
+    .div-container{
+    	display:flex;
+       justify-content: center;
+      flex-wrap:wrap;
+    }
+  }
+  @media screen and (min-width: 1024px){
+    .div-container{
+      max-width:1200px;
+    }
+     .tabs li a{
+        font-size: 18px;
+    }
+  }
+   @media screen and (max-width: 1024px){
+     .tabs li a{
+        font-size: 17px;
+    }
+  }
+  
+   @media screen and (max-width: 768px){
+    .whole-wrapper .grid__item,
+    .whole-wrapper{width:100% !important;}
+    
+    .center-div.move{bottom: -32px;}
+     .tabs li a{font-size:14.5px;}
+     .whole-wrapper .banner2{
+       height: auto !important;
+           padding-top: 50px;
+       text-align: left;
+     }
+     .whole-wrapper .banner2 .heading.on-lines{
+     	top:0px;
+       margin:0px;
+       padding:0px;
+     }
+  }
+  
+  @media screen and (max-width: 700px){
+    .tabs{display:block;    margin-bottom: 50px;    padding: 0px 15px; }
+    .tabs li a{
+      text-align:center;
+      display:block;
+      font-size:18px;
+    }
+  }
+  
+  @media screen and (max-width: 480px){
+  	.center-div.move {
+        bottom: -44px;
+    }
+  }
+  
+</style>
+
+<div id="wrapper-container" class="content-section" {% if collection.handle == 'nationwide-shipping' %}style="padding-top:0px;" {% endif %}>
+  {% if collection.handle == 'nationwide-shipping' %}
+{% assign collection_list = "cookie-dough, cookie, cookie-cakes, kits, baking-mixes, gifts, cookbook-merch, merch, gift-cards" | split: ", " %}
+	{% else %}
+  	{% assign collection_list = collection.handle | split: ", " %}
+  {% endif %}
+{% for collection_cat in collection_list  %}
+  {% assign col_counter = forloop.index %}
+	
+{% assign collection = collections[collection_cat] %}
+
+{% assign tagCount = 0 %}
+{% assign col_title = '' %}	
+  {% if collection.handle == 'nationwide-shipping' %}
+ {% assign collection_list = "cookie-dough, cookie, cookie-cakes, kits, baking-mixes, gifts, cookbook-merch, merch, gift-cards" | split: ", " %}
+  {% else %}
+  	{% assign collection_list = collection.handle | split: ", " %}
+  {% endif %}
+  
+  {% if collection.handle contains 'cookie-dough' %}
+  	{% assign product_tags = "Pick your own flavors, The best sellers, SEASONAL SPECIALS, Taster Packs, Bite Boxes, Gluten Free & Vegan Options, Celebration Packs, For Your Party" | split: ", " %}
+    {% assign col_title = 'Cookie Dough' %}	
+  {% elsif collection.handle contains 'valentines' %}
+  	 {% assign product_tags = "LOVE IS SWEET, CUPID IS STUPID, GALENTINES ESSENTIALS" | split: ", " %}
+     {% assign col_title = "sweet treats" %}	
+  {% elsif collection.handle == 'cookie' %}
+  	 {% assign product_tags = "Get ‘EM Freshly Baked!" | split: ", " %}
+     {% assign col_title = 'Cookies' %}	
+   {% elsif collection.handle == 'cookie-cakes' %}
+  	 {% assign product_tags = "THE BEST CAKE OF ALL" | split: ", " %}
+     {% assign col_title = 'Cookie Cakes' %}	
+  {% elsif collection.handle contains 'cookbook-merch' %}
+  	{% assign product_tags = "Learn How to Dough it at Home!, HEAT-TREATED FLOUR" | split: ", " %}
+    {% assign col_title = 'The Cookbook' %}	
+  {% elsif collection.handle contains 'baking-mixes' %}
+  	{% assign product_tags = " MIX IT UP!, BAKING MIX BUNDLES, HEAT-TREATED FLOUR , GET ALL THE GOODS" | split: ", " %}
+    {% assign col_title = 'Baking Mixes & Flour' %}
+  {% elsif collection.handle contains 'last-minute-gifts' %}
+    {% assign product_tags = "last minute gifts" | split: ", " %}
+    {% assign col_title = 'Last-Minute Gifts' %}	
+  {% elsif collection.handle contains 'gifts' %}
+  	{% assign product_tags = " GIVE THE SWEETEST GIFT OF ALL!, for your party" | split: ", " %}
+    {% assign col_title = 'Gifts' %}	
+  {% elsif collection.handle contains 'merch' %}
+  	{% assign product_tags = " All The Swag!" | split: ", " %}
+    {% assign col_title = 'Merch' %}	
+  {% elsif collection.handle contains 'gift-cards' %}
+    {% assign product_tags = "A TREAT FOR THEM ON YOU!" | split: ", " %}
+    {% assign col_title = 'Gift Cards' %}	
+  {% elsif collection.handle contains 'subscriptions' %}
+    {% assign product_tags = "gift that keeps on giving" | split: ", " %}
+    {% assign col_title = 'Subscription' %}	
+  {% elsif collection.handle contains 'pick-up' %}
+    <!--{% assign product_tags = "Pick your own flavors, The best sellers, Celebration packs, Gluten free, Seasonal, Just a taste, BITE BOXES, Cookie Cakes, FOR ALL THE COOKIE MONSTERS!, for your party" | split: ", " %}-->
+    {% assign col_title = 'Pick Up In-Store' %}
+  {% elsif collection.handle contains 'shop-holiday' %}
+    {% assign product_tags = "holiday cookie dough, holiday baked, holiday merch" | split: ", " %}
+    {% assign col_title = 'shop holiday' %}	
+  {% elsif collection.handle contains 'shop-by-price' %}
+    {% assign product_tags = "under 30, under 60, under 90, under 120, over 200" | split: ", " %}
+    {% assign col_title = 'shop by price' %}  
+  {% elsif collection.handle contains 'last-minute-gifts' %}
+    {% assign product_tags = "last minute gifts" | split: ", " %}
+    {% assign col_title = 'Last-Minute Gifts' %}	
+  {% elsif collection.handle contains 'easter-treats' %}
+  	 {% assign product_tags = "COOKIE DOUGH, COOKIES & COOKIE CAKE" | split: ", " %}
+  	 {% assign col_title = 'easter treats' %}	
+  {% elsif collection.handle contains 'mothers-day' %}
+  	 {% assign product_tags = "SWEET TREATS, BAKING ESSENTIALS" | split: ", " %}
+  	 {% assign col_title = 'mothers day treats' %}	
+  {% elsif collection.handle contains 'kits' %}
+  	 {% assign product_tags = "kits" | split: ", " %}
+  	 {% assign col_title = 'kits' %}	
+  {% elsif collection.handle contains 'pride' %}
+  	 {% assign product_tags = "celebrate pride" | split: ", " %}
+  	 {% assign col_title = 'celebrate pride' %}
+ {% elsif collection.handle contains 'shop-free-shipping' %}
+  	 {% assign product_tags = "ship free" | split: ", " %}
+  	 {% assign col_title = 'shop free shipping' %}
+ {% elsif collection.handle contains 'shop-christmas' %}
+  	 {% assign product_tags = "christmas" | split: ", " %}
+  	 {% assign col_title = 'shop Christmas' %}
+ {% elsif collection.handle contains 'shop-hanukkah' %}
+  	 {% assign product_tags = "hanukkah" | split: ", " %}
+  	 {% assign col_title = 'shop Hanukkah' %}
+  {% endif %}
+
+<div class="title-wrapper" id="{{ col_title | handleize }}">
+  <div class="div-container" style="display:block;">
+  <div class="section-title" style="{% if col_counter > 1 %}border-top: 1.7px solid #000;{% endif %} text-align:left; display:block; margin:0px auto; padding:0px 5px; max-width:100%; position:relative; ">
+  <h3>{{col_title}}</h3>
+  </div>
+  </div>
+</div>
+
+<div class="div-container">
+
+{% for tag in product_tags %}
+  {% capture current_tag %}/{{ tag }}/{% endcapture %}
+   {% if tag != 'HEAT-TREATED FLOUR-remove' %}
+  
+  <div class="whole-wrapper collection-wrapper-{{collection.id}}" id="{{ tag | handle }}">
+  <div class="banner2 w-clearfix">
+                <h3 class="heading on-lines" style="font-weight: 700;font-size: 24px; margin:0px; text-transform: uppercase !important;">{{ tag }}</h3>
+                <div class="lines"></div>
+              </div>
+
+    <div class="clearfix" style="width:100%; display:flex; flex-wrap: wrap;">
+  		{% assign product_counter = 0 %}
+     {% for product in collection.products %}
+    
+    
+    {% assign parent_tag = tag | handle %}
+    {% for product_tag in product.tags %}
+    
+      {% assign child_tag = product_tag | handle %}
+      {% capture current_tag2 %}/{{ product_tag }}/{% endcapture %}
+    	
+      {% assign current_tag = current_tag | handle %}
+      {% assign current_tag2 = current_tag2 | handle %}
+    	
+      {% if parent_tag == child_tag %}
+      	
+		{% assign tagCount = tagCount | plus: 1 %}
+    
+    	{% if collection.handle contains 'baking-mixes'  %}
+    		{% assign product_grid = 3 %} 
+    {% elsif collection.handle contains 'holiday'  %}
+    {% assign product_grid = 3 %}
+    	{% else %}
+            {% assign product_grid = 4 %}
+    	{% endif %}
+    
+    
+  		<div class="column-no-padding w-col  w-col-3 w-col-small-6 w-col-tiny-tiny-stack w-col-medium-6 grid__item grid__item--collection-template small--one-half medium-up--one-third" style="min-height:320px;">
+
+          {% include 'cookiedoSpecial' with collection.handle %}
+          
+  		</div>
+    
+    	 {% if tagCount == product_grid %}
+          
+               {% assign tagCount = tagCount | minus: product_grid %}
+          {% endif %}
+      
+      	{% assign product_counter = product_counter | plus: 1 %}
+    	
+      {% endif %}
+    
+    {% endfor %}
+      
+   
+      
+  {% endfor %}
+    
+  </div>
+  </div>
+   {% endif %}
+{% endfor %}
+ </div>
+
+{% endfor %}
+ </div>
+<script>
+  jQuery(document).ready(function(){
+    jQuery('#browse-category').on('click', function(){
+    	$(this).parents('ul').find('ul').slideToggle();
+       $(this).parent().find('.fa').toggle();
+    });
+    jQuery('.dropdown-list-menu a').on('click', function(){
+    	$(this).parents('.mobile-tabs').find('#browse-category').trigger('click');
+    });
+    
+    jQuery("#wrapper-container .div-container").each(function(){
+      
+     
+      jQuery(this).find('.whole-wrapper').each(function(){
+        var grid_counts = jQuery(this).find('.grid__item').length;
+      	if(grid_counts == 0){
+        	jQuery(this).remove();
+        }
+      });
+    
+      //var sec_count = jQuery(this).find('.whole-wrapper').length;
+     
+     /* 
+      jQuery(this).find('.whole-wrapper').each(function(){
+      	var grid_count = jQuery(this).find('.grid__item').length;
+        if(grid_count == 0){
+        	jQuery(this).hide();
+        }else{
+          if(grid_count == 1){
+            jQuery(this).find('.grid__item').css({'width':'100%'});
+          }else if(grid_count == 2){
+            jQuery(this).find('.grid__item').css({'width':'50%'});
+          }else if(grid_count == 3){
+            jQuery(this).find('.grid__item').css({'width':'33.33%'});
+          }else if(grid_count == 4){
+            jQuery(this).find('.grid__item').css({'width':'25%'});
+          }
+        	console.log(grid_count);
+        }
+        
+        
+      });
+      */
+      
+    });
+  });
+</script>
+<!--{ section 'gift-card' }-->
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+		]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
