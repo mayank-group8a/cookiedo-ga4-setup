@@ -46,11 +46,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         console.log('gtag_report_conversion_url: ', url);
         console.log('gtag_report_conversion_variant: ', items);
-        {% comment %} gtag('event', 'conversion', {
+        gtag('event', 'conversion', {
           send_to: 'AW-779760861/_KrOCJfLl4MDEN3p6PMC',
           event_callback: callback,
         })
-       {% endcomment %}
+        
         gtag("event", "add_to_cart", {
           currency: Shopify.currency.active,
           value: variant_price,
