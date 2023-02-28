@@ -32,26 +32,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         dataLayer.push(arguments)
       }
       gtag('js', new Date())
-      gtag('config', 'AW-779760861');
-      gtag('config', 'G-3C8K7B7FCR');
-
+      gtag('config', 'AW-779760861')
     </script>
     <!-- ATC code added BY Modi Group8a 2021-11-17 -->
     <script>
-      function gtag_report_conversion(url,items,variant_price) {
+      function gtag_report_conversion(url) {
         var callback = function () {
           if (typeof url != 'undefined') {
             window.location = url
           }
         }
-        console.log('gtag_report_conversion_url: ', url);
-        console.log('gtag_report_conversion_variant: ', items);
-       
-        gtag("event", "add_to_cart", {
-          currency: Shopify.currency.active,
-          value: variant_price,
-          items: items
-        }); 
         gtag('event', 'conversion', {
           send_to: 'AW-779760861/_KrOCJfLl4MDEN3p6PMC',
           event_callback: callback,
@@ -358,32 +348,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'click',
         '.product-form__item--submit button[name="add"],.product-list-actions button[name="add"]',
         function (event) {
-               // event.preventDefault();
-               // console.log('ATC Trigger 1');      
-                var url = '/cart';   
-                var variant_id = $("form.product-form select.product-form__variants option:selected").val();
-                var product_title = $(".product-single__meta h1.product-single__title").text();
-                var variant_title = $("form.product-form select.product-form__variants option:selected" ).text().trim();
-                if(variant_title == "Default Title"){
-                  var variant_c_title = product_title;
-                }
-                else{
-                  var variant_c_title = product_title+" - "+variant_title;
-                }
-                var variant_vendor = $(".product-single__meta h1.product-single__title").attr("data-vendor");
-                var variant_price = $(".product-single__price .product-price__price span:first-child").text().replace(/[^\d\.]/g, '');
-                variant_price = parseFloat(variant_price);
-                var variant_quantity = $("form.product-form input#Quantity").val();
-                variant_quantity = parseInt(variant_quantity);
-                var items = [{
-                  item_id: variant_id,
-                  item_name: variant_c_title,
-                  currency: Shopify.currency.active,
-                  item_brand: variant_vendor,
-                  price: variant_price,
-                  quantity: variant_quantity
-                 }]
-          gtag_report_conversion(url,items,variant_price);
+          //       event.preventDefault();
+          //       console.log('ATC Trigger 1');
+          gtag_report_conversion()
           return true
         }
       )
@@ -391,33 +358,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'click',
         '.upsell-form-footer .ad_to_cart, .bold-product__actions .add-to-cart',
         function (event) {
-        // event.preventDefault()
-         // console.log('ATC Trigger 2');
-          
-          var url = '/cart';   
-               var variant_id = $(this).attr("var-id");
-               var product_title = $(this).attr("product-title");
-               var variant_title = $(this).attr("first-var");
-               if(variant_title == "Default Title"){
-                 var variant_c_title = product_title;
-               }
-               else{
-                 var variant_c_title = product_title+" - "+variant_title;
-               }
-               var variant_vendor = $(this).attr("data-vendor");
-               var variant_price = $(this).attr("var-price");
-               variant_price = variant_price.replace(/[^\d\.]/g, '');
-               variant_price = parseFloat(variant_price);
-               var variant_quantity = 1;
-               var items = [{
-                 item_id: variant_id,
-                 item_name: variant_c_title,
-                 currency: Shopify.currency.active,
-                 item_brand: variant_vendor,
-                 price: variant_price,
-                 quantity: variant_quantity
-                }]
-         gtag_report_conversion(url,items,variant_price);
+          event.preventDefault()
+          console.log('ATC Trigger 2')
+          gtag_report_conversion()
           return true
         }
       )
@@ -426,32 +369,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'click',
         'form[action="/cart/add"] input[value="add to cart"]',
         function (event) {
-             //  event.preventDefault();
-              // console.log('ATC Trigger 3');
-               var url = '/cart';   
-               var variant_id = $(this).parents("form").find("input.main-var").attr("value");
-               var product_title = $(this).parents("form").find("input.main-var").attr("product-title");
-               var variant_title = $(this).parents("form").find("input.main-var").attr("first-var");
-               if(variant_title == "Default Title"){
-                 var variant_c_title = product_title;
-               }
-               else{
-                 var variant_c_title = product_title+" - "+variant_title;
-               }
-               var variant_vendor = $(this).parents("form").find("input.main-var").attr("data-vendor");
-               var variant_price = $(this).parents("form").find("input.main-var").attr("var-price");
-               variant_price = variant_price.replace(/[^\d\.]/g, '');
-               variant_price = parseFloat(variant_price);
-               var variant_quantity = 1;
-               var items = [{
-                 item_id: variant_id,
-                 item_name: variant_c_title,
-                 currency: Shopify.currency.active,
-                 item_brand: variant_vendor,
-                 price: variant_price,
-                 quantity: variant_quantity
-                }];
-         gtag_report_conversion(url,items,variant_price);
+          //       event.preventDefault();
+          //       console.log('ATC Trigger 3');
+          gtag_report_conversion()
           return true
         }
       )

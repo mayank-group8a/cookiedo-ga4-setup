@@ -157,8 +157,8 @@
                       </select>
                   		<input type="hidden" value="1" name="quantity" />
                       <div class="upsell-form-footer">
-                      <div class="upsell-price">{{upsell.price | money | remove: ".00"}}</div> <input class="btn ad_to_cart" type="button" value="Add to cart" var-id="{{upsell.selected_or_first_available_variant.id}}" product-title="{{upsell.title}}" first-var="{{upsell.selected_or_first_available_variant.title}}" data-vendor="{{ upsell.vendor }}" var-price="{{ upsell.selected_or_first_available_variant.price | money }}"/>
-                        <input class="btn ad_to_cart mobile-btn" type="button" value="Add" var-id="{{upsell.selected_or_first_available_variant.id}}" product-title="{{upsell.title}}" first-var="{{upsell.selected_or_first_available_variant.title}}" data-vendor="{{ upsell.vendor }}" var-price="{{ upsell.selected_or_first_available_variant.price | money }}"/>
+                      <div class="upsell-price">{{upsell.price | money | remove: ".00"}}</div> <input class="btn ad_to_cart" type="button" value="Add to cart" />
+                        <input class="btn ad_to_cart mobile-btn" type="button" value="Add" />
                       </div>
                   </div>
                 </div>

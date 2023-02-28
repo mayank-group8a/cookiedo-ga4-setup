@@ -104,7 +104,7 @@
 
 
 
-                            <input class="main-var" type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" product-title="{{product.title}}" first-var="{{product.selected_or_first_available_variant.title}}" data-vendor="{{ product.vendor }}" var-price="{{ product.selected_or_first_available_variant.price | money }}"/>
+                            <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" />
                             <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
                             <div class="button small {% if product.url =="/collections/baking-mixes" %} hide-cart{% endif %}" style="padding:0px;">
                             

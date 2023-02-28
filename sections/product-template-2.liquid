@@ -195,11 +195,7 @@
   
   
 </style>
-<div class="product-single__meta" style="display:none;">
-		
-       
-  <h1 itemprop="name" class="product-single__title" data-vendor="{{ product.vendor }}">{{ product.title }}</h1>
-</div>
+
 {{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}
 <div class="product-template__container single-product page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
   <meta itemprop="name" content="{{ product.title }}">
@@ -311,8 +307,8 @@
               {% endif %}
 			
               <div class="product-list-actions"> 
-                    <div class="product-single-prices custom_product-price product-single__price" style="margin-top:0;">
-                      <label id="ProductPrice" class="price product-price__price" itemprop="price"><span>{{ product.price | money }}</span></label>
+                    <div class="product-single-prices custom_product-price">
+                      <label id="ProductPrice" class="price" itemprop="price"><span>{{ product.price | money }}</span></label>
                     </div>
                 <button type="button" class="button w-button bundlePro btn btn-lg btn-primary disabled-btn">
                 	<span id="AddToCartText-{{ section.id }}">

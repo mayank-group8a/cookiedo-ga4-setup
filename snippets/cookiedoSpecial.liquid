@@ -178,7 +178,7 @@ divided_by: product.compare_at_price_min | money_without_currency | times: 100
                           {% if product.id != 6153584607427 and  product.id != 6153583493315 and product.id != 6153580871875 %}
                       
                           <form method="post" action="/cart/add" class="button-link w-inline-block">
-                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" class="main-var" product-title="{{product.title}}" first-var="{{product.selected_or_first_available_variant.title}}" data-vendor="{{ product.vendor }}" var-price="{{ product.selected_or_first_available_variant.price | money }}"/>
+                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
                             <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
                             <div class="button small {% if product.url =="/collections/baking-mixes" %} hide-cart{% endif %}" style="padding:0px;">
                             
@@ -196,7 +196,7 @@ divided_by: product.compare_at_price_min | money_without_currency | times: 100
                           </a>
                      {% if product.id != 6153584607427 and  product.id != 6153583493315 and product.id != 6153580871875 %}
                           <form method="post" action="/cart/add" class="button-link w-inline-block" style="top: -1px; position:  relative;">
-                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" class="main-var" product-title="{{product.title}}" first-var="{{product.selected_or_first_available_variant.title}}" data-vendor="{{ product.vendor }}" var-price="{{ product.selected_or_first_available_variant.price | money }}"/>
+                            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
                             <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
                             <div class="button small {% if product.url =="/collections/baking-mixes" %} hide-cart{% endif %}" style="padding:0px;">
                             
